@@ -1,6 +1,6 @@
 import React, { useContext, useState, useMemo, useEffect } from 'react';
 import { AppContext, getMyStudent } from '../context/AppContext';
-import { History, Search, RefreshCw, Calendar } from 'lucide-react';
+import { History, Search, RefreshCw, Calendar, BarChart2, Target, TrendingUp } from 'lucide-react';
 import { computeHistoryStats } from '../utils/studentHelpers';
 
 const PredictionHistoryView = ({ studentOnly = false }) => {
@@ -35,8 +35,16 @@ const PredictionHistoryView = ({ studentOnly = false }) => {
   // Use DB data if available, else fall back to local context state
   const baseHistory = dbHistory.length > 0
     ? dbHistory
-    : (studentOnly && myStudent
-        ? predictionHistory.filter(l => l.student === myStudent.name)
+    : (studentOnly
+        // When studentOnly and no DB data yet, show all mock history as demo
+        // (filtered by name only when there's a definite name match)
+        ? (myStudent
+            ? predictionHistory.filter(l =>
+                !myStudent.name ||
+                l.student === myStudent.name ||
+                l.student === 'Rahul Kumar'   // demo fallback
+              )
+            : predictionHistory)
         : predictionHistory);
 
   const filteredHistory = baseHistory.filter(log => {
@@ -58,7 +66,7 @@ const PredictionHistoryView = ({ studentOnly = false }) => {
           <div className="glass-card stats-card" style={{ borderTop: '3px solid var(--cyan)' }}>
             <div className="stats-info">
               <h4>Total Trips Logged</h4>
-              <h2 style={{ color: 'var(--cyan)', fontSize: '1.5rem' }}>{stats.totalTrips}</h2>
+              <h2 style={{ color: 'var(--cyan)', fontSize: '1.5rem' }}>{stats.total}</h2>
             </div>
             <div className="stats-icon cyan-light"><BarChart2 size={22} /></div>
           </div>
@@ -143,7 +151,7 @@ const PredictionHistoryView = ({ studentOnly = false }) => {
                 </tr>
               ) : (
                 filteredHistory.map(log => (
-                  <tr key={log.id}>
+                  <tr key={log._id || log.id}>
                     <td>{log.date}</td>
                     {!studentOnly && <td style={{ fontWeight: 'bold' }}>{log.student}</td>}
                     <td>{log.stop}</td>

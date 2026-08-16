@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useContext, useState, useMemo, useEffect } from 'react';
 import { AppContext, getMyStudent } from '../context/AppContext';
 import { User, Phone, MapPin, Bus, Calendar, History, Brain, Search, Save, QrCode, ArrowLeft } from 'lucide-react';
 import { computeHistoryStats, BOARDING_STOPS, DEPT_OPTIONS, YEAR_OPTIONS } from '../utils/studentHelpers';
@@ -10,11 +10,7 @@ const StudentProfileView = ({ myProfileOnly = false, setCurrentView }) => {
 
   const availableStops = boardingStopsFromDB.length > 0 ? boardingStopsFromDB : BOARDING_STOPS;
 
-  const defaultId = myProfileOnly && currentUser?.studentId
-    ? currentUser.studentId
-    : students[0]?.id || '';
-
-  const [selectedStudentId, setSelectedStudentId] = useState(defaultId);
+  const [selectedStudentId, setSelectedStudentId] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [editing, setEditing] = useState(false);
   const [editDept, setEditDept] = useState('');
@@ -25,14 +21,24 @@ const StudentProfileView = ({ myProfileOnly = false, setCurrentView }) => {
   const isCustomEditStop = editStop === '__other__';
   const [saving, setSaving] = useState(false);
 
+  // Set default selection once students are loaded
+  useEffect(() => {
+    if (selectedStudentId) return; // already set
+    if (myProfileOnly && currentUser?.studentId) {
+      setSelectedStudentId(currentUser.studentId);
+    } else if (students.length > 0) {
+      setSelectedStudentId(students[0].id || students[0].studentId || '');
+    }
+  }, [students, currentUser?.studentId, myProfileOnly]);
+
   const currentStudent = students.find(s => s.id === selectedStudentId);
   const myBus = currentStudent ? buses.find(b => b.number === currentStudent.assignedBus) : null;
 
   const filteredStudents = myProfileOnly
-    ? students.filter(s => s.id === currentUser?.studentId)
+    ? students.filter(s => (s.id || s.studentId) === currentUser?.studentId)
     : students.filter(s =>
-        s.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        s.id.toLowerCase().includes(searchTerm.toLowerCase())
+        s.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (s.id || s.studentId || '').toLowerCase().includes(searchTerm.toLowerCase())
       );
 
   const studentHistory = predictionHistory.filter(h => h.student === currentStudent?.name);

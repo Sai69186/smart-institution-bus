@@ -29,20 +29,16 @@ const resolveGPS = async (req) => {
     if (req.user.role === 'driver') {
       bus = await Bus.findOne({ driverId: req.user._id }).select('gpsLat gpsLng speed occupied');
     } else if (req.body?.busNumber) {
-      bus = await Bus.findOne({ busNumber: req.body.busNumber.toUpperCase() })
-                     .select('gpsLat gpsLng speed occupied');
+      const filter = { busNumber: req.body.busNumber.toUpperCase() };
+      if (req.user.institutionId) filter.institutionId = req.user.institutionId;
+      bus = await Bus.findOne(filter).select('gpsLat gpsLng speed occupied');
     }
 
     if (bus?.gpsLat && bus?.gpsLng) {
-      return {
-        bus_lat:   bus.gpsLat,
-        bus_lng:   bus.gpsLng,
-        speed_kmh: bus.speed || 30,
-        occupancy: bus.occupied || 0,
-      };
+      return { bus_lat: bus.gpsLat, bus_lng: bus.gpsLng, speed_kmh: bus.speed || 30, occupancy: bus.occupied || 0 };
     }
   } catch (_) {}
-  return {};   // GPS not available — Python will use static fallback
+  return {};
 };
 
 // ── POST /api/ai/predict/boarding ─────────────────────────────────────────────
@@ -144,7 +140,8 @@ router.get('/models/stats', protect, async (req, res) => {
 
 // ── POST /api/ai/models/retrain ───────────────────────────────────────────────
 router.post('/models/retrain', protect, async (req, res) => {
-  if (req.user.role !== 'admin')
+  const allowed = ['admin', 'institution_admin', 'super_admin'];
+  if (!allowed.includes(req.user.role))
     return res.status(403).json({ message: 'Admin access required.' });
   try {
     const { status, data } = await callPython('/models/retrain', {});

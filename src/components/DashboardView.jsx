@@ -7,13 +7,14 @@ import {
   Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, Filler 
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { SkeletonDashboard } from './SkeletonLoader';
 
 ChartJS.register(
   CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, Filler
 );
 
 const DashboardView = ({ setCurrentView }) => {
-  const { buses, students, alerts, weather, academicPeriod, fetchOccupancyTrend, fetchAttendanceStats } = useContext(AppContext);
+  const { buses, students, alerts, weather, academicPeriod, fetchOccupancyTrend, fetchAttendanceStats, busesLoading } = useContext(AppContext);
 
   const [chartData,    setChartData]    = useState({ labels: ['07:00 AM','07:15 AM','07:30 AM','07:45 AM','08:00 AM','08:15 AM','08:30 AM'], actual: [0,0,0,0,0,0,0], predicted: [15,30,52,78,65,34,12] });
   const [liveStats,    setLiveStats]    = useState(null);
@@ -75,7 +76,7 @@ const DashboardView = ({ setCurrentView }) => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        labels: { color: '#94a3b8', font: { family: 'Inter', size: 11 } }
+        labels: { color: 'var(--text-muted)', font: { family: 'Inter', size: 11 } }
       },
       tooltip: {
         mode: 'index',
@@ -84,15 +85,18 @@ const DashboardView = ({ setCurrentView }) => {
     },
     scales: {
       y: {
-        grid: { color: 'rgba(255, 255, 255, 0.03)' },
-        ticks: { color: '#64748b', font: { family: 'Inter', size: 10 } }
+        grid: { color: 'rgba(128, 128, 128, 0.1)' },
+        ticks: { color: 'var(--text-muted)', font: { family: 'Inter', size: 10 } }
       },
       x: {
-        grid: { color: 'rgba(255, 255, 255, 0.03)' },
-        ticks: { color: '#64748b', font: { family: 'Inter', size: 10 } }
+        grid: { color: 'rgba(128, 128, 128, 0.1)' },
+        ticks: { color: 'var(--text-muted)', font: { family: 'Inter', size: 10 } }
       }
     }
   };
+
+  // Show skeleton while buses are loading for the first time
+  if (busesLoading && buses.length === 0) return <SkeletonDashboard />;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>

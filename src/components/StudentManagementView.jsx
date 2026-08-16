@@ -5,8 +5,9 @@ import {
   Upload, Search, RefreshCw, Bus, UserCheck,
   Eye, Phone, MapPin, Calendar, User, ChevronRight
 } from 'lucide-react';
+import { SkeletonTable } from './SkeletonLoader';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const EMPTY_FORM = {
   studentId: '', name: '', email: '', phone: '',
@@ -285,6 +286,12 @@ const StudentManagementView = ({ setCurrentView }) => {
         <input type={type} className="form-input" value={form[key]}
           onChange={e => setForm(p => ({ ...p, [key]: e.target.value }))} placeholder={label} />
       )}
+    </div>
+  );
+
+  if (loading) return (
+    <div style={{ padding: 24 }}>
+      <SkeletonTable rows={8} cols={5} />
     </div>
   );
 

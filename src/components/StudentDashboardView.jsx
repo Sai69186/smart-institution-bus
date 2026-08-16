@@ -44,18 +44,30 @@ const StudentDashboardView = ({ setCurrentView }) => {
 
   const stopETAs = useMemo(() => {
     if (!myBus) return {};
-    // Use real GPS position if available, otherwise ETAs will be empty
-    if (!myBus.gpsLat || !myBus.gpsLng) return {};
+    // Use live GPS if available, fall back to the bus's configured starting point
+    const lat = myBus.gpsLat || myBus.startingLat;
+    const lng = myBus.gpsLng || myBus.startingLng;
+    if (!lat || !lng) return {};
     return calcStopETAs(
-      myBus.gpsLat, myBus.gpsLng,
+      lat, lng,
       myBus.stopSequence,
       myBus.speed > 0 ? myBus.speed : 30
     );
-  }, [myBus?.gpsLat, myBus?.gpsLng, myBus?.speed, myBus?.stopSequence?.join(',')]);
+  }, [myBus?.gpsLat, myBus?.gpsLng, myBus?.startingLat, myBus?.startingLng, myBus?.speed, myBus?.stopSequence?.join(',')]);
 
   const weatherOffset = weatherDelayMins(weather);
-  const myStopETA     = myStudent ? stopETAs[myStudent.boardingStop] : undefined;
-  const adjustedETA   = myStopETA !== undefined ? myStopETA + weatherOffset : null;
+
+  // Match student pickup point to a stop in the bus's sequence.
+  // Try exact match first, then case-insensitive partial match as fallback.
+  const studentStop = myStudent?.pickupPoint || myStudent?.boardingStop || '';
+  const matchedStop = studentStop
+    ? (Object.keys(stopETAs).find(s => s === studentStop) ||
+       Object.keys(stopETAs).find(s => s.toLowerCase().includes(studentStop.toLowerCase())) ||
+       Object.keys(stopETAs).find(s => studentStop.toLowerCase().includes(s.toLowerCase())))
+    : undefined;
+
+  const myStopETA   = matchedStop !== undefined ? stopETAs[matchedStop] : undefined;
+  const adjustedETA = myStopETA !== undefined ? myStopETA + weatherOffset : null;
   const predictedTime = adjustedETA !== null ? minsToTime(adjustedETA) : myStudent?.predBoardingTime;
 
   if (!myStudent) return (
@@ -130,7 +142,7 @@ const StudentDashboardView = ({ setCurrentView }) => {
         <div className="glass-card stats-card" style={{ borderTop: '3px solid var(--cyan)' }}>
           <div className="stats-info">
             <h4>Boarding Stop</h4>
-            <h2 style={{ color: 'var(--cyan)', fontSize: '1.05rem', lineHeight: 1.25 }}>{myStudent.boardingStop}</h2>
+            <h2 style={{ color: 'var(--cyan)', fontSize: '1.05rem', lineHeight: 1.25 }}>{myStudent.pickupPoint || myStudent.boardingStop || '—'}</h2>
             <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: 4 }}>📍 Your pickup point</div>
           </div>
           <div className="stats-icon cyan-light"><MapPin size={24} /></div>
@@ -203,7 +215,7 @@ const StudentDashboardView = ({ setCurrentView }) => {
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {[
-                { label: 'Your Stop',       value: myStudent.boardingStop,       color: 'var(--primary)' },
+                { label: 'Your Stop',       value: myStudent.pickupPoint || myStudent.boardingStop || '—', color: 'var(--primary)' },
                 { label: 'Scheduled',       value: myStudent.predBoardingTime,   color: 'var(--text-primary)' },
                 { label: '🤖 AI Estimated', value: predictedTime,                color: 'var(--cyan)' },
                 { label: 'GPS ETA',         value: adjustedETA !== null ? `${adjustedETA} mins` : 'Calculating...', color: adjustedETA !== null && adjustedETA <= 5 ? 'var(--rose)' : 'var(--emerald)' },
@@ -230,7 +242,8 @@ const StudentDashboardView = ({ setCurrentView }) => {
               {(myBus?.routeCoords || [])
                 .filter(pt => pt.stop && stopETAs[pt.stop] !== undefined)
                 .map((pt, i) => {
-                  const isMyStop = pt.stop === myStudent.boardingStop;
+                  const myStop  = myStudent.pickupPoint || myStudent.boardingStop || '';
+                  const isMyStop = pt.stop === myStop;
                   const eta = stopETAs[pt.stop] + weatherOffset;
                   return (
                     <div key={i} style={{

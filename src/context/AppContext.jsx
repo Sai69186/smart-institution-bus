@@ -1,11 +1,14 @@
 import React, { createContext, useState, useEffect, useCallback, useRef } from 'react';
+import { io as socketIO } from 'socket.io-client';
 import { getStudentAlerts } from '../utils/studentHelpers';
+import { apiFetch } from '../utils/apiFetch';
 
 export { getMyStudent, getStudentAlerts, minsToTime, computeHistoryStats, weatherDelayMins } from '../utils/studentHelpers';
 
 export const AppContext = createContext();
 
-const API = 'http://localhost:5000/api';
+const API         = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const SOCKET_URL  = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
 
 // ── Geo constants — Vignan LARA bounding box ─────────────────────────────────
 const CANVAS_W = 800, CANVAS_H = 480;
@@ -51,13 +54,14 @@ export const STOP_COORDS = {
 };
 
 // ETA calculation from lat/lng using stop sequence
-export const calcStopETAs = (busLat, busLng, stopSequence, speedKmh = 30) => {
+// Accepts optional extraCoords map (DB stop coords) to supplement static STOP_COORDS
+export const calcStopETAs = (busLat, busLng, stopSequence, speedKmh = 30, extraCoords = {}) => {
   if (!busLat || !busLng || !stopSequence?.length) return {};
   const busPos = { lat: busLat, lng: busLng };
   const etas = {};
   let distKm = 0, prev = busPos;
   for (const stopName of stopSequence) {
-    const coord = STOP_COORDS[stopName];
+    const coord = extraCoords[stopName] || STOP_COORDS[stopName];
     if (!coord) continue;
     distKm += haversineKm(prev, coord);
     etas[stopName] = Math.max(0, Math.round((distKm / speedKmh) * 60));
@@ -100,6 +104,7 @@ const normaliseBus = (b) => ({
   status:        b.status   || 'Standby',
   route:         b.route    || '',
   stopSequence:  b.stopSequence || [],
+  remainingStops: b.remainingStops || b.stopSequence || [],
   startingPoint: b.startingPoint || (b.stopSequence?.[0] || ''),
   startingLat:   b.startingLat,
   startingLng:   b.startingLng,
@@ -139,15 +144,51 @@ export const AppProvider = ({ children }) => {
     }
   }, [currentUser]);
 
+  // ── Startup: expire stale tokens, proactively refresh tokens near expiry ──
+  useEffect(() => {
+    if (!currentUser?.token) return;
+
+    // Decode exp without verifying signature (client-side check only)
+    const decodeExp = (t) => {
+      try { return JSON.parse(atob(t.split('.')[1])).exp; } catch { return 0; }
+    };
+    const exp = decodeExp(currentUser.token);
+    const msRemaining = exp * 1000 - Date.now();
+
+    // Already expired — log out immediately
+    if (msRemaining <= 0) {
+      setCurrentUser(null);
+      return;
+    }
+
+    // Within 24h of expiry — refresh in background
+    if (msRemaining < 24 * 60 * 60 * 1000) {
+      fetch(`${API}/auth/refresh`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${currentUser.token}` },
+      })
+        .then(r => r.ok ? r.json() : null)
+        .then(data => {
+          if (data?.token) setCurrentUser(u => ({ ...u, token: data.token }));
+        })
+        .catch(() => {});
+    }
+
+    // Schedule auto-logout 30s before token expires (safety net)
+    const logoutIn = Math.max(0, msRemaining - 30_000);
+    const timer = setTimeout(() => setCurrentUser(null), logoutIn);
+    return () => clearTimeout(timer);
+  }, [currentUser?.token]);
+
   const [studentFeedbacks, setStudentFeedbacks] = useState([]);
 
   // ── API: Register new user ──
-  const registerUser = async ({ name, email, password, phone, role, dept, year, boardingStop, busNumber }) => {
+  const registerUser = async ({ name, email, password, phone, role, dept, year, boardingStop, busNumber, institutionId }) => {
     try {
       const res = await fetch(`${API}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, phone, role, dept, year, boardingStop, busNumber })
+        body: JSON.stringify({ name, email, password, phone, role, dept, year, boardingStop, busNumber, institutionId })
       });
       const data = await res.json();
       if (!res.ok) return { success: false, message: data.message || 'Registration failed.' };
@@ -155,6 +196,15 @@ export const AppProvider = ({ children }) => {
     } catch {
       return { success: false, message: 'Cannot reach server. Is the backend running?' };
     }
+  };
+
+  // ── API: Fetch public institutions list (for signup dropdown) ──
+  const fetchPublicInstitutions = async () => {
+    try {
+      const res = await fetch(`${API}/institutions/public`);
+      if (!res.ok) return [];
+      return await res.json(); // [{ _id, name, city }]
+    } catch { return []; }
   };
 
   // ── API: Login ──
@@ -170,6 +220,38 @@ export const AppProvider = ({ children }) => {
       return { success: true, user: data.user, token: data.token };
     } catch {
       return { success: false, message: 'Cannot reach server. Is the backend running?' };
+    }
+  };
+
+  // ── API: Request MFA OTP ──
+  const requestOTP = async (email) => {
+    try {
+      const res = await fetch(`${API}/auth/request_otp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      if (!res.ok) return { success: false, message: data.message };
+      return { success: true, message: data.message, devCode: data.devCode };
+    } catch {
+      return { success: false, message: 'Cannot reach server.' };
+    }
+  };
+
+  // ── API: Verify MFA OTP ──
+  const verifyOTP = async (email, code) => {
+    try {
+      const res = await fetch(`${API}/auth/verify_otp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code })
+      });
+      const data = await res.json();
+      if (!res.ok) return { success: false, message: data.message };
+      return { success: true };
+    } catch {
+      return { success: false, message: 'Cannot reach server.' };
     }
   };
 
@@ -370,8 +452,11 @@ export const AppProvider = ({ children }) => {
   };
 
   // Emergency SOS state
-  const [sosActive, setSosActive] = useState(false);
+  const [sosActive, setSosActive]   = useState(false);
   const [sosMessages, setSosMessages] = useState([]);
+
+  // Socket.io connection status — shown in Header
+  const [socketConnected, setSocketConnected] = useState(false);
 
   // ── Real buses — fetched from MongoDB via /api/buses ────────────────────────
   const [buses, setBuses] = useState([]);
@@ -381,8 +466,8 @@ export const AppProvider = ({ children }) => {
     if (!currentUser?.token) return;
     setBusesLoading(true);
     try {
-      const res  = await fetch(`${API}/buses`, {
-        headers: { Authorization: `Bearer ${currentUser.token}` }
+      const res  = await apiFetch('/buses', {
+        user: currentUser, setCurrentUser
       });
       if (!res.ok) return;
       const data = await res.json();
@@ -391,18 +476,135 @@ export const AppProvider = ({ children }) => {
     finally { setBusesLoading(false); }
   }, [currentUser?.token]);
 
-  // Fetch buses on login
+  // Fetch buses on login (initial full load)
   useEffect(() => {
     if (currentUser?.token) fetchBuses();
     else setBuses([]);
   }, [currentUser?.token, fetchBuses]);
 
-  // Poll bus list every 10s so all users see live updates
+  // ── Real-time bus updates via Socket.io ───────────────────────────────────
+  // Replaces the old 10-second polling interval.
+  // Server emits bus:gps_update and bus:status_update whenever a driver pushes.
   useEffect(() => {
-    if (!currentUser?.token) return;
-    const id = setInterval(fetchBuses, 10000);
-    return () => clearInterval(id);
-  }, [currentUser?.token, fetchBuses]);
+    if (!currentUser?.token || !currentUser?.institutionId) return;
+
+    const socket = socketIO(SOCKET_URL, {
+      transports:        ['websocket', 'polling'],
+      auth:              { token: currentUser.token },
+      reconnectionDelay: 2000,
+      reconnectionAttempts: 10,
+    });
+
+    // Join institution room so we only receive our own data
+    socket.on('connect', () => {
+      setSocketConnected(true);
+      socket.emit('join_institution', currentUser.institutionId);
+    });
+
+    socket.on('disconnect', () => setSocketConnected(false));
+    socket.on('connect_error', () => setSocketConnected(false));
+
+    // Patch a single bus in state with the GPS update — no full re-fetch needed
+    socket.on('bus:gps_update', (update) => {
+      setBuses(prev => prev.map(b =>
+        b.number === update.busNumber
+          ? {
+              ...b,
+              gpsLat:        update.gpsLat,
+              gpsLng:        update.gpsLng,
+              speed:         update.speed,
+              fuel:          update.fuel   ?? b.fuel,
+              status:        update.status,
+              nextStop:      update.nextStop,
+              eta:           update.etaToNextStop,
+              remainingStops: update.remainingStops || b.remainingStops,
+            }
+          : b
+      ));
+    });
+
+    // Patch status/delay change
+    socket.on('bus:status_update', (update) => {
+      setBuses(prev => prev.map(b =>
+        b.number === update.busNumber
+          ? { ...b, status: update.status, eta: update.etaToNextStop }
+          : b
+      ));
+    });
+
+    // Real-time notification — append to alerts so Header badge + Notifications view update instantly
+    socket.on('notification:new', (notif) => {
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const alert = {
+        id:      notif._id || Date.now(),
+        message: notif.message,
+        type:    notif.type || 'info',
+        time,
+      };
+      // Add to persistent alert log (deduplicate by id)
+      setAlerts(prev => {
+        if (prev.some(a => a.id === alert.id)) return prev;
+        return [alert, ...prev.slice(0, 19)];
+      });
+      // Also show as auto-dismiss toast
+      setToasts(prev => [...prev, { ...alert }]);
+      setTimeout(() => {
+        setToasts(prev => prev.filter(t => t.id !== alert.id));
+      }, 5000);
+    });
+
+    // Real-time attendance — update student status and bus occupied count instantly
+    socket.on('attendance:boarded', (data) => {
+      // Update the student's status in context (student portal sees it immediately)
+      setStudents(prev => prev.map(s =>
+        (s.studentId === data.studentId || s.id === data.studentId)
+          ? { ...s, attendanceStatus: 'Boarded', actualBoardingTime: data.time }
+          : s
+      ));
+      // Update bus occupied count
+      setBuses(prev => prev.map(b =>
+        b.number === data.busNumber
+          ? { ...b, occupied: data.occupied }
+          : b
+      ));
+    });
+
+    // Real-time SOS — immediately mark the affected bus as Emergency in state
+    socket.on('emergency:sos', (data) => {
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      // Update bus status in state
+      setBuses(prev => prev.map(b =>
+        b.number === data.busNumber ? { ...b, status: 'Emergency', speed: 0 } : b
+      ));
+      // Add high-priority alert
+      const sosAlert = {
+        id:      data._id || Date.now(),
+        message: `🚨 SOS: ${data.busNumber} — ${data.reason}`,
+        type:    'danger',
+        time,
+      };
+      setAlerts(prev => {
+        if (prev.some(a => a.id === sosAlert.id)) return prev;
+        return [sosAlert, ...prev.slice(0, 19)];
+      });
+      setToasts(prev => [...prev, { ...sosAlert }]);
+      setTimeout(() => {
+        setToasts(prev => prev.filter(t => t.id !== sosAlert.id));
+      }, 8000); // SOS toasts stay longer
+    });
+
+    socket.on('connect_error', () => {
+      // Silent — fallback poll keeps data fresh if WebSocket fails
+    });
+
+    // Fallback: poll every 30s instead of 10s (WebSocket covers real-time)
+    const fallbackId = setInterval(fetchBuses, 30000);
+
+    return () => {
+      socket.disconnect();
+      clearInterval(fallbackId);
+    };
+  }, [currentUser?.token, currentUser?.institutionId, fetchBuses]);
 
   // ── Admin: fetch all drivers (for bus assignment panel) ─────────────────────
   const fetchAllDrivers = useCallback(async () => {
@@ -479,10 +681,11 @@ export const AppProvider = ({ children }) => {
   const pushDriverGPS = useCallback(async ({ lat, lng, speed, fuel }) => {
     if (!currentUser?.token || currentUser.role !== 'driver') return null;
     try {
-      const res  = await fetch(`${API}/buses/me/gps`, {
+      const res  = await apiFetch('/buses/me/gps', {
         method:  'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${currentUser.token}` },
-        body:    JSON.stringify({ lat, lng, speed: speed || 0, fuel })
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ lat, lng, speed: speed || 0, fuel }),
+        user: currentUser, setCurrentUser
       });
       if (!res.ok) return null;
       const data = await res.json();
@@ -548,17 +751,11 @@ export const AppProvider = ({ children }) => {
     } catch { return []; }
   };
 
-  // 2. Initial Mock Students State — Vignan's LARA, Vadlamudi
-  const [students, setStudents] = useState([
-    { id: 'STU001', name: 'Rahul Kumar',   dept: 'Computer Science',  year: '3rd Year', assignedRoute: 'Route A — Vadlamudi → Vignan LARA',   assignedBus: 'BUS-101', boardingStop: 'Vadlamudi Bus Stand',    predBoardingTime: '07:32 AM', actualBoardingTime: '07:34 AM', phone: '+91 98765 43210', attendanceStatus: 'Boarded' },
-    { id: 'STU002', name: 'Priya Patel',   dept: 'Electronics',       year: '2nd Year', assignedRoute: 'Route B — Tenali Road → Vignan LARA',  assignedBus: 'BUS-204', boardingStop: 'Tenali Road Stop',       predBoardingTime: '07:40 AM', actualBoardingTime: '07:39 AM', phone: '+91 98765 43211', attendanceStatus: 'Boarded' },
-    { id: 'STU003', name: 'Kiran Shah',    dept: 'Mechanical Eng',    year: '4th Year', assignedRoute: 'Route C — Kollipara → Vignan LARA',    assignedBus: 'BUS-309', boardingStop: 'Kollipara Village Stop', predBoardingTime: '07:48 AM', actualBoardingTime: '--:--',    phone: '+91 98765 43212', attendanceStatus: 'Absent'  },
-    { id: 'STU004', name: 'Neha Das',      dept: 'Information Tech',  year: '1st Year', assignedRoute: 'Route A — Vadlamudi → Vignan LARA',   assignedBus: 'BUS-101', boardingStop: 'Guntur Highway Gate',    predBoardingTime: '07:45 AM', actualBoardingTime: '07:48 AM', phone: '+91 98765 43213', attendanceStatus: 'Boarded' },
-    { id: 'STU005', name: 'Amit Roy',      dept: 'Civil Eng',         year: '3rd Year', assignedRoute: 'Route B — Tenali Road → Vignan LARA',  assignedBus: 'BUS-204', boardingStop: 'Pedaparupudi Junction',  predBoardingTime: '07:55 AM', actualBoardingTime: '--:--',    phone: '+91 98765 43214', attendanceStatus: 'Waiting' },
-    { id: 'STU006', name: 'Ananya Sen',    dept: 'Bio-Technology',    year: '2nd Year', assignedRoute: 'Route C — Kollipara → Vignan LARA',    assignedBus: 'BUS-309', boardingStop: 'Mangalagiri Bypass',     predBoardingTime: '08:02 AM', actualBoardingTime: '--:--',    phone: '+91 98765 43215', attendanceStatus: 'Waiting' },
-    { id: 'STU007', name: 'Rohan Sharma',  dept: 'Electrical Eng',    year: '4th Year', assignedRoute: 'Route A — Vadlamudi → Vignan LARA',   assignedBus: 'BUS-101', boardingStop: 'VLITS Main Gate',        predBoardingTime: '07:58 AM', actualBoardingTime: '--:--',    phone: '+91 98765 43216', attendanceStatus: 'Waiting' },
-    { id: 'STU008', name: 'Sana Khan',     dept: 'Computer Science',  year: '1st Year', assignedRoute: 'Route B — Tenali Road → Vignan LARA',  assignedBus: 'BUS-204', boardingStop: 'Chebrolu Cross Roads',   predBoardingTime: '08:10 AM', actualBoardingTime: '--:--',    phone: '+91 98765 43217', attendanceStatus: 'Waiting' }
-  ]);
+  // 2. Students state — starts empty, populated from DB on login
+  // - Admin views fetch directly via GET /api/students (StudentManagementView)
+  // - Student role gets their own profile merged in via fetchStudentProfile
+  // - Driver views use attendance API, not this array
+  const [students, setStudents] = useState([]);
 
   // 3. Boarding Point Management State — Vignan's LARA campus stops
   const [boardingStops, setBoardingStops] = useState([
@@ -697,7 +894,8 @@ export const AppProvider = ({ children }) => {
   const [feedbacksLoading, setFeedbacksLoading] = useState(false);
 
   const fetchAllFeedbacks = useCallback(async () => {
-    if (!currentUser?.token || currentUser.role !== 'admin') return;
+    const adminRoles = ['admin', 'institution_admin', 'super_admin'];
+    if (!currentUser?.token || !adminRoles.includes(currentUser.role)) return;
     setFeedbacksLoading(true);
     try {
       const res = await fetch(`${API}/feedbacks`, {
@@ -712,7 +910,8 @@ export const AppProvider = ({ children }) => {
 
   // Auto-fetch when admin logs in
   useEffect(() => {
-    if (currentUser?.role === 'admin' && currentUser?.token) {
+    const adminRoles = ['admin', 'institution_admin', 'super_admin'];
+    if (adminRoles.includes(currentUser?.role) && currentUser?.token) {
       fetchAllFeedbacks();
     } else {
       setAllFeedbacks([]);
@@ -966,7 +1165,7 @@ export const AppProvider = ({ children }) => {
 
   // ── AI: optimize route (GPS auto-resolved from bus doc) ───────────────────
   const optimizeRoute = useCallback(async ({
-    algorithm = 'Dijkstra', stops, start, traffic_avoidance = false, busNumber
+    algorithm = 'NN2opt', stops, start, start_name, traffic_avoidance = false, busNumber
   }) => {
     if (!currentUser?.token) return null;
     try {
@@ -976,7 +1175,8 @@ export const AppProvider = ({ children }) => {
         body:    JSON.stringify({
           algorithm,
           stops,
-          start,
+          start,            // legacy string (still supported)
+          start_name,       // new: name of starting stop
           busNumber,
           traffic_avoidance,
           weather,
@@ -1039,8 +1239,9 @@ export const AppProvider = ({ children }) => {
       if (!res.ok) { triggerToast(data.message || 'Allocation failed.', 'danger'); return null; }
       triggerToast(`Allocated ${data.summary?.allocatedCount || 0} students to buses.`, 'success');
 
-      // Refresh buses for admin view
-      if (currentUser.role === 'admin') fetchBuses();
+      // Refresh buses for all admin roles
+      const adminRoles = ['admin', 'institution_admin', 'super_admin'];
+      if (adminRoles.includes(currentUser.role)) fetchBuses();
 
       // If a student is logged in, re-fetch their profile so assignedBus
       // updates immediately in the portal without requiring a page reload
@@ -1067,13 +1268,22 @@ export const AppProvider = ({ children }) => {
     } catch { return { adjustmentMins: 0, sampleCount: 0 }; }
   }, [currentUser?.token]);
   const [boardingStopsFromDB, setBoardingStopsFromDB] = useState([]);
+  // Dynamic stop coords from DB — keyed by stop name, each { lat, lng }
+  const [dbStopCoords, setDbStopCoords] = useState({});
 
   const fetchBoardingStops = useCallback(async () => {
     try {
       const res = await fetch(`${API}/boarding_stops`);
       if (!res.ok) return;
       const data = await res.json();
+      // Save names (for dropdowns)
       setBoardingStopsFromDB(data.map(s => s.name));
+      // Save coords keyed by name (for maps) — only for stops that have GPS data
+      const coords = {};
+      data.forEach(s => {
+        if (s.lat && s.lng) coords[s.name] = { lat: s.lat, lng: s.lng };
+      });
+      setDbStopCoords(coords);
     } catch { /* keep empty — AuthView falls back to static list */ }
   }, []);
 
@@ -1301,6 +1511,9 @@ export const AppProvider = ({ children }) => {
       setCurrentUser,
       loginUser,
       registerUser,
+      fetchPublicInstitutions,
+      requestOTP,
+      verifyOTP,
       updateUserProfile,
       fetchStudentProfile,
       updateStudentProfile,
@@ -1367,6 +1580,7 @@ export const AppProvider = ({ children }) => {
       fetchOccupancyTrend,
       fetchFeedbackSummary,
       boardingStopsFromDB,
+      dbStopCoords,
       fetchBoardingStops,
       suggestBoardingStop,
       predictBoarding,
@@ -1383,7 +1597,8 @@ export const AppProvider = ({ children }) => {
       resolveSOS,
       triggerToast,
       toasts,
-      dismissToast
+      dismissToast,
+      socketConnected
     }}>
       {children}
     </AppContext.Provider>

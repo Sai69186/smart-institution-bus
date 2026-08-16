@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import { 
-  Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend 
+  Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement,
+  BarElement, Title, Tooltip, Legend 
 } from 'chart.js';
 import { Brain, Award, Zap, Activity, RefreshCw } from 'lucide-react';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
 const AIPredictionAnalyticsView = () => {
   const { fetchAIModelStats, fetchPredictionAccuracy, retrainAIModels, triggerToast } = useContext(AppContext);
@@ -63,13 +64,17 @@ const AIPredictionAnalyticsView = () => {
     ]
   };
 
-  // Chart 2: Model MAE Error Comparison
+  // Chart 2: Model MAE Error Comparison — uses real model stats from Python service
   const maeComparisonData = {
-    labels: ['XGBoost', 'LSTM', 'Random Forest', 'Gradient Boosting'],
+    labels: modelStats.length > 0
+      ? modelStats.map(m => m.model)
+      : ['XGBoost', 'LSTM', 'Random Forest', 'Gradient Boosting'],
     datasets: [
       {
         label: 'Mean Absolute Error (MAE in Mins)',
-        data: [1.2, 1.4, 2.1, 1.8],
+        data: modelStats.length > 0
+          ? modelStats.map(m => m.mae)
+          : [1.03, 1.8, 0.998, 1.082],
         backgroundColor: [
           'rgba(6, 182, 212, 0.65)',
           'rgba(99, 102, 241, 0.65)',
@@ -85,11 +90,11 @@ const AIPredictionAnalyticsView = () => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { labels: { color: '#94a3b8' } }
+      legend: { labels: { color: 'var(--text-muted)' } }
     },
     scales: {
-      y: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#64748b' } },
-      x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#64748b' } }
+      y: { grid: { color: 'rgba(128,128,128,0.1)' }, ticks: { color: 'var(--text-muted)' } },
+      x: { grid: { color: 'rgba(128,128,128,0.1)' }, ticks: { color: 'var(--text-muted)' } }
     }
   };
 

@@ -3,6 +3,8 @@ import { AppContext, getMyStudent, calcStopETAs } from '../context/AppContext';
 import { Brain, Layers, Sliders, Clock, MapPin, Cloud, Calendar, RefreshCw } from 'lucide-react';
 import { weatherDelayMins, minsToTime, getPredictedBoardingTime } from '../utils/studentHelpers';
 
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 const PredictiveBoardingView = ({ studentOnly = false }) => {
   const {
     students, weather, setWeather, weatherSource, academicPeriod, setAcademicPeriod,
@@ -14,9 +16,29 @@ const PredictiveBoardingView = ({ studentOnly = false }) => {
   const [dayOfWeek,   setDayOfWeek]   = useState(
     new Date().toLocaleDateString('en-US', { weekday: 'long' })
   );
-  const [predictions,  setPredictions]  = useState({});   // studentId → { eta_time, predicted_mins, ... }
-  const [adjustments,  setAdjustments]  = useState({});   // stopName → adjustmentMins
+  const [predictions,  setPredictions]  = useState({});
+  const [adjustments,  setAdjustments]  = useState({});
   const [loading,      setLoading]      = useState(false);
+
+  // Admin mode: fetch all students from DB (context students array is empty for admin)
+  const [dbStudents,     setDbStudents]     = useState([]);
+  const [studentsLoading, setStudentsLoading] = useState(false);
+
+  useEffect(() => {
+    if (studentOnly) return; // student gets their profile from context
+    const fetchStudents = async () => {
+      if (!currentUser?.token) return;
+      setStudentsLoading(true);
+      try {
+        const res  = await fetch(`${API}/students`, {
+          headers: { Authorization: `Bearer ${currentUser.token}` }
+        });
+        if (res.ok) setDbStudents(await res.json());
+      } catch { /* keep empty */ }
+      finally { setStudentsLoading(false); }
+    };
+    fetchStudents();
+  }, [currentUser?.token, studentOnly]);
 
   // Real model stats from Python service; fallback to hardcoded values
   const [modelStats, setModelStats] = useState({
@@ -47,11 +69,12 @@ const PredictiveBoardingView = ({ studentOnly = false }) => {
 
   const myStudent = studentOnly ? getMyStudent(students, currentUser) : null;
 
+  // Admin mode uses DB students; student mode uses context students (own profile)
   const visibleStudents = studentOnly && myStudent
     ? [myStudent]
     : studentOnly
       ? students.filter(s => s.id === currentUser?.studentId)
-      : students;
+      : dbStudents;
 
   // GPS-based ETAs for the student's own bus (student view only)
   const myBus = myStudent ? buses.find(b => b.number === myStudent.assignedBus) : null;
@@ -174,7 +197,7 @@ const PredictiveBoardingView = ({ studentOnly = false }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <div className="form-group">
                 <label className="form-label">Weather Condition</label>
-                {currentUser?.role === 'admin' ? (
+                {['admin','institution_admin','super_admin'].includes(currentUser?.role) ? (
                   <select className="form-input" value={weather} onChange={e => setWeather(e.target.value)}>
                     <option value="Sunny">Sunny (Dry pavement)</option>
                     <option value="Rainy">Rainy (Slower speeds, high delay)</option>
@@ -325,6 +348,16 @@ const PredictiveBoardingView = ({ studentOnly = false }) => {
         </div>
 
         <div className="table-container">
+          {studentsLoading ? (
+            <div style={{ padding: 32, textAlign: 'center', color: 'var(--text-muted)' }}>
+              <RefreshCw size={22} className="animate-spin" style={{ display: 'block', margin: '0 auto 10px', opacity: 0.4 }} />
+              Loading students...
+            </div>
+          ) : visibleStudents.length === 0 ? (
+            <div style={{ padding: 32, textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+              {studentOnly ? 'No student profile linked.' : 'No students found. Add students in Student Management first.'}
+            </div>
+          ) : (
           <table className="custom-table">
             <thead>
               <tr>
@@ -377,6 +410,7 @@ const PredictiveBoardingView = ({ studentOnly = false }) => {
               })}
             </tbody>
           </table>
+          )}
         </div>
       </div>
 

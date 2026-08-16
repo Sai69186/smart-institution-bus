@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const PredictionLogSchema = new mongoose.Schema({
+  institutionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Institution', default: null, index: true },
   studentId:   { type: String, required: true, index: true },
   studentName: { type: String, required: true },
   busNumber:   { type: String, default: '' },
@@ -20,5 +21,11 @@ const PredictionLogSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 PredictionLogSchema.index({ studentId: 1, date: -1 });
+
+// ── Hot-path indexes ──────────────────────────────────────────────────────────
+// Accuracy report: all logs for institution in a date range
+PredictionLogSchema.index({ institutionId: 1, date: -1 });
+// Bus-level accuracy breakdown
+PredictionLogSchema.index({ busNumber: 1, date: -1 });
 
 module.exports = mongoose.model('PredictionLog', PredictionLogSchema);

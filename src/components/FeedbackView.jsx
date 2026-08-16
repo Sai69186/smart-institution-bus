@@ -119,7 +119,7 @@ const FeedbackView = ({ studentOnly = false }) => {
           ) : (
             displayFeedbacks.map(f => (
               <div
-                key={f.id}
+                key={f._id || f.id}
                 style={{
                   padding: 12, borderRadius: 10,
                   background: 'rgba(255,255,255,0.015)',

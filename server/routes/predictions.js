@@ -1,7 +1,7 @@
 const express       = require('express');
 const PredictionLog = require('../models/PredictionLog');
 const Student       = require('../models/Student');
-const { protect, adminOnly } = require('../middleware/auth');
+const { protect, adminOnly, tenantScope } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -16,9 +16,6 @@ const parseErrorMins = (errStr) => {
 };
 
 // ── POST /api/predictions/log ─────────────────────────────────────────────────
-// Create a prediction log entry.
-// Called when a bus arrives at a stop and actual boarding time is known.
-// Body: { studentId, predictedTime, actualTime, stop, busNumber, weather?, academicPeriod? }
 router.post('/log', protect, async (req, res) => {
   try {
     const {
@@ -29,10 +26,10 @@ router.post('/log', protect, async (req, res) => {
     if (!studentId || !predictedTime)
       return res.status(400).json({ message: 'studentId and predictedTime are required.' });
 
-    const student = await Student.findOne({ studentId });
+    const instFilter = req.user.institutionId ? { institutionId: req.user.institutionId } : {};
+    const student = await Student.findOne({ studentId, ...instFilter });
     if (!student) return res.status(404).json({ message: 'Student not found.' });
 
-    // Calculate error in minutes from time strings
     let errorMins = null;
     if (actualTime && actualTime !== '--:--') {
       const toMinutes = (t) => {
@@ -42,20 +39,19 @@ router.post('/log', protect, async (req, res) => {
         if (period === 'AM' && h === 12) h = 0;
         return h * 60 + m;
       };
-      try {
-        errorMins = toMinutes(actualTime) - toMinutes(predictedTime);
-      } catch { errorMins = null; }
+      try { errorMins = toMinutes(actualTime) - toMinutes(predictedTime); } catch { errorMins = null; }
     }
 
     const log = await PredictionLog.create({
+      institutionId: student.institutionId || null,
       studentId,
-      studentName:    student.name,
-      busNumber:      busNumber  || student.assignedBus  || '',
-      stop:           stop       || student.pickupPoint  || '',
+      studentName:   student.name,
+      busNumber:     busNumber || student.assignedBus || '',
+      stop:          stop     || student.pickupPoint  || '',
       predictedTime,
-      actualTime:     actualTime || '--:--',
+      actualTime:    actualTime || '--:--',
       errorMins,
-      date:           todayStr(),
+      date:          todayStr(),
       weather,
       academicPeriod,
     });
@@ -67,20 +63,23 @@ router.post('/log', protect, async (req, res) => {
 });
 
 // ── GET /api/predictions/student/:studentId ───────────────────────────────────
-// Student's own prediction history (last 60 entries).
 router.get('/student/:studentId', protect, async (req, res) => {
   try {
     const { studentId } = req.params;
-
-    // Students can only fetch their own history
     if (req.user.role === 'student' && req.user.studentId !== studentId)
       return res.status(403).json({ message: 'Access denied.' });
 
-    const logs = await PredictionLog.find({ studentId })
-      .sort({ date: -1, createdAt: -1 })
-      .limit(60);
+    const filter = { studentId };
+    // Include logs that match institution OR have null institutionId (seeded/legacy records)
+    if (req.user.institutionId) {
+      filter.$or = [
+        { institutionId: req.user.institutionId },
+        { institutionId: null },
+      ];
+    }
 
-    // Normalise to the shape the frontend already expects
+    const logs = await PredictionLog.find(filter).sort({ date: -1, createdAt: -1 }).limit(60);
+
     const history = logs.map(l => ({
       id:        l._id,
       date:      l.date,
@@ -90,8 +89,7 @@ router.get('/student/:studentId', protect, async (req, res) => {
       actual:    l.actualTime,
       err:       l.errorMins === null
                    ? 'Absent'
-                   : l.errorMins === 0
-                   ? '0 mins'
+                   : l.errorMins === 0 ? '0 mins'
                    : `${l.errorMins > 0 ? '+' : ''}${l.errorMins} min${Math.abs(l.errorMins) !== 1 ? 's' : ''}`,
     }));
 
@@ -176,12 +174,10 @@ router.get('/accuracy', protect, async (req, res) => {
 });
 
 // ── GET /api/predictions/history ─────────────────────────────────────────────
-// Admin: paginated full history, filterable by date/route/bus.
-// Query: ?date=YYYY-MM-DD&busNumber=VL-A01&limit=30&skip=0
-router.get('/history', protect, adminOnly, async (req, res) => {
+router.get('/history', protect, adminOnly, tenantScope, async (req, res) => {
   try {
     const { date, busNumber, limit: lim = 30, skip: sk = 0 } = req.query;
-    const filter = {};
+    const filter = { ...req.institutionFilter };
     if (date)      filter.date      = date;
     if (busNumber) filter.busNumber = busNumber.toUpperCase();
 
@@ -202,8 +198,7 @@ router.get('/history', protect, adminOnly, async (req, res) => {
       actual:    l.actualTime,
       err:       l.errorMins === null
                    ? 'Absent'
-                   : l.errorMins === 0
-                   ? '0 mins'
+                   : l.errorMins === 0 ? '0 mins'
                    : `${l.errorMins > 0 ? '+' : ''}${l.errorMins} min${Math.abs(l.errorMins) !== 1 ? 's' : ''}`,
       weather:        l.weather,
       academicPeriod: l.academicPeriod,

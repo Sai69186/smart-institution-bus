@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const NotificationSchema = new mongoose.Schema({
+  institutionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Institution', default: null, index: true },
   // Who receives this — either a specific user or a role-group broadcast
   recipientId:   { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
   recipientRole: {
@@ -30,5 +31,11 @@ const NotificationSchema = new mongoose.Schema({
 
 NotificationSchema.index({ recipientId: 1, createdAt: -1 });
 NotificationSchema.index({ recipientRole: 1, createdAt: -1 });
+
+// ── Hot-path indexes ──────────────────────────────────────────────────────────
+// Unread count query — run on every Header render for badge count
+NotificationSchema.index({ recipientId: 1, isRead: 1, createdAt: -1 });
+// Institution-wide broadcast fetch
+NotificationSchema.index({ institutionId: 1, recipientRole: 1, createdAt: -1 });
 
 module.exports = mongoose.model('Notification', NotificationSchema);

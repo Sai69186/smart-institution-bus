@@ -15,8 +15,14 @@ import xgboost as xgb
 DATA_DIR   = os.path.join(os.path.dirname(__file__), '..', 'data')
 MODELS_DIR = os.path.dirname(__file__)
 
-# Try the larger 50-bus dataset first, then the standard one, then generated fallback
-DATASET = os.path.join(DATA_DIR, 'institution_bus_dataset_50_buses_realistic.csv')
+# Priority: 1000-stop dataset → 100k AP dataset → fallbacks
+DATASET = os.path.join(DATA_DIR, 'ap_bus_dataset_1000stops.csv')
+if not os.path.exists(DATASET):
+    DATASET = os.path.join(DATA_DIR, 'ap_smart_institution_bus_data_100k.csv')
+if not os.path.exists(DATASET):
+    DATASET = os.path.join(DATA_DIR, 'institution_bus_dataset_large.csv')
+if not os.path.exists(DATASET):
+    DATASET = os.path.join(DATA_DIR, 'institution_bus_dataset_50_buses_realistic.csv')
 if not os.path.exists(DATASET):
     DATASET = os.path.join(DATA_DIR, 'institution_bus_dataset.csv')
 if not os.path.exists(DATASET):

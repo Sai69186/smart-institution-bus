@@ -1,0 +1,1005 @@
+stop,stop_lat,stop_lng,stop_distance_km,road_type,institution_id,city
+Benz Circle Station,16.552745,80.641685,0.891,Village Road,AP_INST_Vignan_University,Vijayawada
+Governorpet Junction,16.566978,80.638651,2.459,Highway,AP_INST_Vignan_University,Vijayawada
+Patamata Temple Road,16.582571,80.639848,4.189,Village Road,AP_INST_Vignan_University,Vijayawada
+Kanuru Main Road,16.603715,80.63856,6.542,Village Road,AP_INST_Vignan_University,Vijayawada
+Auto Nagar Bridge,16.610177,80.649675,7.331,Highway,AP_INST_Vignan_University,Vijayawada
+Nunna Cross Roads,16.64594,80.646131,11.254,Village Road,AP_INST_Vignan_University,Vijayawada
+Gunadala Depot,16.678992,80.621467,15.041,Main Road,AP_INST_Vignan_University,Vijayawada
+Ramavarappadu Bus Stop,16.771657,80.636065,25.218,Highway,AP_INST_Vignan_University,Vijayawada
+Moghalrajpuram Chowk,16.820434,80.708495,31.495,Highway,AP_INST_Vignan_University,Vijayawada
+Suryaraopet Square,16.552342,80.645365,1.006,Highway,AP_INST_Vignan_University,Vijayawada
+Labbipet Terminus,16.555636,80.659189,2.368,Main Road,AP_INST_Vignan_University,Vijayawada
+Gandhinagar Nagar,16.578843,80.66215,4.452,Highway,AP_INST_Vignan_University,Vijayawada
+MG Road Junction,16.577175,80.684457,5.944,Village Road,AP_INST_Vignan_University,Vijayawada
+One Town Square,16.584237,80.705379,8.227,Main Road,AP_INST_Vignan_University,Vijayawada
+Bandar Road Square,16.609154,80.742887,13.087,Main Road,AP_INST_Vignan_University,Vijayawada
+Kondapalli Circle,16.669583,80.742811,17.67,Highway,AP_INST_Vignan_University,Vijayawada
+Gannavaram Bus Stand,16.666682,80.770285,19.393,Main Road,AP_INST_Vignan_University,Vijayawada
+Nidamanuru Circle,16.78103,80.800918,31.357,Highway,AP_INST_Vignan_University,Vijayawada
+Ibrahimpatnam Old Town,16.543115,80.64798,0.873,Village Road,AP_INST_Vignan_University,Vijayawada
+Penamaluru Colony,16.540095,80.660683,2.268,Main Road,AP_INST_Vignan_University,Vijayawada
+Vuyyuru Square,16.541928,80.674725,3.716,Main Road,AP_INST_Vignan_University,Vijayawada
+Nandigama Circle,16.539489,80.70424,6.874,Village Road,AP_INST_Vignan_University,Vijayawada
+Tiruvuru Market,16.559374,80.729816,9.708,Main Road,AP_INST_Vignan_University,Vijayawada
+Kankipadu Bus Stand,16.535749,80.758027,12.622,Main Road,AP_INST_Vignan_University,Vijayawada
+Vissannapeta Mandal Office,16.527476,80.796669,16.812,Main Road,AP_INST_Vignan_University,Vijayawada
+Pamarru Bus Stop,16.584021,80.83102,20.819,Village Road,AP_INST_Vignan_University,Vijayawada
+Challapalli Station,16.574226,80.863201,24.012,Village Road,AP_INST_Vignan_University,Vijayawada
+Gudivada Depot,16.540346,80.646581,0.865,Main Road,AP_INST_Vignan_University,Vijayawada
+Machilipatnam Junction,16.531383,80.65635,2.301,Highway,AP_INST_Vignan_University,Vijayawada
+Pedana Old Town,16.527479,80.668051,3.563,Highway,AP_INST_Vignan_University,Vijayawada
+Avanigadda Colony,16.520152,80.683151,5.36,Main Road,AP_INST_Vignan_University,Vijayawada
+Nagayalanka Old Town,16.489688,80.70108,8.949,Highway,AP_INST_Vignan_University,Vijayawada
+Koduru Colony,16.472161,80.707593,10.833,Highway,AP_INST_Vignan_University,Vijayawada
+Mylavaram Bus Stop,16.444478,80.760491,17.021,Highway,AP_INST_Vignan_University,Vijayawada
+Jaggaiahpet School Road,16.41834,80.828293,24.518,Highway,AP_INST_Vignan_University,Vijayawada
+Musunuru Nagar,16.299094,80.795713,31.983,Highway,AP_INST_Vignan_University,Vijayawada
+Vatsavai New Town,16.536929,80.640696,0.889,Main Road,AP_INST_Vignan_University,Vijayawada
+Mandavalli New Town,16.520088,80.639076,2.761,Highway,AP_INST_Vignan_University,Vijayawada
+Pamidimukkala Temple Road,16.507683,80.642315,4.146,Main Road,AP_INST_Vignan_University,Vijayawada
+Unguturu Square,16.497369,80.627896,5.44,Highway,AP_INST_Vignan_University,Vijayawada
+Benz Circle Flyover,16.478035,80.636282,7.446,Main Road,AP_INST_Vignan_University,Vijayawada
+Governorpet Chowk,16.449261,80.633987,10.654,Highway,AP_INST_Vignan_University,Vijayawada
+Patamata Depot,16.408163,80.651916,15.257,Highway,AP_INST_Vignan_University,Vijayawada
+Kanuru Bus Stop,16.32104,80.65788,24.965,Main Road,AP_INST_Vignan_University,Vijayawada
+Auto Nagar Mandal Office,16.326145,80.64128,24.325,Highway,AP_INST_Vignan_University,Vijayawada
+Nunna Circle,16.536824,80.633437,1.138,Main Road,AP_INST_Vignan_University,Vijayawada
+Gunadala Station,16.532924,80.620161,2.499,Main Road,AP_INST_Vignan_University,Vijayawada
+Ramavarappadu Colony,16.520129,80.619937,3.487,Highway,AP_INST_Vignan_University,Vijayawada
+Moghalrajpuram Colony,16.497082,80.60901,6.26,Highway,AP_INST_Vignan_University,Vijayawada
+Suryaraopet Circle,16.499591,80.576042,8.478,Highway,AP_INST_Vignan_University,Vijayawada
+Labbipet Nagar,16.469903,80.554019,12.392,Highway,AP_INST_Vignan_University,Vijayawada
+Gandhinagar Mandal Office,16.468507,80.530322,14.453,Highway,AP_INST_Vignan_University,Vijayawada
+MG Road Bus Stand,16.441874,80.483726,20.22,Village Road,AP_INST_Vignan_University,Vijayawada
+One Town Circle,16.379897,80.449046,27.409,Highway,AP_INST_Vignan_University,Vijayawada
+Bandar Road New Town,16.546124,80.631103,0.958,Main Road,AP_INST_Vignan_University,Vijayawada
+Kondapalli Center,16.544501,80.61501,2.664,Village Road,AP_INST_Vignan_University,Vijayawada
+Gannavaram Station,16.548459,80.608029,3.431,Main Road,AP_INST_Vignan_University,Vijayawada
+Nidamanuru Chowk,16.54387,80.58958,5.376,Main Road,AP_INST_Vignan_University,Vijayawada
+Ibrahimpatnam Junction,16.565583,80.559331,8.9,Highway,AP_INST_Vignan_University,Vijayawada
+Penamaluru Terminus,16.557464,80.520387,12.826,Village Road,AP_INST_Vignan_University,Vijayawada
+Vuyyuru Flyover,16.547362,80.482258,16.816,Main Road,AP_INST_Vignan_University,Vijayawada
+Nandigama Old Town,16.555336,80.457788,19.456,Highway,AP_INST_Vignan_University,Vijayawada
+Tiruvuru Layout,16.61699,80.354759,31.438,Village Road,AP_INST_Vignan_University,Vijayawada
+Kankipadu Flyover,16.550087,80.633265,0.921,Main Road,AP_INST_Vignan_University,Vijayawada
+Vissannapeta Main Road,16.557096,80.621622,2.382,Main Road,AP_INST_Vignan_University,Vijayawada
+Pamarru Terminus,16.568645,80.616296,3.654,Village Road,AP_INST_Vignan_University,Vijayawada
+Challapalli Cross Roads,16.582102,80.597439,6.139,Main Road,AP_INST_Vignan_University,Vijayawada
+Benz Circle Main Road,16.451924,80.620499,1.126,Highway,AP_INST_KL_University,Vijayawada
+Governorpet Bank Colony,16.46726,80.623265,2.845,Village Road,AP_INST_KL_University,Vijayawada
+Patamata Gate,16.475971,80.614617,3.853,Main Road,AP_INST_KL_University,Vijayawada
+Kanuru Depot,16.489873,80.614809,5.381,Highway,AP_INST_KL_University,Vijayawada
+Auto Nagar Flyover,16.517341,80.627471,8.432,Village Road,AP_INST_KL_University,Vijayawada
+Nunna Station,16.544246,80.644551,11.674,Highway,AP_INST_KL_University,Vijayawada
+Gunadala New Town,16.595223,80.611065,17.09,Main Road,AP_INST_KL_University,Vijayawada
+Ramavarappadu New Town,16.635256,80.587541,21.798,Village Road,AP_INST_KL_University,Vijayawada
+Moghalrajpuram Flyover,16.724415,80.639957,31.493,Main Road,AP_INST_KL_University,Vijayawada
+Suryaraopet Square 9,16.447285,80.628598,1.049,Highway,AP_INST_KL_University,Vijayawada
+Labbipet School Road,16.454963,80.63769,2.338,Highway,AP_INST_KL_University,Vijayawada
+Gandhinagar Junction,16.465324,80.65229,4.274,Highway,AP_INST_KL_University,Vijayawada
+MG Road Old Town,16.468494,80.666929,5.764,Main Road,AP_INST_KL_University,Vijayawada
+One Town Bank Colony,16.498977,80.687457,9.552,Main Road,AP_INST_KL_University,Vijayawada
+Bandar Road Terminus,16.529616,80.694748,12.564,Main Road,AP_INST_KL_University,Vijayawada
+Kondapalli Market,16.558082,80.697919,15.334,Main Road,AP_INST_KL_University,Vijayawada
+Gannavaram Temple Road,16.609217,80.750026,23.171,Highway,AP_INST_KL_University,Vijayawada
+Nidamanuru Terminus,16.601539,80.868202,31.815,Highway,AP_INST_KL_University,Vijayawada
+Ibrahimpatnam Bus Stop,16.443354,80.630952,1.117,Main Road,AP_INST_KL_University,Vijayawada
+Penamaluru Old Town,16.441442,80.646522,2.765,Highway,AP_INST_KL_University,Vijayawada
+Vuyyuru Gate,16.436636,80.662504,4.506,Main Road,AP_INST_KL_University,Vijayawada
+Nandigama Ring Road,16.434992,80.682652,6.661,Highway,AP_INST_KL_University,Vijayawada
+Tiruvuru Mandal Office,16.428899,80.705766,9.196,Highway,AP_INST_KL_University,Vijayawada
+Kankipadu Main Road,16.428337,80.731702,11.943,Main Road,AP_INST_KL_University,Vijayawada
+Vissannapeta Nagar,16.4678,80.760382,15.184,Highway,AP_INST_KL_University,Vijayawada
+Pamarru Chowk,16.495798,80.844912,24.661,Main Road,AP_INST_KL_University,Vijayawada
+Challapalli Nagar,16.38397,80.866334,26.988,Village Road,AP_INST_KL_University,Vijayawada
+Gudivada Station,16.435506,80.626031,0.908,Highway,AP_INST_KL_University,Vijayawada
+Machilipatnam Depot,16.429379,80.641811,2.65,Highway,AP_INST_KL_University,Vijayawada
+Pedana Mandal Office,16.418705,80.655749,4.544,Highway,AP_INST_KL_University,Vijayawada
+Avanigadda Bypass,16.409581,80.661638,5.656,Main Road,AP_INST_KL_University,Vijayawada
+Nagayalanka Cross Roads,16.40139,80.678219,7.613,Main Road,AP_INST_KL_University,Vijayawada
+Koduru Ring Road,16.374004,80.687441,10.376,Highway,AP_INST_KL_University,Vijayawada
+Mylavaram Layout,16.326848,80.696285,15.119,Main Road,AP_INST_KL_University,Vijayawada
+Jaggaiahpet Gate,16.275625,80.778041,24.972,Main Road,AP_INST_KL_University,Vijayawada
+Musunuru Bypass,16.265623,80.781636,26.057,Village Road,AP_INST_KL_University,Vijayawada
+Vatsavai Chowk,16.43329,80.618479,0.973,Main Road,AP_INST_KL_University,Vijayawada
+Mandavalli Junction,16.420093,80.615743,2.469,Village Road,AP_INST_KL_University,Vijayawada
+Pamidimukkala Station,16.410179,80.619929,3.517,Main Road,AP_INST_KL_University,Vijayawada
+Unguturu Center,16.393104,80.628029,5.472,Village Road,AP_INST_KL_University,Vijayawada
+Benz Circle Hospital Road,16.361737,80.605366,9.05,Highway,AP_INST_KL_University,Vijayawada
+Governorpet Main Road,16.349745,80.613305,10.266,Main Road,AP_INST_KL_University,Vijayawada
+Patamata Layout,16.279662,80.63597,18.103,Main Road,AP_INST_KL_University,Vijayawada
+Kanuru Station,16.274053,80.634466,18.711,Main Road,AP_INST_KL_University,Vijayawada
+Auto Nagar Layout,16.226892,80.578592,24.313,Highway,AP_INST_KL_University,Vijayawada
+Nunna Terminus,16.4364,80.612446,1.057,Main Road,AP_INST_KL_University,Vijayawada
+Gunadala Temple Road,16.423565,80.609344,2.356,Village Road,AP_INST_KL_University,Vijayawada
+Ramavarappadu Center,16.416775,80.59218,4.115,Main Road,AP_INST_KL_University,Vijayawada
+Moghalrajpuram Bus Stop,16.407948,80.57627,6.044,Village Road,AP_INST_KL_University,Vijayawada
+Suryaraopet Chowk,16.396028,80.570483,7.381,Main Road,AP_INST_KL_University,Vijayawada
+Labbipet Bank Colony,16.377174,80.551353,10.305,Highway,AP_INST_KL_University,Vijayawada
+Gandhinagar Mandal Office 51,16.378328,80.5077,13.958,Main Road,AP_INST_KL_University,Vijayawada
+MG Road Station,16.308224,80.477517,21.298,Highway,AP_INST_KL_University,Vijayawada
+One Town New Town,16.315272,80.424353,25.224,Village Road,AP_INST_KL_University,Vijayawada
+Bandar Road Terminus 54,16.443846,80.612104,0.934,Highway,AP_INST_KL_University,Vijayawada
+Kondapalli Station,16.444738,80.595072,2.742,Main Road,AP_INST_KL_University,Vijayawada
+Gannavaram Station 56,16.45046,80.586237,3.789,Village Road,AP_INST_KL_University,Vijayawada
+Nidamanuru Terminus 57,16.43137,80.563811,6.167,Main Road,AP_INST_KL_University,Vijayawada
+Ibrahimpatnam Center,16.427594,80.548706,7.829,Village Road,AP_INST_KL_University,Vijayawada
+Penamaluru Depot,16.42979,80.501141,12.81,Highway,AP_INST_KL_University,Vijayawada
+Vuyyuru Square 60,16.433982,80.448856,18.337,Main Road,AP_INST_KL_University,Vijayawada
+Nandigama Main Road,16.402348,80.447708,18.955,Main Road,AP_INST_KL_University,Vijayawada
+Tiruvuru Gate,16.445148,80.393738,24.197,Village Road,AP_INST_KL_University,Vijayawada
+Kankipadu Depot,16.448096,80.61514,0.911,Highway,AP_INST_KL_University,Vijayawada
+Vissannapeta Nagar 64,16.458018,80.605894,2.39,Highway,AP_INST_KL_University,Vijayawada
+Pamarru Bypass,16.463398,80.587596,4.261,Highway,AP_INST_KL_University,Vijayawada
+Challapalli Terminus,16.477469,80.577218,6.094,Highway,AP_INST_KL_University,Vijayawada
+Benz Circle Bus Stop,16.517019,80.647825,1.131,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Governorpet Depot,16.526104,80.642244,2.162,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Patamata Terminus,16.538763,80.642805,3.548,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Kanuru Market,16.565495,80.63327,6.644,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Auto Nagar Hospital Road,16.588181,80.632514,9.141,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Nunna Bus Stand,16.610802,80.625491,11.747,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Gunadala Colony,16.631881,80.668932,14.1,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Ramavarappadu Colony 7,16.681978,80.682982,19.852,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Moghalrajpuram Colony 8,16.725335,80.690746,24.741,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Suryaraopet Colony,16.513696,80.652797,1.039,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Labbipet Center,16.527047,80.659926,2.678,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Gandhinagar Temple Road,16.536023,80.675202,4.484,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+MG Road Flyover,16.535593,80.697303,6.326,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+One Town Ring Road,16.566025,80.694243,8.338,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Bandar Road Terminus 14,16.595233,80.706757,11.756,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Kondapalli Old Town,16.603989,80.73216,14.165,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Gannavaram Center,16.648972,80.773744,20.846,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Nidamanuru Layout,16.734645,80.825891,31.751,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Ibrahimpatnam Depot,16.506663,80.654235,0.879,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Penamaluru Bus Stop,16.503335,80.667988,2.379,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Vuyyuru Circle,16.514943,80.682134,3.952,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Nandigama Terminus,16.515382,80.696267,5.439,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Tiruvuru Market 22,16.509283,80.717106,7.585,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Kankipadu Colony,16.492584,80.744809,10.656,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Vissannapeta Center,16.528504,80.80486,17.103,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Pamarru Cross Roads,16.522433,80.861716,23.061,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Challapalli Ring Road,16.462498,80.908829,28.457,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Gudivada Hospital Road,16.501751,80.65507,1.129,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Machilipatnam Nagar,16.49021,80.659776,2.375,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Pedana Bank Colony,16.488978,80.673473,3.549,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Avanigadda Gate,16.472253,80.683919,5.592,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Nagayalanka Layout,16.463157,80.724863,9.72,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Koduru Hospital Road,16.441544,80.717143,10.513,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Mylavaram Center,16.414394,80.746232,14.842,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Jaggaiahpet Bank Colony,16.390981,80.823849,22.938,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Musunuru Temple Road,16.280933,80.814769,30.919,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Vatsavai Gate,16.498335,80.643692,0.994,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Mandavalli Bank Colony,16.487621,80.645677,2.155,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Pamidimukkala Chowk,16.475564,80.637507,3.611,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Unguturu Center 39,16.456294,80.656902,5.757,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Benz Circle Square,16.432942,80.661313,8.395,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Governorpet Nagar,16.388734,80.643117,13.154,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Patamata Mandal Office,16.362093,80.628073,16.226,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Kanuru Old Town,16.282043,80.6429,25.016,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Auto Nagar Flyover 44,16.268918,80.590023,27.139,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Nunna New Town,16.498907,80.639515,1.135,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Gunadala Cross Roads,16.489883,80.6288,2.643,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Ramavarappadu Junction,16.477292,80.624368,4.029,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Moghalrajpuram Depot,16.47303,80.593313,6.769,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Suryaraopet Center,16.440547,80.589535,9.532,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Labbipet Nagar 50,16.438824,80.539023,13.696,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Gandhinagar Hospital Road,16.378676,80.538208,18.324,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+MG Road Market,16.381759,80.502356,20.703,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+One Town Gate,16.332857,80.45594,28.034,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Bandar Road New Town 54,16.506636,80.635965,1.071,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Kondapalli School Road,16.506749,80.6233,2.42,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Gannavaram New Town,16.504537,80.613676,3.457,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Nidamanuru Ring Road,16.499567,80.584579,6.6,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Ibrahimpatnam Hospital Road,16.503584,80.575457,7.53,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Penamaluru Temple Road,16.515955,80.527793,12.641,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Vuyyuru Terminus,16.541324,80.504676,15.541,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Nandigama Station,16.475945,80.432928,22.979,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Tiruvuru Nagar,16.452464,80.38045,28.957,Village Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Kankipadu Bus Stop,16.513796,80.64145,0.898,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Vissannapeta Old Town,16.519702,80.62637,2.525,Main Road,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Pamarru Chowk 65,16.536721,80.620954,4.249,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Challapalli Bank Colony,16.536457,80.604434,5.51,Highway,AP_INST_PVP_Siddhartha_Institute,Vijayawada
+Benz Circle School Road,16.526501,80.620209,0.879,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Governorpet Depot 1,16.540008,80.615608,2.426,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Patamata Chowk,16.556825,80.616022,4.272,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Kanuru Chowk,16.575106,80.630824,6.388,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Auto Nagar Depot,16.586168,80.605406,7.673,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Nunna Bridge,16.619234,80.592342,11.572,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Gunadala Gate,16.638545,80.653438,13.805,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Ramavarappadu Layout,16.685267,80.587959,18.844,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Moghalrajpuram Junction,16.798448,80.612713,31.127,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Suryaraopet Center 9,16.525652,80.62447,0.918,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Labbipet Bypass,16.529596,80.639044,2.37,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Gandhinagar Bank Colony,16.54689,80.64293,3.984,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+MG Road Depot,16.556271,80.649509,5.238,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+One Town Flyover,16.570196,80.686003,9.078,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Bandar Road Mandal Office,16.607725,80.693756,12.649,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Kondapalli Market 15,16.616274,80.743749,17.085,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Gannavaram Mandal Office,16.65724,80.74594,20.44,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Nidamanuru Mandal Office,16.666215,80.844929,29.051,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Ibrahimpatnam Market,16.519589,80.630536,1.129,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Penamaluru Gate,16.51658,80.639899,2.133,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Vuyyuru Gate 20,16.519696,80.654884,3.721,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Nandigama Circle 21,16.510686,80.681643,6.63,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Tiruvuru Old Town,16.504392,80.69138,7.772,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Kankipadu Temple Road,16.528494,80.721683,10.895,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Vissannapeta Nagar 24,16.525063,80.792294,18.381,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Pamarru Ring Road,16.513041,80.800947,19.3,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Challapalli Mandal Office,16.557071,80.904609,30.638,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Gudivada Center,16.511483,80.626656,1.063,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Machilipatnam Layout,16.502975,80.640241,2.77,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Pedana Ring Road,16.492567,80.647618,4.129,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Avanigadda Circle,16.483073,80.672811,6.878,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Nagayalanka Gate,16.46879,80.669317,7.637,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Koduru Nagar,16.452192,80.728773,13.749,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Mylavaram Bank Colony,16.422807,80.756458,18.033,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Jaggaiahpet Center,16.403853,80.769621,20.43,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Musunuru Bridge,16.365227,80.836052,28.666,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Vatsavai Temple Road,16.509077,80.619066,1.064,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Mandavalli Cross Roads,16.500015,80.625125,2.138,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Pamidimukkala School Road,16.484982,80.618791,3.74,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Unguturu Depot,16.468802,80.625029,5.563,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Benz Circle Temple Road,16.44799,80.634114,7.994,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Governorpet Junction 41,16.423646,80.60187,10.734,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Patamata Circle,16.356266,80.58674,18.396,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Kanuru Cross Roads,16.293598,80.638273,25.095,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Auto Nagar Layout 44,16.283977,80.631284,26.117,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Nunna Chowk,16.51318,80.612885,0.969,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Gunadala Main Road,16.501804,80.609489,2.178,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Ramavarappadu New Town 47,16.492922,80.598165,3.684,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Moghalrajpuram Mandal Office,16.485512,80.568423,6.616,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Suryaraopet Bus Stand,16.478582,80.559869,7.804,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Labbipet Ring Road,16.414865,80.556103,13.397,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Gandhinagar Main Road,16.409826,80.490741,18.338,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+MG Road Bus Stop,16.372945,80.461458,23.413,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+One Town Terminus,16.328671,80.436043,28.827,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Bandar Road Circle,16.517649,80.610092,1.062,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Kondapalli New Town,16.522929,80.598462,2.346,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Gannavaram Hospital Road,16.519939,80.587603,3.457,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Nidamanuru Terminus 57,16.532443,80.564179,6.146,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Ibrahimpatnam Mandal Office,16.5252,80.532987,9.305,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Penamaluru Gate 59,16.533435,80.523225,10.447,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Vuyyuru Old Town,16.488968,80.487812,14.473,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Nandigama Bypass,16.479674,80.449319,18.705,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Tiruvuru Nagar 62,16.57729,80.342866,30.252,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Kankipadu Hospital Road,16.525868,80.613323,1.077,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Vissannapeta Layout,16.537025,80.607337,2.453,Main Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Pamarru Mandal Office,16.537042,80.589493,3.845,Highway,AP_INST_Andhra_Loyola_College,Vijayawada
+Challapalli Layout,16.56059,80.580232,6.306,Village Road,AP_INST_Andhra_Loyola_College,Vijayawada
+Benz Circle Colony,16.540291,80.626558,1.034,Main Road,AP_INST_VRSEC,Vijayawada
+Governorpet Temple Road,16.555927,80.621642,2.83,Main Road,AP_INST_VRSEC,Vijayawada
+Patamata Bus Stand,16.564763,80.622538,3.784,Main Road,AP_INST_VRSEC,Vijayawada
+Kanuru Temple Road,16.586177,80.624072,6.143,Village Road,AP_INST_VRSEC,Vijayawada
+Auto Nagar Square,16.61293,80.632067,9.126,Main Road,AP_INST_VRSEC,Vijayawada
+Nunna Station 5,16.63275,80.612302,11.422,Main Road,AP_INST_VRSEC,Vijayawada
+Gunadala Terminus,16.680533,80.629977,16.63,Village Road,AP_INST_VRSEC,Vijayawada
+Ramavarappadu Market,16.749141,80.671595,24.717,Main Road,AP_INST_VRSEC,Vijayawada
+Moghalrajpuram School Road,16.811265,80.61185,31.206,Highway,AP_INST_VRSEC,Vijayawada
+Suryaraopet Old Town,16.53566,80.633743,0.886,Main Road,AP_INST_VRSEC,Vijayawada
+Labbipet Bypass 10,16.543989,80.645511,2.445,Main Road,AP_INST_VRSEC,Vijayawada
+Gandhinagar Station,16.553615,80.659744,4.302,Village Road,AP_INST_VRSEC,Vijayawada
+MG Road Layout,16.563659,80.670752,5.911,Main Road,AP_INST_VRSEC,Vijayawada
+One Town Hospital Road,16.587081,80.677063,8.207,Highway,AP_INST_VRSEC,Vijayawada
+Bandar Road Gate,16.625983,80.693715,12.732,Highway,AP_INST_VRSEC,Vijayawada
+Kondapalli Colony,16.61327,80.735502,14.745,Main Road,AP_INST_VRSEC,Vijayawada
+Gannavaram Layout,16.658094,80.807085,23.833,Village Road,AP_INST_VRSEC,Vijayawada
+Nidamanuru Flyover,16.650902,80.838146,26.154,Main Road,AP_INST_VRSEC,Vijayawada
+Ibrahimpatnam Temple Road,16.532046,80.635195,0.881,Main Road,AP_INST_VRSEC,Vijayawada
+Penamaluru Temple Road 19,16.526811,80.64767,2.252,Main Road,AP_INST_VRSEC,Vijayawada
+Vuyyuru Hospital Road,16.524967,80.660128,3.595,Main Road,AP_INST_VRSEC,Vijayawada
+Nandigama Bus Stand,16.544139,80.680052,5.841,Main Road,AP_INST_VRSEC,Vijayawada
+Tiruvuru Chowk,16.528602,80.69608,7.369,Highway,AP_INST_VRSEC,Vijayawada
+Kankipadu Bus Stop 23,16.55432,80.741056,12.431,Village Road,AP_INST_VRSEC,Vijayawada
+Vissannapeta Old Town 24,16.504986,80.754544,13.901,Main Road,AP_INST_VRSEC,Vijayawada
+Pamarru Station,16.580149,80.839046,23.252,Highway,AP_INST_VRSEC,Vijayawada
+Challapalli Bank Colony 26,16.536002,80.889427,27.98,Main Road,AP_INST_VRSEC,Vijayawada
+Gudivada Main Road,16.525376,80.633211,0.911,Main Road,AP_INST_VRSEC,Vijayawada
+Machilipatnam School Road,16.512917,80.646147,2.865,Main Road,AP_INST_VRSEC,Vijayawada
+Pedana Terminus,16.508522,80.656417,4.01,Village Road,AP_INST_VRSEC,Vijayawada
+Avanigadda Flyover,16.501229,80.670387,5.688,Main Road,AP_INST_VRSEC,Vijayawada
+Nagayalanka Station,16.476908,80.671138,7.637,Highway,AP_INST_VRSEC,Vijayawada
+Koduru Center,16.480531,80.709888,10.468,Main Road,AP_INST_VRSEC,Vijayawada
+Mylavaram School Road,16.398359,80.726802,18.188,Highway,AP_INST_VRSEC,Vijayawada
+Jaggaiahpet School Road 34,16.391749,80.763678,21.265,Main Road,AP_INST_VRSEC,Vijayawada
+Musunuru Temple Road 35,16.332683,80.809123,29.387,Highway,AP_INST_VRSEC,Vijayawada
+Vatsavai Circle,16.521628,80.624747,1.069,Village Road,AP_INST_VRSEC,Vijayawada
+Mandavalli Main Road,16.506613,80.626364,2.713,Village Road,AP_INST_VRSEC,Vijayawada
+Pamidimukkala Hospital Road,16.494945,80.627786,4.01,Highway,AP_INST_VRSEC,Vijayawada
+Unguturu Main Road,16.473341,80.618697,6.472,Highway,AP_INST_VRSEC,Vijayawada
+Benz Circle Square 40,16.460753,80.630981,7.823,Main Road,AP_INST_VRSEC,Vijayawada
+Governorpet Square,16.433982,80.60977,10.943,Main Road,AP_INST_VRSEC,Vijayawada
+Patamata Chowk 42,16.376905,80.58669,17.666,Main Road,AP_INST_VRSEC,Vijayawada
+Kanuru Market 43,16.350555,80.663798,20.445,Main Road,AP_INST_VRSEC,Vijayawada
+Auto Nagar Bus Stand,16.249622,80.595575,31.467,Main Road,AP_INST_VRSEC,Vijayawada
+Nunna Junction,16.524685,80.619705,1.048,Highway,AP_INST_VRSEC,Vijayawada
+Gunadala Ring Road,16.511259,80.614366,2.575,Main Road,AP_INST_VRSEC,Vijayawada
+Ramavarappadu Old Town,16.504209,80.610833,3.442,Village Road,AP_INST_VRSEC,Vijayawada
+Moghalrajpuram Bypass,16.492111,80.587118,6.064,Highway,AP_INST_VRSEC,Vijayawada
+Suryaraopet Junction,16.483363,80.576368,7.563,Highway,AP_INST_VRSEC,Vijayawada
+Labbipet New Town,16.467263,80.525592,12.928,Highway,AP_INST_VRSEC,Vijayawada
+Gandhinagar Circle,16.418635,80.541119,15.491,Village Road,AP_INST_VRSEC,Vijayawada
+MG Road Depot 52,16.345057,80.498385,24.812,Main Road,AP_INST_VRSEC,Vijayawada
+One Town Market,16.338435,80.484605,26.251,Highway,AP_INST_VRSEC,Vijayawada
+Bandar Road Bridge,16.530692,80.617596,1.003,Highway,AP_INST_VRSEC,Vijayawada
+Kondapalli Station 55,16.531933,80.602995,2.561,Village Road,AP_INST_VRSEC,Vijayawada
+Gannavaram Chowk,16.525062,80.593616,3.619,Main Road,AP_INST_VRSEC,Vijayawada
+Nidamanuru Junction,16.54148,80.578531,5.296,Main Road,AP_INST_VRSEC,Vijayawada
+Ibrahimpatnam Layout,16.512497,80.539439,9.558,Highway,AP_INST_VRSEC,Vijayawada
+Penamaluru Circle,16.523301,80.520306,11.406,Village Road,AP_INST_VRSEC,Vijayawada
+Vuyyuru Gate 60,16.51745,80.492119,14.457,Main Road,AP_INST_VRSEC,Vijayawada
+Nandigama School Road,16.479521,80.41031,23.801,Highway,AP_INST_VRSEC,Vijayawada
+Tiruvuru Chowk 62,16.537494,80.396789,24.55,Main Road,AP_INST_VRSEC,Vijayawada
+Kankipadu Old Town,16.537876,80.620674,1.019,Village Road,AP_INST_VRSEC,Vijayawada
+Vissannapeta Depot,16.547382,80.607007,2.804,Village Road,AP_INST_VRSEC,Vijayawada
+Pamarru Bus Stop 65,16.558818,80.597743,4.392,Highway,AP_INST_VRSEC,Vijayawada
+Challapalli Main Road,16.56708,80.578676,6.529,Main Road,AP_INST_VRSEC,Vijayawada
+Brodipet Main Road,16.516902,80.577017,0.996,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Arundelpet Center,16.530796,80.570411,2.604,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Kothapet Station,16.545661,80.572325,4.206,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Nallapadu School Road,16.566665,80.588211,6.652,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Amaravati Road Flyover,16.593718,80.560466,9.674,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Gorantla Bypass,16.624985,80.573962,13.01,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Prathipadu Circle,16.660062,80.547036,17.188,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Mangalagiri Chowk,16.691087,80.574776,20.359,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Pedakakani Layout,16.792583,80.595977,31.716,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Tenali Layout,16.512489,80.583165,0.912,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Bapatla Circle,16.517681,80.593351,2.14,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Chirala Hospital Road,16.534032,80.603792,4.142,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Ongole Bridge,16.544509,80.615091,5.818,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Narasaraopet Bus Stop,16.564972,80.64121,9.405,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Ponnur Bank Colony,16.555913,80.658957,10.324,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Repalle Mandal Office,16.62474,80.662465,15.919,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Sattenapalli Old Town,16.659601,80.735787,23.961,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Vinukonda Gate,16.648345,80.770341,25.933,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Macherla Bypass,16.506092,80.58456,0.937,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Markapur Temple Road,16.509492,80.597256,2.272,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Piduguralla Layout,16.510233,80.61387,4.045,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Miryalaguda Bus Stand,16.513349,80.631094,5.904,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Nalgonda Bus Stop,16.48953,80.661597,9.354,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Suryapet Hospital Road,16.49869,80.683094,11.465,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Khammam Bus Stop,16.511588,80.722511,15.625,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Tadepalli Bank Colony,16.495314,80.807407,24.712,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Peda Kakani Bypass,16.550191,80.833582,27.856,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Kaza Bypass,16.501344,80.584106,1.138,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Duggirala Hospital Road,16.49445,80.594351,2.469,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Ippatam Market,16.481743,80.60506,4.257,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Piduguralla Bus Stand,16.473733,80.608698,5.165,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Rentachintala Cross Roads,16.446218,80.614402,7.998,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Karampudi Ring Road,16.427646,80.673975,13.747,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Chilakaluripet Bank Colony,16.395439,80.695573,17.868,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Phirangipuram Chowk,16.355159,80.672969,19.895,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Dachepalli Station,16.350373,80.804513,30.02,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Gundugolanu Gate,16.499833,80.576576,0.91,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Mopidevi Mandal Office,16.48763,80.580379,2.313,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Kolluru Chowk,16.471563,80.577255,4.054,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Brodipet Temple Road,16.451318,80.570114,6.334,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Arundelpet Center 40,16.431297,80.569839,8.554,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Kothapet Ring Road,16.403978,80.56015,11.69,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Nallapadu Center,16.382656,80.58884,14.005,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Amaravati Road Center,16.289283,80.515267,25.168,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Gorantla Mandal Office,16.226919,80.599009,31.351,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Prathipadu Main Road,16.501907,80.570645,0.886,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Mangalagiri Nagar,16.494464,80.556769,2.543,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Pedakakani Layout 47,16.478618,80.549536,4.317,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Tenali Bus Stop,16.471529,80.54464,5.256,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Bapatla Hospital Road,16.452989,80.511816,9.179,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Chirala Bridge,16.425596,80.517702,11.073,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Ongole Bridge 51,16.43728,80.452049,15.379,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Narasaraopet Bridge,16.398229,80.391468,23.157,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Ponnur Cross Roads,16.332781,80.423604,25.373,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Repalle Colony,16.509366,80.56594,1.083,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Sattenapalli Nagar,16.511442,80.55076,2.718,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Vinukonda Mandal Office,16.512633,80.538099,4.073,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Macherla New Town,16.501703,80.515567,6.481,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Markapur Circle,16.501284,80.487864,9.426,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Piduguralla Market,16.518045,80.466452,11.732,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Miryalaguda Bank Colony,16.538747,80.426319,16.319,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Nalgonda Layout,16.525093,80.363625,22.72,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Suryapet Center,16.482178,80.288848,30.75,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Khammam Circle,16.514606,80.570601,0.933,Highway,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Tadepalli Hospital Road,16.526209,80.562647,2.475,Village Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Peda Kakani Layout,16.532245,80.549086,3.937,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Kaza Main Road,16.549739,80.548686,5.479,Main Road,AP_INST_Vasireddy_Venkatadri_Inst,Guntur
+Brodipet Layout,16.332505,80.437228,0.975,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Arundelpet Nagar,16.348683,80.438416,2.769,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Kothapet Bus Stand,16.362475,80.427057,4.361,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Nallapadu Market,16.37864,80.429554,6.103,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Amaravati Road Main Road,16.399621,80.417747,8.608,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Gorantla Depot,16.425213,80.460644,11.582,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Prathipadu Station,16.476551,80.436071,16.963,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Mangalagiri Center,16.533241,80.380059,23.993,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Pedakakani Square,16.568558,80.496054,27.962,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Tenali Temple Road,16.329183,80.443063,1.036,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Bapatla Temple Road,16.34063,80.450182,2.458,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Chirala School Road,16.342081,80.466605,3.926,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Ongole Colony,16.367772,80.462429,5.679,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Narasaraopet Colony,16.371134,80.484121,7.412,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Ponnur Bus Stand,16.40237,80.524385,12.918,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Repalle Depot,16.411005,80.543838,15.114,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Sattenapalli Main Road,16.498934,80.547029,22.829,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Vinukonda Circle,16.53684,80.570231,27.715,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Macherla Gate,16.325298,80.444867,1.063,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Markapur Ring Road,16.328658,80.456258,2.327,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Piduguralla Bridge,16.326384,80.467382,3.466,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Miryalaguda Bypass,16.33607,80.487434,5.754,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Nalgonda Square,16.334199,80.504989,7.554,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Suryapet Bus Stop,16.300721,80.537202,11.21,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Khammam Bus Stand,16.305355,80.595087,17.209,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Tadepalli Bypass,16.355728,80.640883,22.25,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Peda Kakani Center,16.32982,80.705567,28.88,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Kaza Bus Stop,16.316828,80.439988,0.959,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Duggirala Colony,16.304494,80.447153,2.527,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Ippatam Chowk,16.301326,80.457905,3.512,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Piduguralla Center,16.292807,80.477173,5.682,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Rentachintala Layout,16.258665,80.482081,8.833,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Karampudi Bypass,16.2477,80.527872,13.048,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Chilakaluripet Main Road,16.237155,80.539953,14.79,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Phirangipuram New Town,16.191021,80.585409,21.827,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Dachepalli Temple Road,16.179077,80.676406,30.394,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Gundugolanu Bus Stop,16.314386,80.437095,1.092,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Mopidevi Center,16.298287,80.435207,2.859,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Kolluru Junction,16.289851,80.441243,3.855,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Brodipet Center,16.274659,80.435745,5.487,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Arundelpet School Road,16.241811,80.434388,9.139,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Kothapet Bus Stop,16.214029,80.432953,12.23,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Nallapadu Center 42,16.201704,80.411787,13.823,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Amaravati Road Colony,16.105427,80.420283,24.355,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Gorantla Center,16.09211,80.455666,25.879,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Prathipadu Bridge,16.318748,80.427329,1.006,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Mangalagiri Old Town,16.311484,80.419467,2.164,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Pedakakani Mandal Office,16.296426,80.413983,3.799,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Tenali Terminus,16.278751,80.395769,6.546,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Bapatla Center,16.269558,80.376439,8.701,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Chirala Circle,16.242302,80.358594,12.208,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Ongole Station,16.237195,80.333504,14.51,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Narasaraopet Bus Stand,16.192019,80.255418,24.143,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Ponnur Colony,16.132397,80.297937,25.847,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Repalle Old Town,16.324868,80.425573,1.011,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Sattenapalli Hospital Road,16.321317,80.414566,2.201,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Vinukonda Station,16.318526,80.396997,4.101,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Macherla Center,16.31476,80.379986,5.96,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Markapur Hospital Road,16.333529,80.350169,9.114,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Piduguralla Circle,16.310389,80.310996,13.319,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Miryalaguda Junction,16.345807,80.296749,14.95,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Nalgonda Old Town,16.3132,80.243776,20.442,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Suryapet Gate,16.382131,80.16886,29.123,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Khammam Colony,16.329921,80.429516,0.881,Village Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Tadepalli Temple Road,16.344094,80.42131,2.67,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Peda Kakani Chowk,16.349219,80.403594,4.37,Main Road,AP_INST_Acharya_Nagarjuna_University,Guntur
+Kaza Center,16.362199,80.404688,5.339,Highway,AP_INST_Acharya_Nagarjuna_University,Guntur
+Gajuwaka Gate,17.742936,83.327842,0.912,Main Road,AP_INST_GITAM_University,Visakhapatnam
+NAD Junction Terminus,17.754642,83.335252,2.254,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Kommadi School Road,17.771661,83.331956,4.082,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Bheemunipatnam Market,17.78287,83.337827,5.387,Highway,AP_INST_GITAM_University,Visakhapatnam
+Rushikonda Bridge,17.800582,83.3473,7.519,Highway,AP_INST_GITAM_University,Visakhapatnam
+Beach Road Nagar,17.836385,83.354883,11.577,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Lawsons Bay Cross Roads,17.882105,83.312009,16.468,Main Road,AP_INST_GITAM_University,Visakhapatnam
+MVP Colony Gate,17.950994,83.355853,24.173,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Dwaraka Nagar Ring Road,17.951352,83.337382,24.07,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Ram Nagar Station,17.74154,83.33665,1.012,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Siripuram Colony,17.746775,83.347324,2.254,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Murali Nagar Mandal Office,17.756928,83.352408,3.402,Highway,AP_INST_GITAM_University,Visakhapatnam
+Steel Plant Nagar,17.766024,83.368931,5.376,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Vizag Port Bypass,17.793509,83.391853,9.232,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Maddilapalem Station,17.819905,83.399173,11.949,Highway,AP_INST_GITAM_University,Visakhapatnam
+Waltair Colony,17.873988,83.417163,18.0,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Maharani Peta Bypass,17.889908,83.46981,22.711,Highway,AP_INST_GITAM_University,Visakhapatnam
+Dabagardens Gate,17.885356,83.520997,26.237,Highway,AP_INST_GITAM_University,Visakhapatnam
+Jagadamba Junction New Town,17.732475,83.340249,1.121,Highway,AP_INST_GITAM_University,Visakhapatnam
+Seethammadhara Temple Road,17.729788,83.351189,2.318,Highway,AP_INST_GITAM_University,Visakhapatnam
+Asilmetta Cross Roads,17.727476,83.36853,4.166,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Gopalapatnam Terminus,17.736467,83.395054,6.892,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Tatichetlapalem Flyover,17.713603,83.417296,9.547,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Pendurthi Chowk,17.729659,83.44429,12.119,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Bhpv Colony Market,17.73866,83.479491,15.838,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Ukkunagaram Bus Stand,17.733787,83.559969,24.357,Highway,AP_INST_GITAM_University,Visakhapatnam
+Marripalem Temple Road,17.778734,83.561209,24.963,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Bheemili Cross Roads,17.729593,83.335815,0.861,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Anakapalli Hospital Road,17.715693,83.347033,2.804,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Yelamanchili Center,17.702048,83.355619,4.56,Highway,AP_INST_GITAM_University,Visakhapatnam
+Narsipatnam Circle,17.687685,83.359659,6.128,Highway,AP_INST_GITAM_University,Visakhapatnam
+Paderu Temple Road,17.692796,83.401868,8.943,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Araku Colony,17.667196,83.397598,10.398,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Chodavaram Old Town,17.618866,83.415275,15.76,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Tuni Bus Stand,17.604955,83.499061,23.02,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Prabhavathi Hills Main Road,17.621111,83.522775,24.031,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Simhachalam Gate,17.72542,83.329739,1.066,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Kailasagiri Bypass,17.712623,83.33209,2.498,Highway,AP_INST_GITAM_University,Visakhapatnam
+Bheemunipatanam Temple Road,17.69763,83.322088,4.239,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Rambilli Center,17.67765,83.334738,6.397,Highway,AP_INST_GITAM_University,Visakhapatnam
+Gajuwaka Terminus,17.653683,83.324856,9.058,Highway,AP_INST_GITAM_University,Visakhapatnam
+NAD Junction School Road,17.633332,83.332495,11.308,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Kommadi Station,17.603971,83.343623,14.641,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Bheemunipatnam Colony,17.530703,83.329212,22.717,Highway,AP_INST_GITAM_University,Visakhapatnam
+Rushikonda Bridge 44,17.456422,83.340554,30.997,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Beach Road Depot,17.726843,83.32499,1.051,Highway,AP_INST_GITAM_University,Visakhapatnam
+Lawsons Bay Market,17.715358,83.314029,2.763,Highway,AP_INST_GITAM_University,Visakhapatnam
+MVP Colony Flyover,17.717884,83.300516,3.657,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Dwaraka Nagar Mandal Office,17.702833,83.280599,6.338,Highway,AP_INST_GITAM_University,Visakhapatnam
+Ram Nagar Temple Road,17.680217,83.274396,8.473,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Siripuram Circle,17.641545,83.263271,12.568,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Murali Nagar Square,17.625558,83.261036,14.194,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Steel Plant Old Town,17.63096,83.166268,20.85,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Vizag Port Main Road,17.525875,83.18665,27.776,Highway,AP_INST_GITAM_University,Visakhapatnam
+Maddilapalem Gate,17.732428,83.319599,1.138,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Waltair Flyover,17.737298,83.307387,2.409,Highway,AP_INST_GITAM_University,Visakhapatnam
+Maharani Peta Center,17.737409,83.287416,4.518,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Dabagardens Main Road,17.742477,83.266635,6.762,Highway,AP_INST_GITAM_University,Visakhapatnam
+Jagadamba Junction Circle,17.717121,83.257713,7.91,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Seethammadhara Chowk,17.73159,83.229156,10.687,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Asilmetta Cross Roads 60,17.714409,83.176,16.471,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Gopalapatnam New Town,17.742729,83.139392,20.205,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Tatichetlapalem Main Road,17.763652,83.036346,31.261,Village Road,AP_INST_GITAM_University,Visakhapatnam
+Pendurthi Circle,17.741248,83.321743,1.117,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Bhpv Colony Temple Road,17.74912,83.315633,2.186,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Ukkunagaram Temple Road,17.760421,83.310555,3.497,Highway,AP_INST_GITAM_University,Visakhapatnam
+Marripalem Terminus,17.763447,83.281642,6.019,Main Road,AP_INST_GITAM_University,Visakhapatnam
+Gajuwaka Gate 0,17.731154,83.300952,0.896,Village Road,AP_INST_Andhra_University,Visakhapatnam
+NAD Junction Circle,17.747087,83.301913,2.668,Highway,AP_INST_Andhra_University,Visakhapatnam
+Kommadi Terminus,17.764269,83.303469,4.584,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Bheemunipatnam Bus Stop,17.781742,83.306659,6.545,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Rushikonda Temple Road,17.79724,83.317273,8.416,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Beach Road Bus Stop,17.818722,83.294528,10.657,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Lawsons Bay Layout,17.865442,83.32013,15.953,Main Road,AP_INST_Andhra_University,Visakhapatnam
+MVP Colony Junction,17.939274,83.252113,24.595,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Dwaraka Nagar Main Road,17.996099,83.284433,30.409,Highway,AP_INST_Andhra_University,Visakhapatnam
+Ram Nagar Ring Road,17.728477,83.307145,0.861,Highway,AP_INST_Andhra_University,Visakhapatnam
+Siripuram Bank Colony,17.737934,83.317163,2.354,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Murali Nagar Bypass,17.742628,83.326977,3.48,Highway,AP_INST_Andhra_University,Visakhapatnam
+Steel Plant Hospital Road,17.764035,83.347463,6.68,Highway,AP_INST_Andhra_University,Visakhapatnam
+Vizag Port Bank Colony,17.762635,83.356775,7.338,Highway,AP_INST_Andhra_University,Visakhapatnam
+Maddilapalem Old Town,17.793694,83.371067,10.78,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Waltair Hospital Road,17.824893,83.393405,14.941,Highway,AP_INST_Andhra_University,Visakhapatnam
+Maharani Peta Main Road,17.854604,83.441316,20.823,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Dabagardens Bypass,17.863989,83.506565,26.791,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Jagadamba Junction Gate,17.723191,83.311614,1.092,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Seethammadhara Center,17.721209,83.327466,2.779,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Asilmetta Bus Stop,17.728126,83.340237,4.162,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Gopalapatnam Flyover,17.716145,83.35792,6.047,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Tatichetlapalem Depot,17.703787,83.377739,8.377,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Pendurthi Junction,17.715074,83.414006,11.971,Highway,AP_INST_Andhra_University,Visakhapatnam
+Bhpv Colony Bank Colony,17.759336,83.448413,16.093,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Ukkunagaram Terminus,17.756624,83.50337,21.723,Highway,AP_INST_Andhra_University,Visakhapatnam
+Marripalem Colony,17.709104,83.546041,25.97,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Bheemili Mandal Office,17.715977,83.308544,1.103,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Anakapalli Bus Stand,17.70701,83.319378,2.621,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Yelamanchili Gate,17.699561,83.321941,3.41,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Narsipatnam Temple Road,17.680787,83.346232,6.693,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Paderu Center,17.686881,83.361619,7.553,Highway,AP_INST_Andhra_University,Visakhapatnam
+Araku Station,17.639163,83.369874,11.828,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Chodavaram School Road,17.64585,83.421358,15.348,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Tuni Depot,17.578912,83.474773,24.391,Highway,AP_INST_Andhra_University,Visakhapatnam
+Prabhavathi Hills Chowk,17.526669,83.456179,27.322,Highway,AP_INST_Andhra_University,Visakhapatnam
+Simhachalam Hospital Road,17.713716,83.301349,1.043,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Kailasagiri Temple Road,17.699798,83.306882,2.658,Highway,AP_INST_Andhra_University,Visakhapatnam
+Bheemunipatanam Temple Road 38,17.68831,83.304254,3.881,Highway,AP_INST_Andhra_University,Visakhapatnam
+Rambilli Gate,17.676702,83.314232,5.338,Highway,AP_INST_Andhra_University,Visakhapatnam
+Gajuwaka Station,17.638666,83.320907,9.616,Main Road,AP_INST_Andhra_University,Visakhapatnam
+NAD Junction Layout,17.634174,83.277004,10.218,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Kommadi Colony,17.590181,83.30884,14.801,Highway,AP_INST_Andhra_University,Visakhapatnam
+Bheemunipatnam Mandal Office,17.50622,83.360307,24.914,Highway,AP_INST_Andhra_University,Visakhapatnam
+Rushikonda Bank Colony,17.467361,83.29182,28.455,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Beach Road Circle,17.717875,83.29382,0.982,Highway,AP_INST_Andhra_University,Visakhapatnam
+Lawsons Bay Circle,17.709429,83.28302,2.462,Main Road,AP_INST_Andhra_University,Visakhapatnam
+MVP Colony Flyover 47,17.704001,83.268553,4.067,Highway,AP_INST_Andhra_University,Visakhapatnam
+Dwaraka Nagar School Road,17.683713,83.262684,5.993,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Ram Nagar Cross Roads,17.667692,83.249808,8.229,Highway,AP_INST_Andhra_University,Visakhapatnam
+Siripuram Terminus,17.660268,83.199021,12.892,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Murali Nagar Bus Stand,17.615621,83.197891,16.213,Highway,AP_INST_Andhra_University,Visakhapatnam
+Steel Plant Bank Colony,17.593846,83.139751,22.351,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Vizag Port Depot,17.537107,83.158784,25.609,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Maddilapalem Bypass,17.723894,83.29095,1.1,Highway,AP_INST_Andhra_University,Visakhapatnam
+Waltair Ring Road,17.721771,83.274452,2.848,Highway,AP_INST_Andhra_University,Visakhapatnam
+Maharani Peta New Town,17.713409,83.260596,4.444,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Dabagardens Temple Road,17.712981,83.24479,6.09,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Jagadamba Junction New Town 58,17.712882,83.22213,8.462,Highway,AP_INST_Andhra_University,Visakhapatnam
+Seethammadhara Circle,17.734083,83.200716,10.723,Highway,AP_INST_Andhra_University,Visakhapatnam
+Asilmetta Center,17.729951,83.133258,17.815,Highway,AP_INST_Andhra_University,Visakhapatnam
+Gopalapatnam School Road,17.682861,83.079665,23.9,Highway,AP_INST_Andhra_University,Visakhapatnam
+Tatichetlapalem Colony,17.686892,83.063522,25.507,Highway,AP_INST_Andhra_University,Visakhapatnam
+Pendurthi Gate,17.731234,83.29564,1.085,Main Road,AP_INST_Andhra_University,Visakhapatnam
+Bhpv Colony Cross Roads,17.733843,83.284586,2.136,Highway,AP_INST_Andhra_University,Visakhapatnam
+Ukkunagaram Bank Colony,17.750176,83.276177,4.018,Highway,AP_INST_Andhra_University,Visakhapatnam
+Marripalem Depot,17.755486,83.266856,5.126,Village Road,AP_INST_Andhra_University,Visakhapatnam
+Gajuwaka Market,17.829174,83.352087,1.044,Highway,AP_INST_ANITS,Visakhapatnam
+NAD Junction Main Road,17.839652,83.353635,2.219,Highway,AP_INST_ANITS,Visakhapatnam
+Kommadi Cross Roads,17.857083,83.353861,4.144,Highway,AP_INST_ANITS,Visakhapatnam
+Bheemunipatnam Square,17.876682,83.335088,6.497,Village Road,AP_INST_ANITS,Visakhapatnam
+Rushikonda Bridge 4,17.900562,83.371995,9.256,Highway,AP_INST_ANITS,Visakhapatnam
+Beach Road Circle 5,17.926967,83.322636,12.242,Highway,AP_INST_ANITS,Visakhapatnam
+Lawsons Bay Bypass,17.972706,83.391303,17.534,Highway,AP_INST_ANITS,Visakhapatnam
+MVP Colony Old Town,17.997605,83.303916,20.342,Main Road,AP_INST_ANITS,Visakhapatnam
+Dwaraka Nagar Old Town,18.051684,83.294196,26.43,Village Road,AP_INST_ANITS,Visakhapatnam
+Ram Nagar New Town,17.826414,83.355176,0.899,Village Road,AP_INST_ANITS,Visakhapatnam
+Siripuram Colony 10,17.838963,83.367175,2.784,Main Road,AP_INST_ANITS,Visakhapatnam
+Murali Nagar Cross Roads,17.847013,83.378451,4.253,Main Road,AP_INST_ANITS,Visakhapatnam
+Steel Plant Colony,17.845216,83.395591,5.581,Highway,AP_INST_ANITS,Visakhapatnam
+Vizag Port Terminus,17.865077,83.399671,7.264,Highway,AP_INST_ANITS,Visakhapatnam
+Maddilapalem Temple Road,17.899574,83.424887,11.879,Main Road,AP_INST_ANITS,Visakhapatnam
+Waltair Temple Road,17.890359,83.470607,14.972,Main Road,AP_INST_ANITS,Visakhapatnam
+Maharani Peta Bus Stand,17.943696,83.546337,24.917,Main Road,AP_INST_ANITS,Visakhapatnam
+Dabagardens Market,17.989136,83.507785,25.148,Main Road,AP_INST_ANITS,Visakhapatnam
+Jagadamba Junction Bus Stand,17.821551,83.358221,0.887,Village Road,AP_INST_ANITS,Visakhapatnam
+Seethammadhara School Road,17.822455,83.370225,2.158,Highway,AP_INST_ANITS,Visakhapatnam
+Asilmetta Center 20,17.822109,83.384601,3.67,Main Road,AP_INST_ANITS,Visakhapatnam
+Gopalapatnam Temple Road,17.807284,83.406378,6.134,Main Road,AP_INST_ANITS,Visakhapatnam
+Tatichetlapalem Bypass,17.817521,83.429637,8.435,Village Road,AP_INST_ANITS,Visakhapatnam
+Pendurthi Center,17.819457,83.47288,13.008,Main Road,AP_INST_ANITS,Visakhapatnam
+Bhpv Colony Circle,17.830966,83.520056,18.043,Highway,AP_INST_ANITS,Visakhapatnam
+Ukkunagaram Circle,17.862881,83.574064,24.191,Main Road,AP_INST_ANITS,Visakhapatnam
+Marripalem Market,17.774042,83.570786,23.928,Main Road,AP_INST_ANITS,Visakhapatnam
+Bheemili Old Town,17.813433,83.355431,0.929,Highway,AP_INST_ANITS,Visakhapatnam
+Anakapalli Bridge,17.807726,83.370738,2.585,Highway,AP_INST_ANITS,Visakhapatnam
+Yelamanchili Terminus,17.801017,83.376034,3.472,Main Road,AP_INST_ANITS,Visakhapatnam
+Narsipatnam Market,17.780481,83.381838,5.538,Main Road,AP_INST_ANITS,Visakhapatnam
+Paderu Bridge,17.771098,83.400098,7.596,Main Road,AP_INST_ANITS,Visakhapatnam
+Araku Depot,17.738844,83.400392,10.484,Highway,AP_INST_ANITS,Visakhapatnam
+Chodavaram Center,17.726135,83.477481,17.063,Village Road,AP_INST_ANITS,Visakhapatnam
+Tuni New Town,17.632459,83.466071,24.208,Main Road,AP_INST_ANITS,Visakhapatnam
+Prabhavathi Hills Bypass,17.617667,83.517418,28.647,Highway,AP_INST_ANITS,Visakhapatnam
+Simhachalam Bypass,17.810424,83.351162,1.072,Village Road,AP_INST_ANITS,Visakhapatnam
+Kailasagiri Cross Roads,17.797573,83.344121,2.57,Village Road,AP_INST_ANITS,Visakhapatnam
+Bheemunipatanam Chowk,17.782059,83.357343,4.29,Highway,AP_INST_ANITS,Visakhapatnam
+Rambilli Layout,17.770848,83.3404,5.559,Highway,AP_INST_ANITS,Visakhapatnam
+Gajuwaka Bus Stand,17.736149,83.334739,9.463,Highway,AP_INST_ANITS,Visakhapatnam
+NAD Junction Hospital Road,17.722894,83.366756,10.942,Highway,AP_INST_ANITS,Visakhapatnam
+Kommadi Mandal Office,17.697816,83.368077,13.72,Main Road,AP_INST_ANITS,Visakhapatnam
+Bheemunipatnam Depot,17.647356,83.376344,19.399,Main Road,AP_INST_ANITS,Visakhapatnam
+Rushikonda Terminus,17.593667,83.301549,25.685,Village Road,AP_INST_ANITS,Visakhapatnam
+Beach Road Junction,17.815089,83.342836,0.935,Main Road,AP_INST_ANITS,Visakhapatnam
+Lawsons Bay Chowk,17.80645,83.326939,2.869,Main Road,AP_INST_ANITS,Visakhapatnam
+MVP Colony Main Road,17.798747,83.323531,3.666,Highway,AP_INST_ANITS,Visakhapatnam
+Dwaraka Nagar Bypass,17.77659,83.306359,6.682,Village Road,AP_INST_ANITS,Visakhapatnam
+Ram Nagar Nagar,17.772525,83.302653,7.28,Main Road,AP_INST_ANITS,Visakhapatnam
+Siripuram Flyover,17.729561,83.288769,11.965,Main Road,AP_INST_ANITS,Visakhapatnam
+Murali Nagar Flyover,17.724125,83.269657,13.639,Main Road,AP_INST_ANITS,Visakhapatnam
+Steel Plant Bypass,17.706012,83.180921,21.937,Main Road,AP_INST_ANITS,Visakhapatnam
+Vizag Port Station,17.647539,83.17791,26.456,Village Road,AP_INST_ANITS,Visakhapatnam
+Maddilapalem Hospital Road,17.821189,83.341233,0.937,Highway,AP_INST_ANITS,Visakhapatnam
+Waltair Nagar,17.814724,83.325333,2.676,Main Road,AP_INST_ANITS,Visakhapatnam
+Maharani Peta Cross Roads,17.820783,83.307724,4.476,Village Road,AP_INST_ANITS,Visakhapatnam
+Dabagardens Main Road 57,17.824758,83.289538,6.422,Highway,AP_INST_ANITS,Visakhapatnam
+Jagadamba Junction Flyover,17.838682,83.269734,8.747,Highway,AP_INST_ANITS,Visakhapatnam
+Seethammadhara New Town,17.792238,83.237187,12.336,Main Road,AP_INST_ANITS,Visakhapatnam
+Asilmetta Nagar,17.82689,83.214106,14.406,Highway,AP_INST_ANITS,Visakhapatnam
+Gopalapatnam Hospital Road,17.847522,83.11631,24.925,Main Road,AP_INST_ANITS,Visakhapatnam
+Tatichetlapalem Colony 62,17.848912,83.094934,27.19,Village Road,AP_INST_ANITS,Visakhapatnam
+Pendurthi Hospital Road,17.825528,83.342517,1.003,Main Road,AP_INST_ANITS,Visakhapatnam
+Bhpv Colony Cross Roads 64,17.836446,83.334436,2.461,Highway,AP_INST_ANITS,Visakhapatnam
+Ukkunagaram Layout,17.8425,83.321525,3.917,Main Road,AP_INST_ANITS,Visakhapatnam
+Marripalem Bus Stand,17.870433,83.315114,6.714,Village Road,AP_INST_ANITS,Visakhapatnam
+Alipiri Ring Road,13.638433,79.417719,1.083,Main Road,AP_INST_SV_University,Tirupati
+Renigunta Layout,13.650603,79.421924,2.442,Main Road,AP_INST_SV_University,Tirupati
+Tiruchanur Layout,13.665483,79.418885,4.079,Main Road,AP_INST_SV_University,Tirupati
+Srinivasa Mangapuram Bus Stand,13.681632,79.420052,5.875,Main Road,AP_INST_SV_University,Tirupati
+Srikalahasti New Town,13.707074,79.417808,8.705,Highway,AP_INST_SV_University,Tirupati
+Puttur Temple Road,13.721782,79.418615,10.339,Highway,AP_INST_SV_University,Tirupati
+Nagari Colony,13.758687,79.431138,14.5,Highway,AP_INST_SV_University,Tirupati
+Gudur Bypass,13.83369,79.385336,23.075,Main Road,AP_INST_SV_University,Tirupati
+Nellore Highway Market,13.846712,79.380913,24.581,Highway,AP_INST_SV_University,Tirupati
+Chittoor Road Center,13.635073,79.427137,1.106,Main Road,AP_INST_SV_University,Tirupati
+Tirupati Old Town Bus Stand,13.650336,79.432138,2.773,Main Road,AP_INST_SV_University,Tirupati
+Kapila Theertham Bypass,13.658095,79.445895,4.351,Main Road,AP_INST_SV_University,Tirupati
+Brahmagiristhan Circle,13.676582,79.45724,6.717,Highway,AP_INST_SV_University,Tirupati
+Chandragiri Layout,13.679902,79.479005,8.605,Main Road,AP_INST_SV_University,Tirupati
+Pakala Main Road,13.68336,79.496098,10.288,Highway,AP_INST_SV_University,Tirupati
+Madanapalle Bypass,13.709568,79.54701,16.473,Highway,AP_INST_SV_University,Tirupati
+Palamaner Ring Road,13.788093,79.529187,21.329,Main Road,AP_INST_SV_University,Tirupati
+Kuppam Temple Road,13.793166,79.604628,27.116,Highway,AP_INST_SV_University,Tirupati
+Bangarupalem New Town,13.629681,79.428517,1.012,Main Road,AP_INST_SV_University,Tirupati
+Yerpedu Gate,13.628172,79.44275,2.546,Village Road,AP_INST_SV_University,Tirupati
+Penumur Chowk,13.635131,79.450865,3.493,Highway,AP_INST_SV_University,Tirupati
+Vijayapuram Flyover,13.639351,79.481067,6.788,Highway,AP_INST_SV_University,Tirupati
+Kalikiri Circle,13.623572,79.488465,7.508,Main Road,AP_INST_SV_University,Tirupati
+Pileru Old Town,13.610821,79.51553,10.6,Highway,AP_INST_SV_University,Tirupati
+Alipiri Temple Road,13.64438,79.55948,15.257,Highway,AP_INST_SV_University,Tirupati
+Renigunta Main Road,13.660273,79.620901,22.074,Main Road,AP_INST_SV_University,Tirupati
+Tiruchanur Bridge,13.654338,79.696355,30.083,Main Road,AP_INST_SV_University,Tirupati
+Srinivasa Mangapuram Depot,13.622006,79.426589,1.099,Village Road,AP_INST_SV_University,Tirupati
+Srikalahasti Depot,13.61311,79.43799,2.677,Village Road,AP_INST_SV_University,Tirupati
+Puttur Cross Roads,13.6063,79.442235,3.529,Main Road,AP_INST_SV_University,Tirupati
+Nagari Bridge,13.589975,79.456341,5.895,Main Road,AP_INST_SV_University,Tirupati
+Gudur Chowk,13.563694,79.469223,9.035,Highway,AP_INST_SV_University,Tirupati
+Nellore Highway Market 32,13.554464,79.490043,11.267,Highway,AP_INST_SV_University,Tirupati
+Chittoor Road Junction,13.530743,79.516137,15.122,Main Road,AP_INST_SV_University,Tirupati
+Tirupati Old Town Center,13.474771,79.591153,25.276,Village Road,AP_INST_SV_University,Tirupati
+Kapila Theertham Market,13.398921,79.556451,29.556,Highway,AP_INST_SV_University,Tirupati
+Brahmagiristhan Hospital Road,13.619612,79.41899,1.022,Village Road,AP_INST_SV_University,Tirupati
+Chandragiri Gate,13.605549,79.425553,2.675,Main Road,AP_INST_SV_University,Tirupati
+Pakala Depot,13.597054,79.42737,3.639,Highway,AP_INST_SV_University,Tirupati
+Madanapalle Terminus,13.574607,79.429963,6.137,Highway,AP_INST_SV_University,Tirupati
+Palamaner Terminus,13.55396,79.42799,8.376,Main Road,AP_INST_SV_University,Tirupati
+Kuppam Main Road,13.522677,79.416562,11.804,Main Road,AP_INST_SV_University,Tirupati
+Bangarupalem Circle,13.508755,79.44866,13.723,Main Road,AP_INST_SV_University,Tirupati
+Yerpedu Hospital Road,13.411454,79.404486,24.22,Village Road,AP_INST_SV_University,Tirupati
+Penumur Bypass,13.397442,79.425096,25.734,Highway,AP_INST_SV_University,Tirupati
+Vijayapuram Market,13.624105,79.412545,0.889,Highway,AP_INST_SV_University,Tirupati
+Kalikiri Station,13.608937,79.404963,2.692,Highway,AP_INST_SV_University,Tirupati
+Pileru Terminus,13.597482,79.3943,4.401,Main Road,AP_INST_SV_University,Tirupati
+Alipiri Chowk,13.599716,79.379693,5.356,Highway,AP_INST_SV_University,Tirupati
+Renigunta Cross Roads,13.587707,79.365604,7.378,Main Road,AP_INST_SV_University,Tirupati
+Tiruchanur Chowk,13.54334,79.34079,12.733,Main Road,AP_INST_SV_University,Tirupati
+Srinivasa Mangapuram Ring Road,13.517522,79.30332,17.607,Village Road,AP_INST_SV_University,Tirupati
+Srikalahasti Flyover,13.481787,79.268429,23.084,Village Road,AP_INST_SV_University,Tirupati
+Puttur Nagar,13.447959,79.204416,30.716,Highway,AP_INST_SV_University,Tirupati
+Nagari New Town,13.627323,79.410713,0.932,Highway,AP_INST_SV_University,Tirupati
+Gudur Chowk 55,13.626345,79.394022,2.735,Village Road,AP_INST_SV_University,Tirupati
+Nellore Highway Hospital Road,13.623334,79.386931,3.54,Highway,AP_INST_SV_University,Tirupati
+Chittoor Road Bus Stop,13.616463,79.356668,6.895,Main Road,AP_INST_SV_University,Tirupati
+Tirupati Old Town Depot,13.648097,79.342199,8.593,Village Road,AP_INST_SV_University,Tirupati
+Kapila Theertham Square,13.620382,79.317272,11.055,Highway,AP_INST_SV_University,Tirupati
+Brahmagiristhan Circle 60,13.64242,79.291979,13.831,Main Road,AP_INST_SV_University,Tirupati
+Chandragiri Market,13.614449,79.204558,23.251,Village Road,AP_INST_SV_University,Tirupati
+Pakala Terminus,13.616268,79.13969,30.238,Village Road,AP_INST_SV_University,Tirupati
+Madanapalle Center,13.635213,79.414406,0.881,Village Road,AP_INST_SV_University,Tirupati
+Palamaner Hospital Road,13.645851,79.40316,2.569,Main Road,AP_INST_SV_University,Tirupati
+Kuppam Bus Stand,13.655438,79.397525,3.776,Highway,AP_INST_SV_University,Tirupati
+Bangarupalem Square,13.669191,79.387353,5.658,Main Road,AP_INST_SV_University,Tirupati
+Alipiri School Road,13.562958,79.175353,1.136,Village Road,AP_INST_IIT_Tirupati,Tirupati
+Renigunta Gate,13.57233,79.174747,2.165,Highway,AP_INST_IIT_Tirupati,Tirupati
+Tiruchanur Mandal Office,13.58541,79.166007,3.705,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Srinivasa Mangapuram Old Town,13.600779,79.167714,5.361,Highway,AP_INST_IIT_Tirupati,Tirupati
+Srikalahasti Main Road,13.627105,79.181599,8.298,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Puttur Square,13.645175,79.167244,10.283,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Nagari Temple Road,13.699358,79.147737,16.522,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Gudur Market,13.769119,79.203197,24.256,Highway,AP_INST_IIT_Tirupati,Tirupati
+Nellore Highway Mandal Office,13.812563,79.119687,29.453,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Chittoor Road Hospital Road,13.557424,79.181365,0.988,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Tirupati Old Town Flyover,13.566207,79.194605,2.719,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Kapila Theertham Bridge,13.587519,79.195431,4.521,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Brahmagiristhan Depot,13.583573,79.22746,6.757,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Chandragiri Colony,13.61494,79.222567,8.701,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Pakala Ring Road,13.65506,79.234545,13.137,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Madanapalle Bus Stand,13.629997,79.281758,14.505,Highway,AP_INST_IIT_Tirupati,Tirupati
+Palamaner Station,13.700756,79.330174,23.6,Highway,AP_INST_IIT_Tirupati,Tirupati
+Kuppam Layout,13.718436,79.359815,27.279,Village Road,AP_INST_IIT_Tirupati,Tirupati
+Bangarupalem Nagar,13.55268,79.184064,1.142,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Yerpedu Depot,13.554596,79.196187,2.46,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Penumur Bus Stop,13.561725,79.211485,4.222,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Vijayapuram Bus Stand,13.547787,79.231258,6.269,Highway,AP_INST_IIT_Tirupati,Tirupati
+Kalikiri Flyover,13.565548,79.258261,9.27,Highway,AP_INST_IIT_Tirupati,Tirupati
+Pileru Main Road,13.531568,79.294693,13.314,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Alipiri Bank Colony,13.570137,79.317623,15.696,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Renigunta Hospital Road,13.50617,79.396398,24.651,Highway,AP_INST_IIT_Tirupati,Tirupati
+Tiruchanur Terminus,13.526203,79.410349,25.776,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Srinivasa Mangapuram Bus Stand 27,13.546619,79.180422,1.024,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Srikalahasti Circle,13.536613,79.184174,2.147,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Puttur Ring Road,13.525165,79.194606,3.836,Village Road,AP_INST_IIT_Tirupati,Tirupati
+Nagari Nagar,13.51594,79.214519,6.046,Highway,AP_INST_IIT_Tirupati,Tirupati
+Gudur Junction,13.492399,79.235956,9.532,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Nellore Highway Station,13.451579,79.246293,13.743,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Chittoor Road Layout,13.464829,79.267308,14.099,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Tirupati Old Town Gate,13.444113,79.328909,20.705,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Kapila Theertham Bridge 35,13.394433,79.391652,29.444,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Brahmagiristhan Bridge,13.543421,79.173635,1.054,Highway,AP_INST_IIT_Tirupati,Tirupati
+Chandragiri Bus Stand,13.532236,79.171597,2.307,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Pakala New Town,13.52117,79.169246,3.558,Highway,AP_INST_IIT_Tirupati,Tirupati
+Madanapalle Chowk,13.506434,79.170742,5.175,Highway,AP_INST_IIT_Tirupati,Tirupati
+Palamaner New Town,13.46558,79.16887,9.722,Highway,AP_INST_IIT_Tirupati,Tirupati
+Kuppam Flyover,13.458732,79.165621,10.506,Highway,AP_INST_IIT_Tirupati,Tirupati
+Bangarupalem Bank Colony,13.419118,79.169731,14.881,Highway,AP_INST_IIT_Tirupati,Tirupati
+Yerpedu Hospital Road 43,13.330607,79.14788,24.873,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Penumur Center,13.269444,79.162937,31.54,Village Road,AP_INST_IIT_Tirupati,Tirupati
+Vijayapuram Square,13.545899,79.167947,0.983,Highway,AP_INST_IIT_Tirupati,Tirupati
+Kalikiri Nagar,13.532488,79.158853,2.767,Highway,AP_INST_IIT_Tirupati,Tirupati
+Pileru Center,13.529116,79.146165,3.966,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Alipiri Square,13.50801,79.14592,5.814,Highway,AP_INST_IIT_Tirupati,Tirupati
+Renigunta Layout 49,13.508881,79.121631,7.443,Village Road,AP_INST_IIT_Tirupati,Tirupati
+Tiruchanur Colony,13.471788,79.111459,11.24,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Srinivasa Mangapuram Market,13.453572,79.062696,16.295,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Srikalahasti Station,13.432658,78.994433,23.53,Village Road,AP_INST_IIT_Tirupati,Tirupati
+Puttur Flyover,13.390971,78.991354,26.686,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Nagari Junction,13.555172,79.163894,1.069,Highway,AP_INST_IIT_Tirupati,Tirupati
+Gudur Square,13.558068,79.153066,2.282,Village Road,AP_INST_IIT_Tirupati,Tirupati
+Nellore Highway Bank Colony,13.545682,79.135621,4.173,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Chittoor Road Station,13.560088,79.112426,6.65,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Tirupati Old Town Colony,13.537529,79.106247,7.468,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Kapila Theertham Chowk,13.568167,79.061306,12.246,Village Road,AP_INST_IIT_Tirupati,Tirupati
+Brahmagiristhan Terminus,13.586053,79.031994,15.734,Highway,AP_INST_IIT_Tirupati,Tirupati
+Chandragiri Bridge,13.552507,78.971873,21.796,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Pakala Market,13.578295,78.935385,25.893,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Madanapalle Layout,13.55781,79.165367,1.035,Highway,AP_INST_IIT_Tirupati,Tirupati
+Palamaner Terminus 64,13.5639,79.154648,2.377,Highway,AP_INST_IIT_Tirupati,Tirupati
+Kuppam Depot,13.581837,79.148341,4.213,Main Road,AP_INST_IIT_Tirupati,Tirupati
+Bangarupalem Nagar 66,13.588,79.140636,5.277,Highway,AP_INST_IIT_Tirupati,Tirupati
+Alipiri Old Town,13.644276,79.421671,1.08,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Renigunta Station,13.658549,79.425189,2.711,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Tiruchanur Depot,13.666285,79.41834,3.517,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Srinivasa Mangapuram Nagar,13.684319,79.420821,5.518,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Srikalahasti Square,13.70171,79.406124,7.601,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Puttur Layout,13.732495,79.416519,10.881,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Nagari Square,13.774888,79.41446,15.6,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Gudur Colony,13.806087,79.411378,19.08,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Nellore Highway Market 8,13.88785,79.397279,28.256,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Chittoor Road Bridge,13.642721,79.426042,1.105,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Tirupati Old Town Hospital Road,13.649701,79.432527,2.148,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Kapila Theertham Station,13.669137,79.443517,4.596,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Brahmagiristhan Hospital Road 12,13.672476,79.469508,6.802,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Chandragiri Bus Stand 13,13.69169,79.475393,8.717,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Pakala Square,13.715898,79.479615,11.091,Village Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Madanapalle Hospital Road,13.749348,79.536853,17.941,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Palamaner Cross Roads,13.779197,79.564265,22.384,Village Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Kuppam Bus Stand 17,13.82453,79.591279,28.069,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Bangarupalem School Road,13.636608,79.427618,0.85,Village Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Yerpedu Old Town,13.638172,79.439344,2.126,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Penumur Flyover,13.633985,79.453943,3.669,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Vijayapuram Cross Roads,13.631563,79.478527,6.334,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Kalikiri Mandal Office,13.644314,79.495418,8.219,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Pileru Square,13.648046,79.540075,13.06,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Alipiri Market,13.633128,79.571975,16.424,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Renigunta Bus Stop,13.651575,79.640133,23.861,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Tiruchanur Cross Roads,13.624829,79.648597,24.727,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Srinivasa Mangapuram Main Road,13.627171,79.425134,1.004,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Srikalahasti Bus Stand,13.614226,79.435696,2.839,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Puttur Station,13.606718,79.437647,3.649,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Nagari Station,13.594272,79.463993,6.543,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Gudur Circle,13.581208,79.469656,8.011,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Nellore Highway Bus Stand,13.543501,79.498729,13.238,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Chittoor Road Gate,13.531583,79.516341,15.489,Village Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Tirupati Old Town Gate 34,13.502343,79.553689,20.626,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Kapila Theertham Bus Stand,13.444294,79.630985,31.121,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Brahmagiristhan Cross Roads,13.626457,79.421132,0.925,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Chandragiri Terminus,13.613377,79.42571,2.45,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Pakala Bypass,13.595736,79.421477,4.336,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Madanapalle School Road,13.581749,79.410487,5.977,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Palamaner Depot,13.5677,79.422495,7.455,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Kuppam Colony,13.525176,79.431514,12.242,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Bangarupalem Station,13.499119,79.404535,15.168,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Yerpedu Bypass,13.44857,79.418235,20.698,Village Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Penumur Gate,13.4135,79.430412,24.622,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Vijayapuram Bridge,13.629456,79.413319,0.928,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Kalikiri New Town,13.621265,79.403319,2.341,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Pileru Ring Road,13.615132,79.392583,3.676,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Alipiri Bypass,13.601848,79.376636,5.942,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Renigunta Mandal Office,13.581936,79.360496,8.705,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Tiruchanur Layout 50,13.556626,79.325577,13.398,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Srinivasa Mangapuram Depot 51,13.503457,79.340038,16.961,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Srikalahasti New Town 52,13.476544,79.266421,24.184,Village Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Puttur Circle,13.501973,79.215973,26.536,Highway,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Nagari Station 54,13.636363,79.410434,1.05,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Gudur Bypass 55,13.632386,79.395633,2.646,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Nellore Highway Square,13.64048,79.379359,4.438,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Chittoor Road Mandal Office,13.624716,79.367602,5.77,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Tirupati Old Town Hospital Road 58,13.637843,79.337909,8.878,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Kapila Theertham Temple Road,13.623287,79.317957,11.1,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Brahmagiristhan Gate,13.602619,79.2548,18.206,Village Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Chandragiri Terminus 61,13.587827,79.193074,25.072,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Pakala Bypass 62,13.672734,79.126064,32.041,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Madanapalle Center 63,13.641958,79.413978,1.037,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Palamaner Market,13.655383,79.407522,2.666,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Kuppam Cross Roads,13.652078,79.389554,3.815,Main Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Bangarupalem Market,13.668866,79.376913,6.009,Village Road,AP_INST_Sri_Padmavati_Mahila_Viswa,Tirupati
+Nuzvid Bus Stand Bypass,16.795857,80.846767,1.04,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Junction Nagar,16.807286,80.848212,2.317,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Eluru Road Stop Bridge,16.817247,80.849205,3.429,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Krishna Dist Office New Town,16.839939,80.854646,6.002,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Town Center Hospital Road,16.867048,80.855099,9.001,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Paiditalli Colony Hospital Road,16.881302,80.857026,10.599,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Market Gate,16.927242,80.877451,15.988,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+NH16 Stop Flyover,16.966717,80.797648,20.708,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Bus Stand Mandal Office,17.051271,80.821846,29.56,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Junction Junction,16.790533,80.853764,0.876,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Eluru Road Stop Chowk,16.805301,80.861454,2.615,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Krishna Dist Office Junction,16.806389,80.877772,3.979,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Town Center Bridge,16.830807,80.876768,5.875,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Paiditalli Colony New Town,16.853993,80.902929,9.599,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Market Chowk,16.870138,80.908074,11.365,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+NH16 Stop Cross Roads,16.920838,80.938459,17.846,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Bus Stand Old Town,16.968925,80.96629,23.946,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Junction Main Road,16.972222,80.988782,25.594,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Eluru Road Stop Center,16.784462,80.85708,1.128,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Krishna Dist Office Chowk,16.790688,80.871623,2.694,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Town Center Old Town,16.792894,80.882923,3.921,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Paiditalli Colony Terminus,16.786307,80.902573,5.948,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Market Junction,16.784481,80.914924,7.266,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+NH16 Stop Nagar,16.761405,80.962852,12.677,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Bus Stand Temple Road,16.782167,80.998679,16.187,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Junction Market,16.741813,81.041551,21.332,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Eluru Road Stop Mandal Office,16.71998,81.111314,29.13,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Krishna Dist Office Colony,16.78092,80.854769,1.06,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Town Center Station,16.769149,80.859769,2.379,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Paiditalli Colony Ring Road,16.761504,80.874527,4.062,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Market Junction 30,16.750146,80.892269,6.315,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+NH16 Stop Main Road,16.732653,80.884916,7.239,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Bus Stand School Road,16.70215,80.902121,11.081,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Junction Center,16.692184,80.983052,17.911,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Eluru Road Stop Depot,16.66235,81.00397,21.704,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Krishna Dist Office Circle,16.631221,81.072811,29.631,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Town Center Bus Stand,16.778469,80.847069,0.894,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Paiditalli Colony Circle,16.765336,80.844846,2.362,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Market Mandal Office,16.751967,80.853752,3.913,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+NH16 Stop Gate,16.738123,80.840492,5.42,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Bus Stand Bus Stop,16.704764,80.826176,9.348,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Junction Circle,16.687002,80.845973,11.064,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Eluru Road Stop Bus Stop,16.63244,80.816109,17.438,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Krishna Dist Office Station,16.57245,80.830484,23.864,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Town Center Cross Roads,16.575051,80.799309,24.048,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Paiditalli Colony Circle 45,16.778739,80.840248,1.103,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Market Terminus,16.774684,80.828929,2.303,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+NH16 Stop Colony,16.767514,80.813658,4.103,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Bus Stand Square,16.745453,80.808625,6.105,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Junction Flyover,16.721694,80.805003,8.464,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Eluru Road Stop Cross Roads,16.707394,80.75764,12.934,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Krishna Dist Office Market,16.678377,80.746297,16.089,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Town Center Colony,16.618888,80.706318,23.893,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Paiditalli Colony Bus Stand,16.600509,80.7227,24.539,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Market Bridge,16.784688,80.837949,0.953,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+NH16 Stop Nagar 55,16.786301,80.82288,2.536,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Bus Stand Depot,16.791511,80.811333,3.806,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Junction Bridge,16.772519,80.784631,6.788,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Eluru Road Stop New Town,16.795963,80.756147,9.697,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Krishna Dist Office Chowk 59,16.81806,80.721665,13.765,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Town Center Gate,16.798613,80.695025,16.202,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Paiditalli Colony Bus Stop,16.788596,80.645574,21.412,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Market Colony,16.837739,80.61791,25.011,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+NH16 Stop Chowk,16.79174,80.840706,0.864,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Bus Stand Chowk,16.801965,80.83302,2.253,Main Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nuzvid Junction New Town,16.810945,80.822151,3.771,Highway,AP_INST_RGUKT_Nuzvid,Nuzvid
+Eluru Road Stop Bus Stop 66,16.817374,80.797521,6.26,Village Road,AP_INST_RGUKT_Nuzvid,Nuzvid
+Nellore Bus Stand Colony,14.475542,79.98411,0.939,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Grand Trunk Road Bus Stop,14.490055,79.989488,2.558,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Magunta Layout Market,14.498966,79.981354,3.556,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Vedayapalem Temple Road,14.5158,79.997719,5.539,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Dargamitta Circle,14.547365,79.971524,9.038,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Station Road Main Road,14.561946,79.998523,10.61,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Kavali Stop Gate,14.632508,79.983343,18.373,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Alluru Junction Center,14.643494,79.950961,19.952,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Kovur Circle New Town,14.684933,80.023927,24.541,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Gudur Bus Stop Mandal Office,14.472402,79.994525,1.079,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Bus Stand Bank Colony,14.480769,80.005461,2.576,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Grand Trunk Road Gate,14.490505,80.019986,4.477,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Magunta Layout Chowk,14.499249,80.033796,6.253,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Vedayapalem Station,14.509235,80.046008,7.967,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Dargamitta Flyover,14.530409,80.071957,11.613,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Station Road Mandal Office,14.562,80.110038,17.005,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Kavali Stop Layout,14.584924,80.140581,21.164,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Alluru Junction Chowk,14.58562,80.173756,24.115,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Kovur Circle Circle,14.465085,79.995109,1.011,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Gudur Bus Stop Layout,14.472957,80.010473,2.709,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Bus Stand Ring Road,14.462603,80.022642,3.98,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Grand Trunk Road Center,14.460294,80.041605,6.037,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Magunta Layout Mandal Office,14.461554,80.057371,7.711,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Vedayapalem Ring Road,14.468888,80.099156,12.185,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Dargamitta Square,14.436101,80.125862,15.454,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Station Road Layout,14.472669,80.165996,19.389,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Kavali Stop Market,14.42691,80.205362,24.044,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Alluru Junction Nagar,14.462266,79.9935,0.983,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Kovur Circle Depot,14.452697,80.004843,2.599,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Gudur Bus Stop Bus Stand,14.435715,80.010201,4.373,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Bus Stand Circle,14.422845,80.025452,6.518,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Grand Trunk Road Cross Roads,14.410553,80.051709,9.481,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Magunta Layout Station,14.409169,80.077304,11.766,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Vedayapalem School Road,14.351023,80.070056,15.784,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Dargamitta Flyover 34,14.295453,80.131489,24.712,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Station Road Square,14.343837,80.178995,24.91,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Kavali Stop Hospital Road,14.458645,79.98819,0.991,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Alluru Junction School Road,14.444455,79.980115,2.618,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Kovur Circle Old Town,14.432297,79.981457,3.923,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Gudur Bus Stop Gate,14.417416,79.979403,5.592,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Bus Stand Center,14.39772,79.979122,7.772,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Grand Trunk Road Mandal Office,14.374709,79.965261,10.535,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Magunta Layout Terminus,14.301966,79.990871,18.392,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Vedayapalem Market,14.263443,79.96737,22.757,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Dargamitta Cross Roads,14.200749,80.054809,30.552,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Station Road Station,14.45959,79.980001,1.073,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Kavali Stop Bank Colony,14.454146,79.969308,2.317,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Alluru Junction Main Road,14.451234,79.958385,3.469,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Kovur Circle Square,14.424167,79.942117,6.733,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Gudur Bus Stop Bus Stop,14.431804,79.926734,7.504,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Bus Stand Bank Colony 50,14.388651,79.905771,12.293,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Grand Trunk Road Bridge,14.344038,79.907324,16.114,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Magunta Layout Terminus 52,14.32388,79.805296,25.162,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Vedayapalem Bus Stand,14.30334,79.828421,24.909,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Dargamitta Bridge,14.466469,79.976277,1.051,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Station Road Station 55,14.468531,79.961314,2.661,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Kavali Stop Station,14.471113,79.951237,3.767,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Alluru Junction Mandal Office,14.46471,79.933613,5.648,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Kovur Circle Junction,14.457125,79.902066,9.108,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Gudur Bus Stop Center,14.453431,79.88939,10.516,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Bus Stand Circle 60,14.504162,79.840389,16.203,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Grand Trunk Road Bypass,14.419613,79.790956,21.661,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Magunta Layout Cross Roads,14.426364,79.730145,27.924,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Vedayapalem Bypass,14.473535,79.977703,1.131,Village Road,AP_INST_Rajiv_Gandhi_University,Nellore
+Dargamitta Old Town,14.484856,79.969935,2.608,Highway,AP_INST_Rajiv_Gandhi_University,Nellore
+Nellore Station Road Old Town,14.4861,79.960265,3.471,Main Road,AP_INST_Rajiv_Gandhi_University,Nellore

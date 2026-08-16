@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const AttendanceSchema = new mongoose.Schema({
+  institutionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Institution', required: true, index: true },
   // Who boarded
   studentId:   { type: String, required: true, index: true },
   studentName: { type: String, required: true },
@@ -31,5 +32,13 @@ const AttendanceSchema = new mongoose.Schema({
 
 // Prevent duplicate boarding record per student per date
 AttendanceSchema.index({ studentId: 1, date: 1 }, { unique: true });
+
+// ── Hot-path indexes ──────────────────────────────────────────────────────────
+// Reports: attendance by institution + date range (attendance_summary report)
+AttendanceSchema.index({ institutionId: 1, date: -1 });
+// Driver view: all boardings for a bus on a given date
+AttendanceSchema.index({ busNumber: 1, date: -1 });
+// Student history: all records for a student, newest first
+AttendanceSchema.index({ studentId: 1, createdAt: -1 });
 
 module.exports = mongoose.model('Attendance', AttendanceSchema);

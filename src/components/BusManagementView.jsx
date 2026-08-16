@@ -4,8 +4,9 @@ import {
   Bus, Plus, Wrench, UserCheck, UserX, RefreshCw,
   Satellite, Loader, MapPin, Navigation, Edit2, CheckCircle
 } from 'lucide-react';
+import SkeletonCardList from './SkeletonLoader';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const ROUTE_OPTIONS = [
   {
@@ -35,7 +36,7 @@ const BusManagementView = () => {
     buses, fetchBuses, triggerToast, currentUser,
     assignDriverToBus, unassignDriverFromBus,
     fetchUnassignedDrivers, fetchAllDrivers,
-    setBusStartingPoint
+    setBusStartingPoint, busesLoading
   } = useContext(AppContext);
 
   const [allDrivers,        setAllDrivers]        = useState([]);
@@ -152,6 +153,8 @@ const BusManagementView = () => {
   const assignedBuses   = buses.filter(b => b.driver && b.driver !== 'Unassigned');
   const unassignedBuses = buses.filter(b => !b.driver || b.driver === 'Unassigned');
 
+  if (busesLoading && buses.length === 0) return <SkeletonCardList count={6} />;
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
 
@@ -201,9 +204,10 @@ const BusManagementView = () => {
                   <tr><td colSpan={6} style={{ textAlign: 'center', color: 'var(--text-muted)', padding: 32 }}>No buses registered yet.</td></tr>
                 )}
                 {buses.map(bus => {
-                  // Get stops for this bus's route
-                  const routeObj = ROUTE_OPTIONS.find(r => r.label === bus.route);
-                  const stops    = routeObj?.stops || bus.stopSequence || [];
+                  // Get stops from live bus data (DB stopSequence takes priority over static routes)
+                  const stops = bus.stopSequence?.length > 0
+                    ? bus.stopSequence
+                    : ROUTE_OPTIONS.find(r => r.label === bus.route)?.stops || [];
                   const isEditingStart = editingStartId === bus.number;
 
                   return (

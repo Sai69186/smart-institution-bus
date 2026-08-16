@@ -12,21 +12,17 @@ dist
 dist-ssr
 *.local
 
-# Environment files — never commit secrets
+# Environment variables — never commit secrets
 .env
-.env.*
-!.env.example
+.env.local
+.env.*.local
 server/.env
-server/.env.*
+
+# Allow example/template env files (safe to commit)
+!.env.example
 !server/.env.example
-
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
-
-# ML model binaries (large files)
-python_services/models/*.pkl
+# Allow production placeholder (no real secrets)
+!.env.production
 
 # Editor directories and files
 .vscode/*

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useContext, useState, useMemo, useEffect } from 'react';
 import { AppContext, calcStopETAs, getMyStudent } from '../context/AppContext';
 import { Bus, Navigation, Fuel, User, Clock, ShieldAlert, MapPin, Wifi } from 'lucide-react';
 import StudentBusMap from './StudentBusMap';
@@ -6,7 +6,7 @@ import FleetMap from './FleetMap';
 import { minsToTime, weatherDelayMins } from '../utils/studentHelpers';
 
 const LiveTrackingView = ({ studentOnly = false, driverOnly = false }) => {
-  const { buses, triggerSOS, currentUser, students, weather } = useContext(AppContext);
+  const { buses, triggerSOS, currentUser, students, weather, dbStopCoords = {} } = useContext(AppContext);
 
   const myStudent = studentOnly ? getMyStudent(students, currentUser) : null;
   const myBusFromStudent = myStudent ? buses.find(b => b.number === myStudent.assignedBus) : null;
@@ -20,7 +20,7 @@ const LiveTrackingView = ({ studentOnly = false, driverOnly = false }) => {
   const [selectedBusId, setSelectedBusId] = useState(defaultBus?.id);
 
   // Keep selection in sync if buses load after mount
-  useMemo(() => {
+  useEffect(() => {
     if (!selectedBusId && defaultBus?.id) setSelectedBusId(defaultBus.id);
   }, [defaultBus?.id]);
 
@@ -31,9 +31,10 @@ const LiveTrackingView = ({ studentOnly = false, driverOnly = false }) => {
     return calcStopETAs(
       selectedBus.gpsLat, selectedBus.gpsLng,
       selectedBus.stopSequence,
-      selectedBus.speed || 30
+      selectedBus.speed || 30,
+      dbStopCoords
     );
-  }, [selectedBus?.gpsLat, selectedBus?.gpsLng, selectedBus?.speed]);
+  }, [selectedBus?.gpsLat, selectedBus?.gpsLng, selectedBus?.speed, dbStopCoords]);
 
   const weatherOffset = weatherDelayMins(weather);
   const myStopETA = myStudent && stopETAs[myStudent.boardingStop] !== undefined

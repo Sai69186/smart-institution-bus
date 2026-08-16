@@ -8,9 +8,14 @@ import { BOARDING_STOPS, DEPT_OPTIONS, YEAR_OPTIONS } from '../utils/studentHelp
 import campusBusHero from '../assets/campus_bus_hero.png';
 const AuthView = ({ setCurrentView }) => {
   const { setCurrentUser, triggerToast, loginUser, registerUser, fetchAvailableBuses,
-          boardingStopsFromDB, fetchBoardingStops, suggestBoardingStop } = useContext(AppContext);
+          boardingStopsFromDB, fetchBoardingStops, suggestBoardingStop,
+          fetchPublicInstitutions, requestOTP, verifyOTP } = useContext(AppContext);
 
   const [tab, setTab] = useState('login');
+
+  // ── INSTITUTION state (for signup) ──
+  const [institutions,       setInstitutions]       = useState([]);
+  const [signupInstitutionId, setSignupInstitutionId] = useState('');
 
   // ── LOGIN state ──
   const [loginEmail,    setLoginEmail]    = useState('');
@@ -38,6 +43,14 @@ const AuthView = ({ setCurrentView }) => {
   // Fetch live boarding stops from DB when signup tab is shown
   useEffect(() => { fetchBoardingStops(); }, []);
 
+  // Fetch institutions list for signup dropdown
+  useEffect(() => {
+    fetchPublicInstitutions().then(list => {
+      setInstitutions(list);
+      if (list.length === 1) setSignupInstitutionId(list[0]._id); // auto-select if only one
+    });
+  }, []);
+
   // Merge DB stops with static fallback
   const availableStops = boardingStopsFromDB.length > 0 ? boardingStopsFromDB : BOARDING_STOPS;
   const isCustomStop   = signupStop === '__other__';
@@ -46,9 +59,12 @@ const AuthView = ({ setCurrentView }) => {
   // Removed — bus assignment is now done by admin after driver registers
 
   const redirectByRole = (role) => {
-    if (role === 'driver')       setCurrentView('driver-dashboard');
-    else if (role === 'student') setCurrentView('student-dashboard');
-    else                         setCurrentView('dashboard');
+    if (role === 'super_admin')          setCurrentView('super-admin-dashboard');
+    else if (role === 'institution_admin') setCurrentView('institution-admin-dashboard');
+    else if (role === 'admin')           setCurrentView('dashboard');
+    else if (role === 'driver')          setCurrentView('driver-dashboard');
+    else if (role === 'student')         setCurrentView('student-dashboard');
+    else                                 setCurrentView('dashboard');
   };
 
   // ── LOGIN via MongoDB API ──
@@ -59,16 +75,41 @@ const AuthView = ({ setCurrentView }) => {
       return;
     }
 
+    // ── Step 1: if MFA enabled and not yet at OTP step, request OTP ──
     if (enableMfa && !showMfaStep) {
+      setLoginLoading(true);
+      const result = await requestOTP(loginEmail);
+      setLoginLoading(false);
+      if (!result.success) {
+        triggerToast(result.message, 'danger');
+        return;
+      }
       setShowMfaStep(true);
-      triggerToast('MFA code sent. (Demo: 123456)', 'info');
-      return;
-    }
-    if (enableMfa && showMfaStep && mfaCode !== '123456') {
-      triggerToast('Invalid MFA code. Demo code: 123456', 'danger');
+      // In dev mode the server returns the code so testers can see it
+      if (result.devCode) {
+        triggerToast(`OTP sent. Dev code: ${result.devCode}`, 'info');
+      } else {
+        triggerToast('OTP sent to your registered email.', 'info');
+      }
       return;
     }
 
+    // ── Step 2: if MFA enabled and at OTP step, verify OTP first ──
+    if (enableMfa && showMfaStep) {
+      if (!mfaCode || mfaCode.length !== 6) {
+        triggerToast('Enter the 6-digit OTP code.', 'warning');
+        return;
+      }
+      setLoginLoading(true);
+      const otpResult = await verifyOTP(loginEmail, mfaCode);
+      setLoginLoading(false);
+      if (!otpResult.success) {
+        triggerToast(otpResult.message, 'danger');
+        return;
+      }
+    }
+
+    // ── Step 3: credentials login ──
     setLoginLoading(true);
     const result = await loginUser({ email: loginEmail, password: loginPassword });
     setLoginLoading(false);
@@ -78,7 +119,6 @@ const AuthView = ({ setCurrentView }) => {
       return;
     }
 
-    // result.user.name is the ACTUAL name stored in MongoDB
     const userPayload = { ...result.user, token: result.token };
     setCurrentUser(userPayload);
     triggerToast(`Welcome back, ${result.user.name}!`, 'success');
@@ -88,9 +128,11 @@ const AuthView = ({ setCurrentView }) => {
   // ── QUICK demo login (still uses API) ──
   const handleQuickLogin = async (role) => {
     const creds = {
-      admin:   { email: 'admin@institution.edu',    password: 'admin123'   },
-      student: { email: 'rahul.kumar@student.edu',  password: 'student123' },
-      driver:  { email: 'vikram.singh@transit.edu', password: 'driver123'  }
+      super_admin:       { email: 'superadmin@platform.com',  password: 'super123'   },
+      institution_admin: { email: 'admin@vignan.edu',          password: 'admin123'   },
+      admin:             { email: 'admin@institution.edu',     password: 'admin123'   },
+      student:           { email: 'rahul.kumar@student.edu',   password: 'student123' },
+      driver:            { email: 'vikram.singh@transit.edu',  password: 'driver123'  }
     };
     setLoginLoading(true);
     const result = await loginUser(creds[role]);
@@ -140,6 +182,10 @@ const AuthView = ({ setCurrentView }) => {
       triggerToast('Password must be at least 6 characters.', 'warning');
       return;
     }
+    if (!signupInstitutionId) {
+      triggerToast('Please select your institution.', 'warning');
+      return;
+    }
 
     setSignupLoading(true);
     const finalStop = isCustomStop ? signupCustomStop.trim() : signupStop;
@@ -161,6 +207,7 @@ const AuthView = ({ setCurrentView }) => {
       dept: signupRole === 'student' ? signupDept : undefined,
       year: signupRole === 'student' ? signupYear : undefined,
       boardingStop: signupRole === 'student' ? finalStop : undefined,
+      institutionId: signupInstitutionId,
     });
     setSignupLoading(false);
 
@@ -346,20 +393,20 @@ const AuthView = ({ setCurrentView }) => {
                         onChange={e => setEnableMfa(e.target.checked)}
                         style={{ accentColor: 'var(--primary)', cursor: 'pointer' }} />
                       <label htmlFor="mfa" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', cursor: 'pointer', userSelect: 'none' }}>
-                        Enable MFA (demo code: 123456)
+                        Enable MFA (one-time code sent to your email)
                       </label>
                     </div>
                   </>
                 ) : (
                   <div className="form-group">
-                    <label className="form-label">6-Digit MFA Code</label>
+                    <label className="form-label">6-Digit OTP Code</label>
                     <input type="text" className="form-input"
-                      placeholder="Enter code (123456)"
+                      placeholder="Enter the code from your email"
                       value={mfaCode} onChange={e => setMfaCode(e.target.value)}
                       maxLength={6}
                       style={{ textAlign: 'center', letterSpacing: '6px', fontSize: '1.3rem', fontWeight: 700 }} />
                     <span style={{ fontSize: '0.73rem', color: 'var(--primary)', cursor: 'pointer', marginTop: 4 }}
-                      onClick={() => setShowMfaStep(false)}>← Back</span>
+                      onClick={() => { setShowMfaStep(false); setMfaCode(''); }}>← Back</span>
                   </div>
                 )}
                 <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: 8 }} disabled={loginLoading}>
@@ -375,14 +422,15 @@ const AuthView = ({ setCurrentView }) => {
                 <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', whiteSpace: 'nowrap' }}>Quick Demo</span>
                 <div style={{ height: 1, background: 'var(--card-border)', flex: 1 }} />
               </div>
-              <div style={{ display: 'flex', gap: 8 }}>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {[
-                  { r: 'admin',   label: 'Admin',   color: 'var(--primary)', bg: 'var(--primary-soft)' },
-                  { r: 'student', label: 'Student',  color: 'var(--cyan)',    bg: 'var(--cyan-soft)'    },
-                  { r: 'driver',  label: 'Driver',   color: 'var(--emerald)', bg: 'var(--emerald-soft)' }
+                  { r: 'super_admin',       label: 'Super Admin',  color: 'var(--rose)',    bg: 'var(--rose-soft, #fee2e2)' },
+                  { r: 'institution_admin', label: 'Inst. Admin',  color: 'var(--violet)',  bg: 'var(--violet-soft, #ede9fe)' },
+                  { r: 'student',           label: 'Student',      color: 'var(--cyan)',    bg: 'var(--cyan-soft)'    },
+                  { r: 'driver',            label: 'Driver',       color: 'var(--emerald)', bg: 'var(--emerald-soft)' }
                 ].map(({ r, label, color, bg }) => (
                   <button key={r} 
-                    style={{ flex: 1, padding: '8px', fontSize: '0.76rem', borderRadius: 10, border: `1.5px solid ${color}33`, cursor: 'pointer', background: bg, color, fontWeight: 800, fontFamily: 'var(--font-heading)', transition: 'all 0.18s ease' }}
+                    style={{ flex: 1, minWidth: 80, padding: '7px 4px', fontSize: '0.72rem', borderRadius: 10, border: `1.5px solid ${color}33`, cursor: 'pointer', background: bg, color, fontWeight: 800, fontFamily: 'var(--font-heading)', transition: 'all 0.18s ease' }}
                     disabled={loginLoading}
                     onClick={() => handleQuickLogin(r)}
                     onMouseEnter={e => { e.currentTarget.style.background = color; e.currentTarget.style.color = '#fff'; }}
@@ -426,8 +474,25 @@ const AuthView = ({ setCurrentView }) => {
                   <select className="form-input" value={signupRole} onChange={e => setSignupRole(e.target.value)}>
                     <option value="student">Student</option>
                     <option value="driver">Driver</option>
-                    <option value="admin">Transport Administrator</option>
                   </select>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Institution *</label>
+                  <select className="form-input" value={signupInstitutionId}
+                    onChange={e => setSignupInstitutionId(e.target.value)}>
+                    <option value="">— Select your institution —</option>
+                    {institutions.map(inst => (
+                      <option key={inst._id} value={inst._id}>
+                        {inst.name}{inst.city ? ` · ${inst.city}` : ''}
+                      </option>
+                    ))}
+                  </select>
+                  {institutions.length === 0 && (
+                    <div style={{ fontSize: '0.7rem', color: 'var(--amber)', marginTop: 4 }}>
+                      ⚠ No institutions found. Contact your administrator.
+                    </div>
+                  )}
                 </div>
 
                 {signupRole === 'driver' && (

@@ -53,8 +53,11 @@ const ROUTE_LINES = [
 ];
 
 const TrafficPredictionView = () => {
-  const { weather } = useContext(AppContext);
+  const { weather, dbStopCoords = {} } = useContext(AppContext);
   const [selectedZone, setSelectedZone] = useState(CONGESTION_ZONES[0]);
+
+  // DB coords take priority over static fallback
+  const resolveCoord = (name) => dbStopCoords[name] || STOP_COORDS[name] || null;
 
   const weatherMultiplier = weather === 'Rainy' ? 1.4 : weather === 'Foggy' ? 1.7 : 1.0;
   const adjustedIndex = Math.min(99, Math.round(selectedZone.index * weatherMultiplier));
@@ -86,7 +89,7 @@ const TrafficPredictionView = () => {
             {/* Route lines */}
             {ROUTE_LINES.map(route => {
               const path = route.stops
-                .map(s => STOP_COORDS[s])
+                .map(s => resolveCoord(s))
                 .filter(Boolean)
                 .map(c => [c.lat, c.lng]);
               return path.length > 1 ? (
@@ -99,7 +102,7 @@ const TrafficPredictionView = () => {
 
             {/* Congestion heat circles */}
             {CONGESTION_ZONES.map(zone => {
-              const coord = STOP_COORDS[zone.stop];
+              const coord = resolveCoord(zone.stop);
               if (!coord) return null;
               const adjRadius = zone.radius * weatherMultiplier;
               return (
@@ -137,15 +140,19 @@ const TrafficPredictionView = () => {
             })}
 
             {/* Campus terminus */}
-            {STOP_COORDS['Vignan LARA — Main Campus'] && (
-              <CircleMarker
-                center={[STOP_COORDS['Vignan LARA — Main Campus'].lat, STOP_COORDS['Vignan LARA — Main Campus'].lng]}
-                radius={10}
-                pathOptions={{ color: '#6366f1', fillColor: '#6366f1', fillOpacity: 0.9, weight: 2 }}
-              >
-                <Tooltip permanent>🏫 Vignan LARA</Tooltip>
-              </CircleMarker>
-            )}
+            {(() => {
+              const campus = resolveCoord('Vignan LARA — Main Campus');
+              if (!campus) return null;
+              return (
+                <CircleMarker
+                  center={[campus.lat, campus.lng]}
+                  radius={10}
+                  pathOptions={{ color: '#6366f1', fillColor: '#6366f1', fillOpacity: 0.9, weight: 2 }}
+                >
+                  <Tooltip permanent>🏫 Vignan LARA</Tooltip>
+                </CircleMarker>
+              );
+            })()}
           </MapContainer>
         </div>
 

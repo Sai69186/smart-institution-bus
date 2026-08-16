@@ -27,6 +27,8 @@ const ROUTES = [
   { id: 'E', name: 'Route E — Guntur City',color: '#ec4899', stops: ['Guntur RTC Complex','Brodipet Stop','Nallapadu Gate','Vignan LARA — Main Campus'] },
 ];
 
+// stopToObj is now defined inside the component using live DB coords
+
 const ALGOS = {
   'Dijkstra Algorithm':    'Calculates the absolute shortest path between stops using static distance matrices.',
   'A* Search':             'Combines Dijkstra with spatial heuristics for faster convergence toward Vignan LARA.',
@@ -35,7 +37,18 @@ const ALGOS = {
 };
 
 const RouteOptimizationView = () => {
-  const { buses, optimizeRoute, weather, triggerToast } = useContext(AppContext);
+  const { buses, optimizeRoute, weather, triggerToast, dbStopCoords = {} } = useContext(AppContext);
+
+  // DB coords take priority over static fallback
+  const resolveCoord = (name) => dbStopCoords[name] || STOP_COORDS[name] || null;
+
+  // stopToObj now uses live DB coords
+  const stopToObj = (name) => {
+    const coord = resolveCoord(name);
+    return coord
+      ? { name, lat: coord.lat, lng: coord.lng }
+      : { name, lat: 16.2345, lng: 80.5613 };
+  };
   const [selectedAlgo,  setSelectedAlgo]  = useState('Dijkstra Algorithm');
   const [avoidTraffic,  setAvoidTraffic]  = useState(true);
   const [isComputing,   setIsComputing]   = useState(false);
@@ -49,25 +62,55 @@ const RouteOptimizationView = () => {
     'A* Search':              'AStar',
     'Genetic Algorithm':      'Genetic',
     'Reinforcement Learning': 'RL',
+    'Nearest-Neighbor + 2-opt': 'NN2opt',
   };
 
   const runOptimizer = async () => {
     setIsComputing(true);
     setOptimized(false);
-    const algoKey = ALGO_KEY_MAP[selectedAlgo] || 'Dijkstra';
+    const algoKey = ALGO_KEY_MAP[selectedAlgo] || 'NN2opt';
     const newResults = {};
 
-    for (const routeId of activeRoutes) {
-      const route = ROUTES.find(r => r.id === routeId);
-      if (!route) continue;
+    const COLORS = ['#6366f1','#06b6d4','#10b981','#f59e0b','#ec4899','#8b5cf6','#f43f5e'];
+
+    // Build deduplicated route list from live buses or fallback to static ROUTES
+    const liveRoutes = buses && buses.length > 0
+      ? buses
+          .filter(b => b.stopSequence && b.stopSequence.length > 1)
+          .reduce((acc, b) => {
+            if (!acc.find(r => r.name === b.route)) {
+              acc.push({
+                id:    b.number,
+                name:  b.route || b.number,
+                color: COLORS[acc.length % COLORS.length],
+                stops: b.stopSequence,
+              });
+            }
+            return acc;
+          }, [])
+      : ROUTES;
+
+    // Run all available routes (don't filter by activeRoutes when using live data)
+    const routesToRun = buses && buses.length > 0
+      ? liveRoutes   // use all distinct routes from DB
+      : liveRoutes.filter(r => activeRoutes.includes(r.id));  // static fallback uses toggle filter
+
+    if (routesToRun.length === 0) {
+      triggerToast('No bus routes found. Add buses with stop sequences first.', 'warning');
+      setIsComputing(false);
+      return;
+    }
+
+    for (const route of routesToRun) {
       try {
-        const result = await optimizeRoute({
-          algorithm:        algoKey,
-          stops:            route.stops,
-          start:            route.stops[0],
+        const stopObjs = route.stops.map(stopToObj);
+        const result   = await optimizeRoute({
+          algorithm:         algoKey,
+          stops:             stopObjs,
+          start_name:        route.stops[0],
           traffic_avoidance: avoidTraffic,
         });
-        if (result) newResults[routeId] = result;
+        if (result) newResults[route.id] = result;
       } catch (_) { /* AI service down — skip silently */ }
     }
 
@@ -183,7 +226,7 @@ const RouteOptimizationView = () => {
               {/* Route polylines */}
               {ROUTES.filter(r => activeRoutes.includes(r.id)).map(route => {
                 const path = route.stops
-                  .map(s => STOP_COORDS[s])
+                  .map(s => resolveCoord(s))
                   .filter(Boolean)
                   .map(c => [c.lat, c.lng]);
                 return path.length > 1 ? (
@@ -202,7 +245,7 @@ const RouteOptimizationView = () => {
               {/* Stop markers for active routes */}
               {ROUTES.filter(r => activeRoutes.includes(r.id)).map(route =>
                 route.stops.map((stopName, i) => {
-                  const coord = STOP_COORDS[stopName];
+                  const coord = resolveCoord(stopName);
                   if (!coord) return null;
                   const isLast = i === route.stops.length - 1;
                   return (
@@ -221,13 +264,16 @@ const RouteOptimizationView = () => {
               )}
 
               {/* Campus star */}
-              {STOP_COORDS['Vignan LARA — Main Campus'] && (
-                <Marker
-                  position={[STOP_COORDS['Vignan LARA — Main Campus'].lat, STOP_COORDS['Vignan LARA — Main Campus'].lng]}
-                  icon={L.divIcon({ className:'', html:'<div style="font-size:24px">🏫</div>', iconSize:[28,28], iconAnchor:[14,14] })}>
-                  <Popup><strong>🏁 Vignan LARA — Main Campus</strong><br/><small>Final destination for all routes</small></Popup>
-                </Marker>
-              )}
+              {resolveCoord('Vignan LARA — Main Campus') && (() => {
+                const campus = resolveCoord('Vignan LARA — Main Campus');
+                return (
+                  <Marker
+                    position={[campus.lat, campus.lng]}
+                    icon={L.divIcon({ className:'', html:'<div style="font-size:24px">🏫</div>', iconSize:[28,28], iconAnchor:[14,14] })}>
+                    <Popup><strong>🏁 Vignan LARA — Main Campus</strong><br/><small>Final destination for all routes</small></Popup>
+                  </Marker>
+                );
+              })()}
             </MapContainer>
           </div>
         </div>
@@ -242,10 +288,11 @@ const RouteOptimizationView = () => {
             {/* Real results from API */}
             {Object.entries(results).map(([routeId, res]) => {
               const route = ROUTES.find(r => r.id === routeId);
+              const routeLabel = route ? route.name : routeId;
               return (
                 <div key={routeId} style={{ padding: 14, borderRadius: 12, background: 'var(--primary-soft)', border: '1px solid var(--primary-glow)' }}>
                   <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.8px', marginBottom: 6 }}>
-                    Route {routeId} — {res.algorithm}
+                    {routeLabel} — {res.algorithm}
                   </div>
                   <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--primary)', marginBottom: 4 }}>
                     📍 {res.stops_count} stops · {res.total_km} km

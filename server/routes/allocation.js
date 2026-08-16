@@ -9,7 +9,7 @@
 const express = require('express');
 const Student = require('../models/Student');
 const Bus     = require('../models/Bus');
-const { protect, adminOnly } = require('../middleware/auth');
+const { protect, adminOnly, tenantScope } = require('../middleware/auth');
 const { STOP_COORDS, haversineKm } = require('../utils/geo');
 
 const router = express.Router();
@@ -115,11 +115,11 @@ const computeAllocationPlan = (students, buses) => {
 };
 
 // ── POST /api/allocation/preview — dry-run ───────────────────────────────────
-router.post('/preview', protect, adminOnly, async (req, res) => {
+router.post('/preview', protect, adminOnly, tenantScope, async (req, res) => {
   try {
     const [students, buses] = await Promise.all([
-      Student.find({ pickupPoint: { $exists: true, $ne: '' } }),
-      Bus.find(),
+      Student.find({ ...req.institutionFilter, pickupPoint: { $exists: true, $ne: '' } }),
+      Bus.find(req.institutionFilter),
     ]);
 
     const plan = computeAllocationPlan(students, buses);
@@ -130,20 +130,19 @@ router.post('/preview', protect, adminOnly, async (req, res) => {
 });
 
 // ── POST /api/allocation/run — compute + save ────────────────────────────────
-router.post('/run', protect, adminOnly, async (req, res) => {
+router.post('/run', protect, adminOnly, tenantScope, async (req, res) => {
   try {
     const [students, buses] = await Promise.all([
-      Student.find({ pickupPoint: { $exists: true, $ne: '' } }),
-      Bus.find(),
+      Student.find({ ...req.institutionFilter, pickupPoint: { $exists: true, $ne: '' } }),
+      Bus.find(req.institutionFilter),
     ]);
 
     const plan = computeAllocationPlan(students, buses);
     const now  = new Date();
 
-    // Bulk-update each allocated student
     const bulkOps = plan.allocated.map(({ studentId, busNumber, route, allocationMethod }) => ({
       updateOne: {
-        filter: { studentId },
+        filter: { studentId, ...req.institutionFilter },
         update: {
           $set: {
             assignedBus:      busNumber,
@@ -157,11 +156,10 @@ router.post('/run', protect, adminOnly, async (req, res) => {
 
     if (bulkOps.length) await Student.bulkWrite(bulkOps);
 
-    // Mark unallocated students (clear stale assignment if any)
     if (plan.unallocated.length) {
       const unallocIds = plan.unallocated.map(u => u.studentId);
       await Student.updateMany(
-        { studentId: { $in: unallocIds } },
+        { studentId: { $in: unallocIds }, ...req.institutionFilter },
         { $set: { assignedBus: '', assignedRoute: '', allocationMethod: 'unallocated', allocatedAt: now } }
       );
     }
@@ -172,25 +170,25 @@ router.post('/run', protect, adminOnly, async (req, res) => {
   }
 });
 
-// ── GET /api/allocation/summary — current snapshot ──────────────────────────
-router.get('/summary', protect, adminOnly, async (req, res) => {
+// ── GET /api/allocation/summary ──────────────────────────────────────────────
+router.get('/summary', protect, adminOnly, tenantScope, async (req, res) => {
   try {
-    const buses = await Bus.find();
+    const buses = await Bus.find(req.institutionFilter);
     const perBusData = await Promise.all(
       buses.map(async (b) => {
-        const count = await Student.countDocuments({ assignedBus: b.busNumber });
+        const count = await Student.countDocuments({ ...req.institutionFilter, assignedBus: b.busNumber });
         return {
-          busNumber:  b.busNumber,
-          route:      b.route,
-          capacity:   b.capacity,
-          assigned:   count,
-          loadPct:    Math.round((count / (b.capacity || 50)) * 100),
+          busNumber: b.busNumber,
+          route:     b.route,
+          capacity:  b.capacity,
+          assigned:  count,
+          loadPct:   b.capacity > 0 ? Math.round((count / b.capacity) * 100) : 0,
         };
       })
     );
 
-    const totalAssigned   = await Student.countDocuments({ assignedBus: { $ne: '' } });
-    const totalUnassigned = await Student.countDocuments({ assignedBus: '' });
+    const totalAssigned   = await Student.countDocuments({ ...req.institutionFilter, assignedBus: { $ne: '' } });
+    const totalUnassigned = await Student.countDocuments({ ...req.institutionFilter, assignedBus: '' });
 
     res.json({ perBus: perBusData, totalAssigned, totalUnassigned });
   } catch (err) {

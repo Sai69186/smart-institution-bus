@@ -1,30 +1,68 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { AppContext } from '../context/AppContext';
-import { QrCode, CreditCard, Scan, CheckCircle, Clock, Search } from 'lucide-react';
+import { QrCode, CreditCard, Scan, CheckCircle, Clock, Search, RefreshCw } from 'lucide-react';
+
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const AttendanceVerificationView = () => {
-  const { students, boardStudent } = useContext(AppContext);
-  const [selectedStudentId, setSelectedStudentId] = useState(students[0]?.id || '');
-  const [activeTab, setActiveTab] = useState('qr'); // qr, rfid, face
-  const [isScanning, setIsScanning] = useState(false);
-  const [scanResult, setScanResult] = useState(null);
+  const { boardStudent, currentUser, triggerToast } = useContext(AppContext);
 
-  const currentStudent = students.find(s => s.id === selectedStudentId);
+  // Fetch students from DB instead of relying on mock context state
+  const [students,          setStudents]          = useState([]);
+  const [studentsLoading,   setStudentsLoading]   = useState(true);
+  const [selectedStudentId, setSelectedStudentId] = useState('');
+  const [activeTab,         setActiveTab]         = useState('qr');
+  const [isScanning,        setIsScanning]        = useState(false);
+  const [scanResult,        setScanResult]        = useState(null);
+
+  const fetchStudents = useCallback(async () => {
+    if (!currentUser?.token) return;
+    setStudentsLoading(true);
+    try {
+      // Drivers fetch only their own bus students; admins fetch all
+      const endpoint = currentUser.role === 'driver'
+        ? `${API}/students/my_bus`
+        : `${API}/students`;
+      const res  = await fetch(endpoint, {
+        headers: { Authorization: `Bearer ${currentUser.token}` }
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setStudents(data);
+        if (data.length > 0) setSelectedStudentId(data[0].studentId || data[0]._id);
+      } else {
+        triggerToast(data.message || 'Could not load students.', 'danger');
+      }
+    } catch {
+      triggerToast('Cannot reach server.', 'danger');
+    } finally {
+      setStudentsLoading(false);
+    }
+  }, [currentUser?.token, currentUser?.role]);
+
+  useEffect(() => { fetchStudents(); }, [fetchStudents]);
+
+  const currentStudent = students.find(
+    s => (s.studentId || s._id?.toString()) === selectedStudentId
+  );
 
   const executeSimulation = (method) => {
     if (!currentStudent) return;
+    const sid = currentStudent.studentId || currentStudent._id?.toString();
     setIsScanning(true);
     setScanResult(null);
 
     setTimeout(() => {
       setIsScanning(false);
-      boardStudent(selectedStudentId);
+      boardStudent(sid);
       setScanResult({
-        name: currentStudent.name,
-        bus: currentStudent.assignedBus,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        name:   currentStudent.name,
+        bus:    currentStudent.assignedBus || '—',
+        time:   new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         method: method
       });
+      // Refresh list so status updates reflect immediately
+      fetchStudents();
     }, 1500);
   };
 
@@ -41,16 +79,29 @@ const AttendanceVerificationView = () => {
           
           <div className="form-group">
             <label className="form-label">Student Profile</label>
-            <select 
-              className="form-input" 
-              value={selectedStudentId}
-              onChange={(e) => { setSelectedStudentId(e.target.value); setScanResult(null); }}
-              style={{ width: '100%' }}
-            >
-              {students.map(s => (
-                <option key={s.id} value={s.id}>{s.name} ({s.id}) - {s.attendanceStatus}</option>
-              ))}
-            </select>
+            {studentsLoading ? (
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', padding: '8px 0' }}>
+                <RefreshCw size={13} className="animate-spin" style={{ display: 'inline', marginRight: 6 }} />
+                Loading students...
+              </div>
+            ) : students.length === 0 ? (
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', padding: '8px 0' }}>
+                No students found. Add students in Student Management first.
+              </div>
+            ) : (
+              <select
+                className="form-input"
+                value={selectedStudentId}
+                onChange={(e) => { setSelectedStudentId(e.target.value); setScanResult(null); }}
+                style={{ width: '100%' }}
+              >
+                {students.map(s => (
+                  <option key={s._id} value={s.studentId || s._id}>
+                    {s.name} ({s.studentId}) — {s.attendanceStatus}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
         </div>
 

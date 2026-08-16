@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import FleetMap from './FleetMap';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const DriverDashboardView = ({ setCurrentView }) => {
   const {
@@ -29,12 +29,12 @@ const DriverDashboardView = ({ setCurrentView }) => {
   const fetchAssignedStudents = useCallback(async () => {
     if (!currentUser?.token || !myBus?.number) return;
     try {
-      const res = await fetch(`${API}/students`, {
+      const res = await fetch(`${API}/students/my_bus`, {
         headers: { Authorization: `Bearer ${currentUser.token}` },
       });
       if (!res.ok) return;
-      const all = await res.json();
-      setMyStudents(all.filter(s => s.assignedBus === myBus.number));
+      const data = await res.json();
+      setMyStudents(data);
     } catch { /* keep existing */ }
   }, [currentUser?.token, myBus?.number]);
 

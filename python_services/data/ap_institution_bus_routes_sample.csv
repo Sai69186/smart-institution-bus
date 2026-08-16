@@ -1,0 +1,41 @@
+institution_id,institution_name,institution_city,campus_lat,campus_lng,campus_name,bus_id,bus_number,stop_order,stop_name,stop_lat,stop_lng
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS001,VU-01,1,Benz Circle,16.5062,80.6480
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS001,VU-01,2,Governorpet,16.5093,80.6355
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS001,VU-01,3,Patamata,16.5200,80.6290
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS001,VU-01,4,Vignan Campus,16.5449,80.6400
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS002,VU-02,1,Eluru Road,16.5150,80.6240
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS002,VU-02,2,Kanuru,16.5280,80.6310
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS002,VU-02,3,Ramavarappadu,16.5390,80.6360
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS002,VU-02,4,Auto Nagar,16.5330,80.6420
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS002,VU-02,5,Vignan Campus,16.5449,80.6400
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS003,VU-03,1,Nunna,16.4910,80.6780
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS003,VU-03,2,Ajit Singh Nagar,16.5050,80.6620
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS003,VU-03,3,Gunadala,16.5170,80.6510
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS003,VU-03,4,Vignan Campus,16.5449,80.6400
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS004,VU-04,1,Gannavaram Airport,16.5330,80.7980
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS004,VU-04,2,Krishna Lanka,16.5140,80.7450
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS004,VU-04,3,Bhavani Nagar,16.5260,80.7100
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS004,VU-04,4,Seethammadhara,16.5350,80.6780
+INST001,Vignan University,Vijayawada,16.5449,80.6400,Vignan Campus,BUS004,VU-04,5,Vignan Campus,16.5449,80.6400
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS005,GU-01,1,Dwaraka Nagar,17.7230,83.3140
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS005,GU-01,2,Ram Nagar,17.7180,83.3020
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS005,GU-01,3,Siripuram,17.7110,83.2960
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS005,GU-01,4,Murali Nagar,17.7050,83.2880
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS005,GU-01,5,GITAM Campus,17.7350,83.3300
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS006,GU-02,1,Gajuwaka,17.6840,83.2040
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS006,GU-02,2,NAD Junction,17.6960,83.2280
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS006,GU-02,3,Kommadi,17.7150,83.2650
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS006,GU-02,4,GITAM Campus,17.7350,83.3300
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS007,GU-03,1,Bheemunipatnam,17.8930,83.4560
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS007,GU-03,2,Rushikonda,17.7820,83.3780
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS007,GU-03,3,Beach Road,17.7640,83.3520
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS007,GU-03,4,Lawsons Bay Colony,17.7480,83.3380
+INST002,GITAM University,Visakhapatnam,17.7350,83.3300,GITAM Campus,BUS007,GU-03,5,GITAM Campus,17.7350,83.3300
+INST003,Acharya Nagarjuna University,Guntur,16.3240,80.4350,ANU Campus,BUS008,ANU-01,1,Brodipet,16.3070,80.4370
+INST003,Acharya Nagarjuna University,Guntur,16.3240,80.4350,ANU Campus,BUS008,ANU-01,2,Arundelpet,16.3010,80.4420
+INST003,Acharya Nagarjuna University,Guntur,16.3240,80.4350,ANU Campus,BUS008,ANU-01,3,Kothapet,16.2950,80.4500
+INST003,Acharya Nagarjuna University,Guntur,16.3240,80.4350,ANU Campus,BUS008,ANU-01,4,Nallapadu,16.3110,80.4280
+INST003,Acharya Nagarjuna University,Guntur,16.3240,80.4350,ANU Campus,BUS008,ANU-01,5,ANU Campus,16.3240,80.4350
+INST003,Acharya Nagarjuna University,Guntur,16.3240,80.4350,ANU Campus,BUS009,ANU-02,1,Amaravati Road,16.3420,80.4180
+INST003,Acharya Nagarjuna University,Guntur,16.3240,80.4350,ANU Campus,BUS009,ANU-02,2,Gorantla,16.3310,80.4220
+INST003,Acharya Nagarjuna University,Guntur,16.3240,80.4350,ANU Campus,BUS009,ANU-02,3,ANU Campus,16.3240,80.4350

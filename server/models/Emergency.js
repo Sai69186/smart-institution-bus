@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const EmergencySchema = new mongoose.Schema({
+  institutionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Institution', default: null, index: true },
   busId:      { type: mongoose.Schema.Types.ObjectId, ref: 'Bus',  default: null },
   busNumber:  { type: String, required: true },
   driverId:   { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
@@ -26,5 +27,9 @@ const EmergencySchema = new mongoose.Schema({
 }, { timestamps: true });
 
 EmergencySchema.index({ status: 1, createdAt: -1 });
+
+// ── Hot-path indexes ──────────────────────────────────────────────────────────
+// Admin dashboard: active emergencies per institution (polled frequently)
+EmergencySchema.index({ institutionId: 1, status: 1, createdAt: -1 });
 
 module.exports = mongoose.model('Emergency', EmergencySchema);

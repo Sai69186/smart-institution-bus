@@ -23,6 +23,9 @@
   --violet:  #7c3aed; --violet-glow:  rgba(124,58,237,0.22); --violet-soft:  rgba(124,58,237,0.09);
   --pink:    #db2777; --pink-glow:    rgba(219,39,119,0.22);
 
+  /* Alias so new components can use var(--border) */
+  --border: rgba(99,102,241,0.14);
+
   --text-primary:   #0f172a;
   --text-secondary: #334155;
   --text-muted:     #64748b;
@@ -58,6 +61,8 @@
   --rose:    #ef4444; --rose-glow:    rgba(239,68,68,0.38);  --rose-soft:    rgba(239,68,68,0.12);
   --violet:  #8b5cf6; --violet-glow:  rgba(139,92,246,0.38); --violet-soft:  rgba(139,92,246,0.12);
   --pink:    #ec4899; --pink-glow:    rgba(236,72,153,0.38);
+
+  --border: rgba(255,255,255,0.08);
 
   --text-primary:   #f0f4ff;
   --text-secondary: #94a3b8;
@@ -162,6 +167,70 @@ body {
   0%   { opacity:0.8; }
   50%  { opacity:1; transform: scale(1.02); }
   100% { opacity:0.8; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ══════════════════════════════════════════════
+   SKELETON LOADER
+   ══════════════════════════════════════════════ */
+@keyframes skeleton-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.skeleton {
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 25%,
+    var(--bg-secondary) 50%,
+    var(--bg-tertiary) 75%
+  );
+  background-size: 800px 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+.skeleton-text   { height: 14px; width: 100%; margin-bottom: 8px; }
+.skeleton-text.w-3\/4 { width: 75%; }
+.skeleton-text.w-1\/2 { width: 50%; }
+.skeleton-title  { height: 22px; width: 60%; margin-bottom: 12px; }
+.skeleton-badge  { height: 32px; width: 90px; border-radius: 20px; }
+.skeleton-circle { border-radius: 50%; }
+.skeleton-card   {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card, 14px);
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.skeleton-row    { display: flex; gap: 12px; align-items: center; }
+
+/* ══════════════════════════════════════════════
+   OFFLINE BANNER
+   ══════════════════════════════════════════════ */
+@keyframes slide-down {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+@keyframes slide-up {
+  from { transform: translateY(0);     opacity: 1; }
+  to   { transform: translateY(-100%); opacity: 0; }
+}
+
+.offline-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  background: #b45309;
+  color: #fff;
+  font-size: 0.8rem; font-weight: 600;
+  padding: 8px 16px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  animation: slide-down 0.3s ease forwards;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+.offline-banner.hide {
+  animation: slide-up 0.3s ease forwards;
 }
 
 /* ══════════════════════════════════════════════
@@ -967,4 +1036,52 @@ body::after {
   .dashboard-grid  { grid-template-columns: repeat(2, 1fr); }
   .two-col-grid    { grid-template-columns: 1fr; }
   .header-title    { font-size: 1rem; }
+}
+
+
+/* ══════════════════════════════════════════════
+   MULTI-TENANT UTILITY CLASSES
+   (SuperAdminDashboard, InstitutionAdminDashboard, ChangePasswordView)
+   ══════════════════════════════════════════════ */
+
+/* Generic card — solid version of glass-card for modals and admin panels */
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(99,102,241,0.08);
+}
+.dark-mode .card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+}
+
+/* Full-page view wrapper — padding + scroll */
+.view-container {
+  padding: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+/* Small stat card used in super-admin dashboard header row */
+.stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  box-shadow: 0 2px 12px rgba(99,102,241,0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(99,102,241,0.12);
+}
+.dark-mode .stat-card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
 }

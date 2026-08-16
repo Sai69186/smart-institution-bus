@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import { MapPin, Plus, Trash2, RefreshCw, CheckCircle } from 'lucide-react';
+import GeocodePicker from './GeocodePicker';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const BoardingPointView = () => {
   const { currentUser, triggerToast, fetchBoardingStops } = useContext(AppContext);
@@ -14,7 +15,8 @@ const BoardingPointView = () => {
   const [newLng,  setNewLng]  = useState('');
   const [saving,  setSaving]  = useState(false);
 
-  const token = currentUser?.token;
+  const token    = currentUser?.token;
+  const isAdmin  = ['admin', 'institution_admin', 'super_admin'].includes(currentUser?.role);
 
   // ── Fetch stops from DB ───────────────────────────────────────────────────
   const loadStops = async () => {
@@ -125,7 +127,7 @@ const BoardingPointView = () => {
                     <th>Students</th>
                     <th>GPS</th>
                     <th>Status</th>
-                    {currentUser?.role === 'admin' && <th>Actions</th>}
+                    {isAdmin && <th>Actions</th>}
                   </tr>
                 </thead>
                 <tbody>
@@ -142,12 +144,12 @@ const BoardingPointView = () => {
                       </td>
                       <td>
                         <span className={`badge ${stop.isActive ? 'badge-active' : 'badge-info'}`}
-                          style={{ cursor: currentUser?.role === 'admin' ? 'pointer' : 'default' }}
-                          onClick={() => currentUser?.role === 'admin' && handleToggle(stop)}>
+                          style={{ cursor: isAdmin ? 'pointer' : 'default' }}
+                          onClick={() => isAdmin && handleToggle(stop)}>
                           {stop.isActive ? 'Active' : 'Inactive'}
                         </span>
                       </td>
-                      {currentUser?.role === 'admin' && (
+                      {isAdmin && (
                         <td>
                           <button className="btn btn-secondary"
                             style={{ padding: '5px 8px', color: 'var(--rose)' }}
@@ -174,7 +176,7 @@ const BoardingPointView = () => {
 
       {/* ── Add stop form ── */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-        {currentUser?.role === 'admin' && (
+        {isAdmin && (
           <div className="glass-card">
             <h3 className="glass-card-title" style={{ marginBottom: 16 }}>
               <Plus size={18} /> Add New Stop
@@ -186,20 +188,36 @@ const BoardingPointView = () => {
                   placeholder="e.g. Vijayawada Bus Stand"
                   value={newName} onChange={e => setNewName(e.target.value)} />
               </div>
+
+              {/* Geocode picker — search address → pins on map → drag to correct */}
+              <GeocodePicker
+                label="Geocode Location (search address to pin on map)"
+                placeholder={newName ? `${newName}, Andhra Pradesh` : 'Search address or landmark...'}
+                token={token}
+                initialLat={newLat ? parseFloat(newLat) : null}
+                initialLng={newLng ? parseFloat(newLng) : null}
+                onConfirm={({ lat, lng }) => {
+                  setNewLat(String(lat));
+                  setNewLng(String(lng));
+                }}
+              />
+
+              {/* Manual override fields */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label className="form-label">Latitude (optional)</label>
-                  <input type="number" step="0.0001" className="form-input"
+                  <label className="form-label">Latitude</label>
+                  <input type="number" step="any" className="form-input"
                     placeholder="16.2472"
                     value={newLat} onChange={e => setNewLat(e.target.value)} />
                 </div>
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label className="form-label">Longitude (optional)</label>
-                  <input type="number" step="0.0001" className="form-input"
+                  <label className="form-label">Longitude</label>
+                  <input type="number" step="any" className="form-input"
                     placeholder="80.5418"
                     value={newLng} onChange={e => setNewLng(e.target.value)} />
                 </div>
               </div>
+
               <button type="submit" className="btn btn-primary" disabled={saving}>
                 <Plus size={14} /> {saving ? 'Adding...' : 'Add Stop Point'}
               </button>

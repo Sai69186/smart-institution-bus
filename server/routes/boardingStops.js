@@ -2,13 +2,16 @@ const express      = require('express');
 const BoardingStop = require('../models/BoardingStop');
 const Student      = require('../models/Student');
 const { protect, adminOnly } = require('../middleware/auth');
+const { tenantScope } = require('../middleware/auth');
 
 const router = express.Router();
 
-// ── GET /api/boarding-stops — public list (used during student signup) ────────
+// ── GET /api/boarding-stops ───────────────────────────────────────────────────
 router.get('/', async (req, res) => {
   try {
-    const stops = await BoardingStop.find({ isActive: true })
+    const filter = { isActive: true };
+    if (req.query.institutionId) filter.institutionId = req.query.institutionId;
+    const stops = await BoardingStop.find(filter)
       .sort({ name: 1 })
       .select('name lat lng studentCount');
     res.json(stops);
@@ -17,17 +20,20 @@ router.get('/', async (req, res) => {
   }
 });
 
-// ── POST /api/boarding-stops — admin adds a new stop ─────────────────────────
-// Body: { name, lat?, lng? }
-router.post('/', protect, adminOnly, async (req, res) => {
+// ── POST /api/boarding-stops ──────────────────────────────────────────────────
+router.post('/', protect, adminOnly, tenantScope, async (req, res) => {
   try {
     const { name, lat, lng } = req.body;
     if (!name) return res.status(400).json({ message: 'Stop name is required.' });
 
-    const exists = await BoardingStop.findOne({ name: name.trim() });
+    const institutionId = req.user.institutionId || req.body.institutionId;
+    if (!institutionId) return res.status(400).json({ message: 'institutionId required.' });
+
+    const exists = await BoardingStop.findOne({ name: name.trim(), institutionId });
     if (exists) return res.status(409).json({ message: 'A stop with this name already exists.' });
 
     const stop = await BoardingStop.create({
+      institutionId,
       name: name.trim(),
       lat:  lat  || null,
       lng:  lng  || null,

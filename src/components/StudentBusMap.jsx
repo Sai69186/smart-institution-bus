@@ -1,5 +1,5 @@
-import React, { useMemo, useEffect } from 'react';
-import { STOP_COORDS } from '../context/AppContext';
+import React, { useMemo, useEffect, useContext } from 'react';
+import { STOP_COORDS, AppContext } from '../context/AppContext';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import { minsToTime } from '../utils/studentHelpers';
@@ -37,19 +37,28 @@ const AutoPan = ({ center }) => {
 };
 
 const StudentBusMap = ({ myBus, myStudent, stopETAs }) => {
-  // Use real GPS if available, otherwise always center on Vignan LARA campus
+  const { dbStopCoords = {} } = useContext(AppContext);
+  // DB coords take priority over static fallback
+  const resolveCoord = (name) => dbStopCoords[name] || STOP_COORDS[name] || null;
+
+  // Use real GPS if available, otherwise center on first stop, then Vignan LARA campus
   const busLatLng = useMemo(() => {
     if (myBus?.gpsLat && myBus?.gpsLng) return [myBus.gpsLat, myBus.gpsLng];
-    return [16.2345, 80.5613]; // Vignan LARA — Main Campus (default)
-  }, [myBus?.gpsLat, myBus?.gpsLng]);
+    const first = myBus?.stopSequence?.[0];
+    if (first) {
+      const coord = dbStopCoords[first] || STOP_COORDS[first];
+      if (coord) return [coord.lat, coord.lng];
+    }
+    return [16.2345, 80.5613]; // Vignan LARA — ultimate fallback
+  }, [myBus?.gpsLat, myBus?.gpsLng, myBus?.stopSequence, dbStopCoords]);
 
   // Route path from real GPS stop coordinates
   const routePath = useMemo(() =>
     (myBus?.stopSequence || [])
-      .map(name => STOP_COORDS[name])
+      .map(name => resolveCoord(name))
       .filter(Boolean)
       .map(c => [c.lat, c.lng])
-  , [myBus?.stopSequence]);
+  , [myBus?.stopSequence, dbStopCoords]);
 
   const busColor = myBus?.status === 'Delayed' ? '#f59e0b'
     : myBus?.status === 'Emergency' ? '#ef4444' : '#06b6d4';
@@ -75,7 +84,7 @@ const StudentBusMap = ({ myBus, myStudent, stopETAs }) => {
 
       {/* Stop markers */}
       {(myBus?.stopSequence || []).map((stopName, i) => {
-        const coord    = STOP_COORDS[stopName];
+        const coord    = resolveCoord(stopName);
         if (!coord) return null;
         const isMyStop = stopName === myStudent?.boardingStop;
         const isLast   = i === myBus.stopSequence.length - 1;

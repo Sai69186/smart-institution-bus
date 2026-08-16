@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 const StudentSchema = new mongoose.Schema({
-  studentId:    { type: String, required: true, unique: true, trim: true },
+  institutionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Institution', required: true, index: true },
+  // studentId unique per institution
+  studentId:    { type: String, required: true, trim: true },
   name:         { type: String, required: true, trim: true },
   email:        { type: String, required: true, unique: true, lowercase: true, trim: true },
   phone:        { type: String, default: '' },
@@ -33,5 +35,9 @@ const StudentSchema = new mongoose.Schema({
     general:    { type: Boolean, default: true },
   },
 }, { timestamps: true });
+
+// studentId and email unique per institution
+StudentSchema.index({ institutionId: 1, studentId: 1 }, { unique: true });
+StudentSchema.index({ institutionId: 1, email: 1 }, { unique: true });
 
 module.exports = mongoose.model('Student', StudentSchema);

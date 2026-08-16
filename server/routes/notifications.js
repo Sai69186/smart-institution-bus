@@ -1,39 +1,56 @@
 const express      = require('express');
 const Notification = require('../models/Notification');
-const { protect, adminOnly } = require('../middleware/auth');
+const { protect, adminOnly, tenantScope } = require('../middleware/auth');
 
 const router = express.Router();
 
-// ── Helper: create a notification record ─────────────────────────────────────
-// Used internally by other routes (SOS, attendance, etc.)
+// ── Helper: create a notification record + push via Socket.io ─────────────────
+// Pass `io` (from req.app.get('io')) to broadcast the notification in real-time.
 const createNotification = async ({
-  recipientId   = null,
-  recipientRole = 'all',
+  institutionId  = null,
+  recipientId    = null,
+  recipientRole  = 'all',
   message,
-  type          = 'info',
-  relatedBus    = '',
+  type           = 'info',
+  relatedBus     = '',
   relatedStudent = '',
-  createdBy     = null,
+  createdBy      = null,
+  io             = null,   // Socket.io server instance (optional)
 }) => {
-  return Notification.create({
-    recipientId, recipientRole, message, type,
+  const notif = await Notification.create({
+    institutionId, recipientId, recipientRole, message, type,
     relatedBus, relatedStudent, createdBy,
   });
+
+  // Push real-time to institution room if io is available
+  if (io && institutionId) {
+    io.to(`institution:${institutionId}`).emit('notification:new', {
+      _id:           notif._id,
+      message:       notif.message,
+      type:          notif.type,
+      relatedBus:    notif.relatedBus,
+      relatedStudent: notif.relatedStudent,
+      createdAt:     notif.createdAt,
+      isRead:        false,
+    });
+  }
+
+  return notif;
 };
 
-// Export helper so other route files can call it
 module.exports.createNotification = createNotification;
 
 // ── GET /api/notifications/me ─────────────────────────────────────────────────
-// Returns notifications for the logged-in user:
-//   - their own targeted notifications (recipientId = user._id)
-//   - role-broadcast notifications (recipientRole = user.role or 'all')
-// Query params: ?limit=20&skip=0&unread=true
 router.get('/me', protect, async (req, res) => {
   try {
-    const limit  = Math.min(parseInt(req.query.limit)  || 20, 50);
+    const limit  = Math.min(parseInt(req.query.limit) || 20, 50);
     const skip   = parseInt(req.query.skip) || 0;
     const unread = req.query.unread === 'true';
+
+    // Scope to institution when set
+    const instFilter = req.user.institutionId
+      ? { $or: [{ institutionId: req.user.institutionId }, { institutionId: null }] }
+      : {};
 
     const filter = {
       $or: [
@@ -42,13 +59,11 @@ router.get('/me', protect, async (req, res) => {
         { recipientRole: 'all' },
       ],
       ...(unread ? { isRead: false } : {}),
+      ...instFilter,
     };
 
     const [notifications, total] = await Promise.all([
-      Notification.find(filter)
-        .sort({ createdAt: -1 })
-        .skip(skip)
-        .limit(limit),
+      Notification.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit),
       Notification.countDocuments(filter),
     ]);
 
@@ -60,7 +75,7 @@ router.get('/me', protect, async (req, res) => {
   }
 });
 
-// ── PUT /api/notifications/:id/read — mark single as read ────────────────────
+// ── PUT /api/notifications/:id/read ──────────────────────────────────────────
 router.put('/:id/read', protect, async (req, res) => {
   try {
     const notification = await Notification.findByIdAndUpdate(
@@ -75,9 +90,13 @@ router.put('/:id/read', protect, async (req, res) => {
   }
 });
 
-// ── PUT /api/notifications/read_all — mark all as read for this user ─────────
+// ── PUT /api/notifications/read_all ──────────────────────────────────────────
 router.put('/read_all', protect, async (req, res) => {
   try {
+    const instFilter = req.user.institutionId
+      ? { $or: [{ institutionId: req.user.institutionId }, { institutionId: null }] }
+      : {};
+
     await Notification.updateMany(
       {
         $or: [
@@ -86,6 +105,7 @@ router.put('/read_all', protect, async (req, res) => {
           { recipientRole: 'all' },
         ],
         isRead: false,
+        ...instFilter,
       },
       { $set: { isRead: true } }
     );
@@ -95,7 +115,7 @@ router.put('/read_all', protect, async (req, res) => {
   }
 });
 
-// ── DELETE /api/notifications/:id — dismiss a notification ───────────────────
+// ── DELETE /api/notifications/:id ────────────────────────────────────────────
 router.delete('/:id', protect, async (req, res) => {
   try {
     await Notification.findByIdAndDelete(req.params.id);
@@ -105,24 +125,25 @@ router.delete('/:id', protect, async (req, res) => {
   }
 });
 
-// ── POST /api/notifications/broadcast — admin sends to a role group ──────────
-// Body: { message, type, recipientRole, relatedBus?, relatedStudent? }
-router.post('/broadcast', protect, adminOnly, async (req, res) => {
+// ── POST /api/notifications/broadcast ────────────────────────────────────────
+router.post('/broadcast', protect, adminOnly, tenantScope, async (req, res) => {
   try {
     const { message, type = 'info', recipientRole = 'all', relatedBus = '', relatedStudent = '' } = req.body;
     if (!message) return res.status(400).json({ message: 'message is required.' });
 
-    const valid = ['admin', 'student', 'driver', 'all'];
+    const valid = ['admin', 'institution_admin', 'student', 'driver', 'all'];
     if (!valid.includes(recipientRole))
       return res.status(400).json({ message: `recipientRole must be one of: ${valid.join(', ')}` });
 
     const notification = await createNotification({
+      institutionId: req.user.institutionId || null,
       recipientRole,
       message,
       type,
       relatedBus,
       relatedStudent,
       createdBy: req.user._id,
+      io:        req.app.get('io'),
     });
 
     res.status(201).json({ notification });
@@ -131,15 +152,19 @@ router.post('/broadcast', protect, adminOnly, async (req, res) => {
   }
 });
 
-// ── GET /api/notifications — admin: all notifications (paginated) ─────────────
-router.get('/', protect, adminOnly, async (req, res) => {
+// ── GET /api/notifications — admin: all notifications scoped to institution ───
+router.get('/', protect, adminOnly, tenantScope, async (req, res) => {
   try {
     const limit = Math.min(parseInt(req.query.limit) || 30, 100);
     const skip  = parseInt(req.query.skip) || 0;
 
+    const filter = req.institutionFilter.institutionId
+      ? { institutionId: req.institutionFilter.institutionId }
+      : {};
+
     const [notifications, total] = await Promise.all([
-      Notification.find().sort({ createdAt: -1 }).skip(skip).limit(limit),
-      Notification.countDocuments(),
+      Notification.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit),
+      Notification.countDocuments(filter),
     ]);
     res.json({ notifications, total });
   } catch (err) {
@@ -147,5 +172,4 @@ router.get('/', protect, adminOnly, async (req, res) => {
   }
 });
 
-// Attach the router to module.exports as well
 module.exports.router = router;

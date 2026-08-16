@@ -80,31 +80,46 @@ const calcStopETAs = (busLat, busLng, stopSequence, speedKmh = 30) => {
  * Nearest-neighbor route ordering + one pass of 2-opt improvement.
  * Starts at `startStop`, visits all intermediate stops, ends at campus.
  *
- * @param {string[]} stops — full list of stop names including start and campus
- * @param {string} startStop — name of the first stop (bus origin)
+ * Accepts stops in two forms:
+ *   - Array of stop name strings (uses STOP_COORDS lookup — legacy)
+ *   - Array of { name, lat, lng } objects (dynamic coords — multi-tenant)
+ *
+ * @param {string[]|{name,lat,lng}[]} stops
+ * @param {string} startStop — name of the first stop
  * @param {string} destination — campus stop name
  * @returns {{ ordered: string[], totalKm: number }}
  */
 const nearestNeighbor2opt = (stops, startStop, destination = 'Vignan LARA — Main Campus') => {
-  const middle = stops.filter(s => s !== startStop && s !== destination);
+  // Normalise: convert string array to {name,lat,lng} using STOP_COORDS fallback
+  const stopObjs = stops.map(s => {
+    if (typeof s === 'object' && s.lat != null && s.lng != null) return s;
+    const coord = STOP_COORDS[s];
+    return coord ? { name: s, lat: coord.lat, lng: coord.lng } : { name: s, lat: null, lng: null };
+  });
 
-  // Nearest-neighbor greedy tour through middle stops
+  // Build coord lookup by name
+  const coordOf = {};
+  stopObjs.forEach(s => { coordOf[s.name] = s; });
+
+  const middle = stopObjs.filter(s => s.name !== startStop && s.name !== destination);
+
+  // Nearest-neighbor greedy tour
   let ordered = [startStop];
   const remaining = [...middle];
-  while (remaining.length) {
-    const last   = ordered[ordered.length - 1];
-    const lastCoord = STOP_COORDS[last];
-    if (!lastCoord) { ordered.push(...remaining.splice(0)); break; }
 
-    let bestIdx = 0;
-    let bestDist = Infinity;
+  while (remaining.length) {
+    const last      = ordered[ordered.length - 1];
+    const lastCoord = coordOf[last];
+    if (!lastCoord?.lat) { ordered.push(...remaining.splice(0).map(s => s.name)); break; }
+
+    let bestIdx = 0, bestDist = Infinity;
     for (let i = 0; i < remaining.length; i++) {
-      const coord = STOP_COORDS[remaining[i]];
-      if (!coord) continue;
-      const d = haversineKm(lastCoord, coord);
+      const s = remaining[i];
+      if (!s.lat) continue;
+      const d = haversineKm(lastCoord, s);
       if (d < bestDist) { bestDist = d; bestIdx = i; }
     }
-    ordered.push(remaining.splice(bestIdx, 1)[0]);
+    ordered.push(remaining.splice(bestIdx, 1)[0].name);
   }
   ordered.push(destination);
 
@@ -114,29 +129,28 @@ const nearestNeighbor2opt = (stops, startStop, destination = 'Vignan LARA — Ma
     improved = false;
     for (let i = 1; i < ordered.length - 2; i++) {
       for (let j = i + 1; j < ordered.length - 1; j++) {
-        const a  = STOP_COORDS[ordered[i - 1]];
-        const b  = STOP_COORDS[ordered[i]];
-        const c  = STOP_COORDS[ordered[j]];
-        const d  = STOP_COORDS[ordered[j + 1]];
-        if (!a || !b || !c || !d) continue;
+        const a = coordOf[ordered[i - 1]];
+        const b = coordOf[ordered[i]];
+        const c = coordOf[ordered[j]];
+        const d = coordOf[ordered[j + 1]];
+        if (!a?.lat || !b?.lat || !c?.lat || !d?.lat) continue;
         const before = haversineKm(a, b) + haversineKm(c, d);
         const after  = haversineKm(a, c) + haversineKm(b, d);
         if (after < before - 0.001) {
-          // Reverse the segment between i and j
           const seg = ordered.slice(i, j + 1).reverse();
-          ordered = [...ordered.slice(0, i), ...seg, ...ordered.slice(j + 1)];
-          improved = true;
+          ordered   = [...ordered.slice(0, i), ...seg, ...ordered.slice(j + 1)];
+          improved  = true;
         }
       }
     }
   }
 
-  // Calculate total route distance
+  // Total route distance
   let totalKm = 0;
   for (let i = 0; i < ordered.length - 1; i++) {
-    const a = STOP_COORDS[ordered[i]];
-    const b = STOP_COORDS[ordered[i + 1]];
-    if (a && b) totalKm += haversineKm(a, b);
+    const a = coordOf[ordered[i]];
+    const b = coordOf[ordered[i + 1]];
+    if (a?.lat && b?.lat) totalKm += haversineKm(a, b);
   }
 
   return { ordered, totalKm: Math.round(totalKm * 100) / 100 };
@@ -155,6 +169,37 @@ const routeTotalKm = (stopSequence) => {
   return Math.round(total * 100) / 100;
 };
 
+/**
+ * Determine which stops in a sequence have already been passed by the bus.
+ * A stop is considered "passed" if the bus has come within `radiusM` meters of it.
+ *
+ * Returns the remaining (not yet passed) stop names in order.
+ *
+ * @param {number}   busLat     — current bus latitude
+ * @param {number}   busLng     — current bus longitude
+ * @param {string[]} stops      — ordered stop names
+ * @param {number}   radiusM    — geofence radius in meters (default 150)
+ * @returns {string[]}          — stop names not yet passed
+ */
+const getRemainingStops = (busLat, busLng, stops, radiusM = 150) => {
+  if (!busLat || !busLng || !stops?.length) return stops || [];
+
+  const busPos = { lat: busLat, lng: busLng };
+  let lastPassedIdx = -1;
+
+  for (let i = 0; i < stops.length - 1; i++) { // never mark the destination as "passed"
+    const coord = STOP_COORDS[stops[i]];
+    if (!coord) continue;
+    const distM = haversineKm(busPos, coord) * 1000;
+    if (distM <= radiusM) {
+      lastPassedIdx = i;
+    }
+  }
+
+  // Return everything after the last passed stop
+  return stops.slice(lastPassedIdx + 1);
+};
+
 module.exports = {
   STOP_COORDS,
   gpsToCanvas,
@@ -162,6 +207,7 @@ module.exports = {
   calcStopETAs,
   nearestNeighbor2opt,
   routeTotalKm,
+  getRemainingStops,
   CANVAS_W,
   CANVAS_H,
   GEO,

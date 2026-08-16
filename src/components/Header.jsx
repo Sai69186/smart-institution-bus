@@ -11,7 +11,8 @@ const Header = ({ currentView }) => {
     weather, setWeather, weatherSource, academicPeriod, setAcademicPeriod,
     alerts, sosActive, triggerSOS, triggerToast,
     students, getStudentAlerts,
-    readAlertIds, markAllAlertsRead
+    readAlertIds, markAllAlertsRead,
+    socketConnected
   } = useContext(AppContext);
   
   const [showNotifications, setShowNotifications] = useState(false);
@@ -32,13 +33,13 @@ const Header = ({ currentView }) => {
       'login':                      'Login & Authentication',
       // Admin
       'dashboard':                  'Operational Overview Dashboard',
-      'student-management':         'Student Management — VLITS',
+      'student-management':         'Student Management',
       'live-tracking':              'Real-Time GPS Fleet Tracking',
       'predictive-boarding':        'Predictive Student Boarding Estimation',
       'route-optimization':         'AI Dynamic Route Optimization',
       'boarding-point-mgmt':        'Boarding Point & Stop Allocation',
       'bus-mgmt':                   'Fleet & Bus Management',
-      'driver-interface':           'Driver Operational Interface',
+      'driver-ops':                 'Driver Operations — Admin View',
       'attendance-verification':    'Verification Gate (RFID / QR)',
       'realtime-analytics':         'Real-Time Utilization Analytics',
       'ai-analytics':               'AI Prediction Model Evaluation',
@@ -52,6 +53,10 @@ const Header = ({ currentView }) => {
       'smart-allocation':           'Smart Fleet Routing Allocation',
       'traffic-prediction':         'Predictive Traffic Heatmaps',
       'fuel-efficiency':            'Fuel Consumption Analytics',
+      // Super Admin portal
+      'super-admin-dashboard':      'Platform — Institutions Overview',
+      // Institution Admin portal
+      'institution-admin-dashboard':'Institution Management',
       // Student portal
       'student-dashboard':          'My Transit Dashboard',
       'student-live-tracking':      'My Bus — Live Tracker',
@@ -111,9 +116,9 @@ const Header = ({ currentView }) => {
         {/* Environment Factors Toggles */}
         {currentUser && !isStudent && (
           <>
-            {/* Weather — admin can toggle manually, driver sees auto-detected read-only */}
-            {currentUser.role === 'admin' ? (
-              <div className="theme-pill" onClick={cycleWeather} title="Toggle Weather (admin only — affects AI models)">
+            {/* Weather — admins can toggle manually, driver sees auto-detected read-only */}
+            {['admin', 'super_admin', 'institution_admin'].includes(currentUser.role) ? (
+              <div className="theme-pill" onClick={cycleWeather} title="Toggle Weather — affects AI predictions">
                 {weather === 'Sunny' && <Sun size={14} className="text-amber" />}
                 {weather === 'Rainy' && <CloudRain size={14} className="text-cyan" />}
                 {weather === 'Foggy' && <CloudLightning size={14} className="text-primary" />}
@@ -156,6 +161,26 @@ const Header = ({ currentView }) => {
             {weather === 'Rainy' && <CloudRain size={14} className="text-cyan" />}
             {weather === 'Foggy' && <CloudLightning size={14} className="text-primary" />}
             <span style={{ fontSize: '0.75rem' }}>{weather}</span>
+          </div>
+        )}
+
+        {/* Real-time connection status dot */}
+        {currentUser && (
+          <div
+            title={socketConnected ? 'Real-time connected' : 'Real-time disconnected — using fallback polling'}
+            style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '4px 8px',
+              borderRadius: '12px', background: 'var(--surface-2)', fontSize: '0.68rem',
+              color: socketConnected ? 'var(--emerald)' : 'var(--rose)', fontWeight: 600,
+              cursor: 'default', userSelect: 'none' }}
+          >
+            <span style={{
+              width: '7px', height: '7px', borderRadius: '50%',
+              background: socketConnected ? 'var(--emerald)' : 'var(--rose)',
+              display: 'inline-block',
+              boxShadow: socketConnected ? '0 0 6px var(--emerald)' : '0 0 6px var(--rose)',
+              animation: socketConnected ? 'pulse 2s infinite' : 'none'
+            }} />
+            {socketConnected ? 'Live' : 'Offline'}
           </div>
         )}
 

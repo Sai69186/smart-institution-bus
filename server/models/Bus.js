@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
-// One document per physical bus at Vignan LARA
+// One document per physical bus per institution
 // Drivers register by bus number — this record is then linked to their User account
 const BusSchema = new mongoose.Schema({
-  busNumber:   { type: String, required: true, unique: true, trim: true, uppercase: true }, // e.g. "BUS-001"
+  institutionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Institution', required: true, index: true },
+  // busNumber unique per institution, NOT globally
+  busNumber:   { type: String, required: true, trim: true, uppercase: true }, // e.g. "BUS-001"
   route:       { type: String, default: '' },        // e.g. "Route A — Vadlamudi → Vignan LARA"
   capacity:    { type: Number, default: 50 },
   occupied:    { type: Number, default: 0 },
@@ -31,6 +33,9 @@ const BusSchema = new mongoose.Schema({
   // Route stop sequence (array of stop names in order)
   stopSequence: [{ type: String }],
 
+  // Remaining stops from driver's current GPS position (geofence-computed on each GPS push)
+  remainingStops: [{ type: String }],
+
   // Starting point — first pickup stop where bus begins its route
   startingPoint:    { type: String, default: '' },   // stop name, e.g. "Vadlamudi Bus Stand"
   startingLat:      { type: Number, default: null }, // GPS lat of starting point
@@ -46,5 +51,14 @@ const BusSchema = new mongoose.Schema({
   lastOptimizedAt:      { type: Date,   default: null },
   totalRouteDistanceKm: { type: Number, default: null }, // km, recomputed by optimizer
 }, { timestamps: true });
+
+// busNumber unique per institution (not globally)
+BusSchema.index({ institutionId: 1, busNumber: 1 }, { unique: true });
+
+// ── Hot-path indexes ──────────────────────────────────────────────────────────
+// driverId is queried on EVERY GPS push (PUT /api/buses/me/gps)
+BusSchema.index({ driverId: 1 });
+// status filter used in dashboard + fleet views
+BusSchema.index({ institutionId: 1, status: 1 });
 
 module.exports = mongoose.model('Bus', BusSchema);

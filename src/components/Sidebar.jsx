@@ -6,10 +6,63 @@ import {
   Sliders, MessageSquare, History,
   TrendingUp, RefreshCw, BarChart2, ShieldAlert, Fuel, Zap,
   ChevronDown, ChevronUp, LogOut, Navigation, Activity,
-  ClipboardList, QrCode, Settings
+  ClipboardList, QrCode, Settings, Building2
 } from 'lucide-react';
 
 // ─── NAV DEFINITIONS PER ROLE ───────────────────────────────────────────────
+
+const SUPER_ADMIN_NAV = [
+  {
+    title: 'Platform',
+    items: [
+      { id: 'super-admin-dashboard', label: 'Institutions',   icon: Building2 },
+    ]
+  },
+  {
+    title: 'Account',
+    items: [
+      { id: 'settings', label: 'My Settings', icon: Settings },
+    ]
+  }
+];
+
+const INSTITUTION_ADMIN_NAV = [
+  {
+    title: 'Management',
+    items: [
+      { id: 'institution-admin-dashboard', label: 'Fleet & Students', icon: Building2 },
+      { id: 'dashboard',                   label: 'Overview Dashboard', icon: LayoutDashboard },
+    ]
+  },
+  {
+    title: 'Route & Fleet',
+    items: [
+      { id: 'route-optimization',  label: 'Route Optimization',  icon: Compass },
+      { id: 'boarding-point-mgmt', label: 'Boarding Points',      icon: MapPin },
+      { id: 'smart-allocation',    label: 'Smart Allocation',     icon: RefreshCw },
+      { id: 'bus-mgmt',            label: 'Bus Management',       icon: Bus },
+    ]
+  },
+  {
+    title: 'Operations',
+    items: [
+      { id: 'live-tracking',        label: 'Live Tracking',         icon: Map },
+      { id: 'student-management',   label: 'Students',              icon: Users },
+      { id: 'attendance-verification', label: 'Attendance',         icon: UserCheck },
+      { id: 'notifications-alerts', label: 'Notifications',         icon: Bell },
+      { id: 'emergency-mgmt',       label: 'Emergency SOS',         icon: ShieldAlert },
+      { id: 'reports',              label: 'Reports',               icon: FileText },
+      { id: 'feedback-review',      label: 'Feedback',              icon: MessageSquare },
+      { id: 'admin-panel',          label: 'Admin Panel',           icon: Sliders },
+    ]
+  },
+  {
+    title: 'Account',
+    items: [
+      { id: 'settings', label: 'My Settings', icon: Settings },
+    ]
+  }
+];
 
 const ADMIN_NAV = [
   {
@@ -141,7 +194,13 @@ const Sidebar = ({ currentView, setCurrentView }) => {
   const { currentUser, setCurrentUser, sosActive } = useContext(AppContext);
 
   const role = currentUser?.role || 'guest';
-  const navConfig = role === 'admin' ? ADMIN_NAV : role === 'student' ? STUDENT_NAV : role === 'driver' ? DRIVER_NAV : [];
+  const navConfig =
+    role === 'super_admin'        ? SUPER_ADMIN_NAV :
+    role === 'admin'              ? ADMIN_NAV :
+    role === 'institution_admin'  ? INSTITUTION_ADMIN_NAV :
+    role === 'student'            ? STUDENT_NAV :
+    role === 'driver'             ? DRIVER_NAV :
+    [];
 
   const [collapsed, setCollapsed] = useState({});
   const toggle = (title) => setCollapsed(prev => ({ ...prev, [title]: !prev[title] }));
@@ -152,12 +211,14 @@ const Sidebar = ({ currentView, setCurrentView }) => {
   };
 
   const roleMeta = {
-    admin:   { label: 'Administrator', color: 'var(--primary)',  bg: 'var(--primary-soft)'  },
-    student: { label: 'Student',        color: 'var(--cyan)',    bg: 'var(--cyan-soft)'     },
-    driver:  { label: 'Driver',         color: 'var(--emerald)', bg: 'var(--emerald-soft)'  },
-    guest:   { label: 'Guest',          color: 'var(--text-muted)', bg: 'transparent' }
+    super_admin:       { label: 'Super Admin',        color: 'var(--rose)',    bg: 'var(--rose-soft, #fee2e2)'    },
+    admin:             { label: 'Super Admin',         color: 'var(--rose)',    bg: 'var(--rose-soft, #fee2e2)'    },
+    institution_admin: { label: 'Institution Admin',  color: 'var(--violet)',  bg: 'var(--violet-soft, #ede9fe)'  },
+    student:           { label: 'Student',            color: 'var(--cyan)',    bg: 'var(--cyan-soft)'             },
+    driver:            { label: 'Driver',             color: 'var(--emerald)', bg: 'var(--emerald-soft)'          },
+    guest:             { label: 'Guest',              color: 'var(--text-muted)', bg: 'transparent'              },
   };
-  const meta = roleMeta[role];
+  const meta = roleMeta[role] || roleMeta.guest;
 
   return (
     <aside className="sidebar">
@@ -249,7 +310,7 @@ const Sidebar = ({ currentView, setCurrentView }) => {
 
       {/* User info + Logout */}
       {currentUser && (
-        <div style={{ padding: '14px 14px', borderTop: '1px solid var(--card-border)', background: `linear-gradient(135deg, ${meta.bg}80 0%, transparent 100%)` }}>
+        <div style={{ padding: '14px 14px', borderTop: '1px solid var(--card-border)', background: `linear-gradient(135deg, ${meta.bg} 0%, transparent 100%)` }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
             <div style={{ width: 34, height: 34, borderRadius: 10, flexShrink: 0, background: `linear-gradient(135deg, ${meta.color}, var(--violet))`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '0.9rem', boxShadow: `0 4px 12px ${meta.bg}` }}>
               {currentUser.name.charAt(0)}

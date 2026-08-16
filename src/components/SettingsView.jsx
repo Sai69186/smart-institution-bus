@@ -244,10 +244,10 @@ const SettingsView = ({ setCurrentView }) => {
             </div>
             <button className="btn btn-secondary" style={{ width: '100%', marginTop: 14, fontSize: '0.78rem' }}
               onClick={() => saveNotificationPrefs({
-                boarding: notifBoarding,
-                delay: notifDelay,
-                sos: notifSOS,
-                ai: notifAI
+                busArrival: notifBoarding,
+                delays:     notifDelay,
+                emergency:  notifSOS,
+                general:    notifAI
               })}>
               <Save size={14} /> Save Preferences
             </button>
