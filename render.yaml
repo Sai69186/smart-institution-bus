@@ -1,0 +1,45 @@
+## render.yaml — Campus Transit deployment manifest
+## Place this file at the repo ROOT.
+## Render reads it automatically when you connect the repo via "Blueprint".
+##
+## Services:
+##   1. campus-transit-api  — Node.js Express + Socket.io (rootDir: server)
+##   2. campus-transit-ai   — Python Flask AI microservice (rootDir: python_services)
+
+services:
+
+  # ── 1. Node.js API ──────────────────────────────────────────────────────────
+  - type: web
+    name: campus-transit-api
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "5000"
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+      - key: PYTHON_SERVICE_URL
+        sync: false
+
+  # ── 2. Python Flask AI Microservice ─────────────────────────────────────────
+  - type: web
+    name: campus-transit-ai
+    runtime: python
+    region: oregon
+    plan: free
+    rootDir: python_services
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    healthCheckPath: /health
+    envVars: []
