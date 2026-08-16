@@ -1,6 +1,6 @@
 ## render.yaml — Campus Transit deployment manifest
 ## Place this file at the repo ROOT.
-## Render reads it automatically when you connect the repo via "Blueprint".
+## Deploy via: Render Dashboard → New → Blueprint → connect this repo.
 ##
 ## Services:
 ##   1. campus-transit-api  — Node.js Express + Socket.io (rootDir: server)
@@ -33,13 +33,16 @@ services:
         sync: false
 
   # ── 2. Python Flask AI Microservice ─────────────────────────────────────────
+  # .pkl model files are NOT in git (rf_model is 311MB — over GitHub limit).
+  # Build command installs deps then trains all models from the CSV datasets.
+  # First deploy takes ~3-5 minutes to train. Subsequent deploys reuse cache.
   - type: web
     name: campus-transit-ai
     runtime: python
     region: oregon
     plan: free
     rootDir: python_services
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt && python models/train_models.py
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
     healthCheckPath: /health
     envVars: []

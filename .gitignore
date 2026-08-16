@@ -18,6 +18,11 @@ dist-ssr
 .env.*.local
 server/.env
 
+# ML model binaries — too large for git (rf_model.pkl is 300MB+)
+# Render trains them at deploy time via build command
+python_services/models/*.pkl
+python_services/models/*.keras
+
 # Allow example/template env files (safe to commit)
 !.env.example
 !server/.env.example
