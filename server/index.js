@@ -6,7 +6,6 @@ const cors             = require('cors');
 const dotenv           = require('dotenv');
 const helmet           = require('helmet');
 const rateLimit        = require('express-rate-limit');
-const mongoSanitize    = require('express-mongo-sanitize');
 const seedDemoUsers    = require('./seed');
 
 dotenv.config();
@@ -35,8 +34,24 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' }, // allow frontend to load resources
 }));
 
-// Strip $ and . from req.body/query/params to prevent NoSQL injection
-app.use(mongoSanitize());
+// Strip $ and . from req.body/params to prevent NoSQL injection.
+// express-mongo-sanitize is incompatible with Express 5 (req.query is read-only).
+// We sanitize body and params manually instead.
+function sanitizeObject(obj) {
+  if (!obj || typeof obj !== 'object') return;
+  for (const key of Object.keys(obj)) {
+    if (key.startsWith('$') || key.includes('.')) {
+      delete obj[key];
+    } else {
+      sanitizeObject(obj[key]);
+    }
+  }
+}
+app.use((req, _res, next) => {
+  sanitizeObject(req.body);
+  sanitizeObject(req.params);
+  next();
+});
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
 const allowedOrigins = process.env.CLIENT_URL
