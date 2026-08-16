@@ -32,6 +32,12 @@ print(f'📂 Loading dataset: {DATASET}')
 df = pd.read_csv(DATASET)
 print(f'   {len(df)} records, columns: {list(df.columns)}')
 
+# On free-tier servers (512MB RAM), cap to 30k rows to avoid OOM during training
+_max_rows = int(os.environ.get('TRAIN_MAX_ROWS', 30000))
+if len(df) > _max_rows:
+    df = df.sample(_max_rows, random_state=42).reset_index(drop=True)
+    print(f'   (capped to {_max_rows} rows for memory-constrained environment)')
+
 # ── Column normalisation ───────────────────────────────────────────────────────
 # Map institution_bus_dataset.csv columns → internal names
 COLUMN_MAP = {
@@ -146,8 +152,17 @@ print(f'  MAE: {xgb_mae:.2f} mins  ({xgb_time}s)')
 # ── 2. Random Forest ───────────────────────────────────────────────────────────
 print('Training Random Forest...')
 t0 = time.time()
-rf_model = RandomForestRegressor(n_estimators=200, max_depth=12, random_state=42, n_jobs=-1)
-rf_model.fit(X_train, y_train)
+# Cap training rows to 20k for free-tier deployment (avoids 15+ min build times)
+# Full dataset used locally; Render gets a fast representative sample
+_rf_max = int(os.environ.get('RF_MAX_ROWS', 20000))
+if len(X_train) > _rf_max:
+    _idx = np.random.RandomState(42).choice(len(X_train), _rf_max, replace=False)
+    X_rf, y_rf = X_train[_idx], y_train[_idx]
+    print(f'  (sampled {_rf_max} rows for speed)')
+else:
+    X_rf, y_rf = X_train, y_train
+rf_model = RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42, n_jobs=-1)
+rf_model.fit(X_rf, y_rf)
 rf_mae  = mean_absolute_error(y_test, rf_model.predict(X_test))
 rf_time = round(time.time() - t0, 1)
 joblib.dump(rf_model, os.path.join(MODELS_DIR, 'rf_model.pkl'))
@@ -158,8 +173,9 @@ print(f'  MAE: {rf_mae:.2f} mins  ({rf_time}s)')
 print('Training Gradient Boosting...')
 t0 = time.time()
 # Use fewer estimators for large datasets to keep training fast
-n_est_gb = 100 if len(X_train) > 20000 else 300
-gb_model = GradientBoostingRegressor(n_estimators=n_est_gb, max_depth=5, learning_rate=0.1, random_state=42)
+n_est_gb = 50 if len(X_train) > 20000 else 200
+gb_model = GradientBoostingRegressor(n_estimators=n_est_gb, max_depth=4, learning_rate=0.1, random_state=42,
+                                      subsample=0.8)
 gb_model.fit(X_train, y_train)
 gb_mae  = mean_absolute_error(y_test, gb_model.predict(X_test))
 gb_time = round(time.time() - t0, 1)
