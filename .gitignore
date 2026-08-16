@@ -23,6 +23,13 @@ server/.env
 python_services/models/*.pkl
 python_services/models/*.keras
 
+# Large training CSV datasets — generated locally, not needed in git
+# Render uses institution_bus_dataset.csv (small, already committed) to train
+python_services/data/ap_smart_institution_bus_data_100k.csv
+python_services/data/ap_bus_dataset_1000stops.csv
+python_services/data/institution_bus_dataset_large.csv
+python_services/data/institution_bus_dataset_50_buses_realistic.csv
+
 # Allow example/template env files (safe to commit)
 !.env.example
 !server/.env.example
